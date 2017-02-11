@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}ASPTT Nantes{% endblock %}</title>
+  </head>
+  <body>
+
+    {% block body %}  {# Layout de base des pages #}
+
+    {% include 'AppBundle:Layout:nav.html.twig' %} {# include de la navigation #}
+
+    {% endblock %}
+
+  </body>
+</html>
+

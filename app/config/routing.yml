@@ -1,11 +1,13 @@
+app:
+    resource: "@AppBundle/Resources/config/routing.yml"
+
 planning:
     resource: "@PlanningBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /planning
 
 gallery:
     resource: "@GalleryBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /gallery
 
-app:
-    resource: "@AppBundle/Resources/config/routing.yml"
+
 

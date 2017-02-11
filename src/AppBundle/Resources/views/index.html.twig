@@ -1,1 +1,11 @@
+{% extends('AppBundle:Layout:layout.html.twig') %}
+
+{% block body %}
+{{ parent() }}
 Page d'accueil
+
+{# 
+on affichera un formulaire de login si l'utilisateur n'est pas
+authentifié, un menu de navigation, et les évenements du club
+#}
+{% endblock %}

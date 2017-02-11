@@ -1,3 +1,4 @@
 planning_homepage:
     path:     /
     defaults: { _controller: PlanningBundle:Default:index }
+
