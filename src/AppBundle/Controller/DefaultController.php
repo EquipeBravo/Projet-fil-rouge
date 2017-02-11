@@ -19,4 +19,18 @@ class DefaultController extends Controller
     	return $this->render('AppBundle::apropos.html.twig');
     }
 
+    public function inscriptionAction()
+    {
+    	return $this->render('AppBundle::inscription.html.twig');
+    }
+
+    public function teamsAction()
+    {
+    	return $this->render('AppBundle::teams.html.twig');
+    }
+
+    public function contactAction()
+    {
+    	return $this->render('AppBundle::contact.html.twig');
+    }
 }

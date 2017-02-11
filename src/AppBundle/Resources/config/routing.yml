@@ -5,3 +5,15 @@ app_homepage:
 app_apropos:
     path: /a-propos
     defaults: { _controller: AppBundle:Default:apropos }
+
+app_inscription:
+    path: /inscription 
+    defaults: { _controller: AppBundle:Default:inscription }
+
+app_teams:
+    path: /teams
+    defaults: { _controller: AppBundle:Default:teams }
+
+app_contact:
+    path: /contact 
+    defaults: {  _controller: AppBundle:Default:contact  }
