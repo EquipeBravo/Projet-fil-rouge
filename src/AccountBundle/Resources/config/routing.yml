@@ -1,0 +1,3 @@
+account_homepage:
+    path:     /
+    defaults: { _controller: AccountBundle:Default:index }

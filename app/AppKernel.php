@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new GalleryBundle\GalleryBundle(),
             new PlanningBundle\PlanningBundle(),
+            new AccountBundle\AccountBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
