@@ -1,0 +1,48 @@
+AccountBundle\Entity\Person:
+    type: entity
+    table: null
+    repositoryClass: AccountBundle\Repository\PersonRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        lastName:
+            type: string
+            length: '128'
+        firstName:
+            type: string
+            length: '128'
+        birthDate:
+            type: date
+        phone:
+            type: string
+            length: '64'
+            nullable: true
+        street:
+            type: string
+            length: 255
+            nullable: true
+        zip:
+            type: string
+            length: '16'
+            nullable: true
+        city:
+            type: string
+            length: '64'
+            nullable: true
+        email:
+            type: string
+            length: '128'
+            unique: true
+        password:
+            type: string
+            length: '128'
+        token:
+            type: string
+            length: 255
+            nullable: true
+            unique: true
+    lifecycleCallbacks: {  }

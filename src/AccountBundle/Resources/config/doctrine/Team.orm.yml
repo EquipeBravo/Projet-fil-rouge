@@ -1,0 +1,27 @@
+AccountBundle\Entity\Team:
+    type: entity
+    table: null
+    repositoryClass: AccountBundle\Repository\TeamRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '64'
+            unique: true
+        resumptionDate:
+            type: datetime
+            nullable: true
+        trainingDay:
+            type: string
+            length: '16'
+            nullable: true
+        trainingTime:
+            type: string
+            length: '16'
+            nullable: true
+    lifecycleCallbacks: {  }
