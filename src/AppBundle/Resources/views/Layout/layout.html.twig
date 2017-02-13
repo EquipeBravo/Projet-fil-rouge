@@ -1,17 +1,14 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>{% block title %}ASPTT Nantes{% endblock %}</title>
-  </head>
-  <body>
+{% extends 'AppBundle::base.html.twig' %}
 
-    {% block body %}  {# Layout de base des pages #}
+{% block body %}
 
-    {% include 'AppBundle:Layout:nav.html.twig' %} {# include de la navigation #}
+<main class="row">
+	<article class="col-md-9">
+		{% block article %}{% endblock %}
+	</article>
+	<aside class="col-md-3">
+		{% include 'AppBundle:Layout:siderbar.html.twig' %} 
+	</aside>
+</main>
 
-    {% endblock %}
-
-  </body>
-</html>
-
+{% endblock %}
