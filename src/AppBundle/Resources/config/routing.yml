@@ -1,3 +1,4 @@
+# Pages ne nécéssitant qu'une seule route :
 app_homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
@@ -6,14 +7,29 @@ app_apropos:
     path: /a-propos
     defaults: { _controller: AppBundle:Default:apropos }
 
-app_inscription:
-    path: /inscription 
-    defaults: { _controller: AppBundle:Default:inscription }
-
-app_teams:
-    path: /teams
-    defaults: { _controller: AppBundle:Default:teams }
+app_ecole_arbitrage:
+    path: /ecole-arbitrage
+    defaults: { _controller: AppBundle:Default:ecole_arbitrage }
 
 app_contact:
-    path: /contact 
+    path: /contact
     defaults: {  _controller: AppBundle:Default:contact  }
+
+app_partner:
+    path: /partner
+    defaults: {  _controller: AppBundle:Default:partner  }
+
+app_inscription:
+    path: /inscription
+    defaults: { _controller: AppBundle:Default:inscription }
+
+# Pages nécéssitant plusieurs routes :
+
+app_admin:
+    resource: routing/admin/admin.yml
+
+app_plannings:
+    resource: routing/plannings/plannings.yml
+
+app_teams:
+    resource: routing/teams/teams.yml

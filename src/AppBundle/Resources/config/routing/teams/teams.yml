@@ -1,0 +1,4 @@
+# TODO : AJOUTER LES CRUDS DANS LA PARTIE ADMIN
+app_teams:
+    path: /teams
+    defaults: { _controller: AppBundle:Default:teams }
