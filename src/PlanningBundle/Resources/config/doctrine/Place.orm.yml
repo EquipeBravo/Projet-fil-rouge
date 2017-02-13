@@ -1,0 +1,21 @@
+PlanningBundle\Entity\Place:
+    type: entity
+    table: null
+    repositoryClass: PlanningBundle\Repository\PlaceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        room:
+            type: string
+            length: 255
+        city:
+            type: string
+            length: '128'
+        roomManager:
+            type: integer
+            nullable: true
+    lifecycleCallbacks: {  }

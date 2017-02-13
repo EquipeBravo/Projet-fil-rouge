@@ -1,0 +1,28 @@
+GalleryBundle\Entity\File:
+    type: entity
+    table: null
+    repositoryClass: GalleryBundle\Repository\FileRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '65'
+        path:
+            type: string
+            length: 255
+            unique: true
+        type:
+            type: string
+            length: '45'
+        alt:
+            type: string
+            length: '128'
+            nullable: true
+        uploadDate:
+            type: datetime
+    lifecycleCallbacks: {  }

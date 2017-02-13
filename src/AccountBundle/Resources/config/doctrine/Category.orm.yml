@@ -1,0 +1,14 @@
+AccountBundle\Entity\Category:
+    type: entity
+    table: null
+    repositoryClass: AccountBundle\Repository\CategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        description:
+            type: text
+    lifecycleCallbacks: {  }

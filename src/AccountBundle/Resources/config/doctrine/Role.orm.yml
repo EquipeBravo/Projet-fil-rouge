@@ -1,0 +1,19 @@
+AccountBundle\Entity\Role:
+    type: entity
+    table: null
+    repositoryClass: AccountBundle\Repository\RoleRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        roleName:
+            type: string
+            length: '64'
+            unique: true
+        roleRights:
+            type: integer
+            unique: true
+    lifecycleCallbacks: {  }
