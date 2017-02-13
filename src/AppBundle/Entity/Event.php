@@ -35,6 +35,12 @@ class Event
      */
     private $date;
 
+    /**
+     * Many Events have One Club.
+     * @ManyToOne(targetEntity="Club)
+     * @JoinColumn(name="club_id", referencedColumnName="id")
+     */
+    private $club;
 
     /**
      * Get id
@@ -94,6 +100,29 @@ class Event
         return $this->date;
     }
 
+    /**
+     * Set club
+     *
+     * @param Club $club
+     *
+     * @return Event
+     */
+    public function setClub($club)
+    {
+        $this->club = $club;
+
+        return $this;
+    }
+
+    /**
+     * Get club
+     *
+     * @return Club
+     */
+    public function getClub()
+    {
+        return $this->club;
+    }
     // on pourrait écrire des méthodes qui renvoient le jour de l'évènement à partir de la date
     // idem pour renvoyer l'heure
 }
