@@ -48,8 +48,8 @@ doctrine:
         driver:   pdo_mysql
         host:     "%database_host%"
         port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
+        dbname:   "asptt_db"
+        user:     "asptt"
         password: "%database_password%"
         charset:  UTF8
         # if using pdo_sqlite as your database driver:

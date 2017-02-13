@@ -1,0 +1,16 @@
+PlanningBundle\Entity\Matchs:
+    type: entity
+    table: null
+    repositoryClass: PlanningBundle\Repository\MatchsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateMatch:
+            type: datetime
+        domicile:
+            type: boolean
+    lifecycleCallbacks: {  }
