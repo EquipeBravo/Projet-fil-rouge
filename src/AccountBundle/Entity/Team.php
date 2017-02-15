@@ -32,6 +32,34 @@ class Team
      */
     private $trainingTime;
 
+    /**
+     * @var Category
+     */
+    private $category;
+
+    /**
+     * Get category
+     *
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set category
+     *
+     * @param Category $category
+     *
+     * @return Team
+     */
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
 
     /**
      * Get id
