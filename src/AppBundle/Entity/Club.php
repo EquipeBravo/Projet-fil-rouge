@@ -44,7 +44,7 @@ class Club
      *
      * @return Club
      */
-    public function setEvent($event)
+    public function setEvent(Event $event)
     {
         $this->event = $event;
 

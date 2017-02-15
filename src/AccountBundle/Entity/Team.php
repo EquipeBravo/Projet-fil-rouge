@@ -2,6 +2,8 @@
 
 namespace AccountBundle\Entity;
 
+use AppBundle\Entity\Club;
+
 /**
  * Team
  */
@@ -36,6 +38,35 @@ class Team
      * @var Category
      */
     private $category;
+
+    /**
+     * @var AppBundle\Entity\Club
+     */
+    private $club;
+
+    /**
+     * Get category
+     *
+     * @return Club
+     */
+    public function getClub()
+    {
+        return $this->club;
+    }
+
+    /**
+     * Set club
+     *
+     * @param Club $club
+     *
+     * @return Team
+     */
+    public function setClub(Club $club)
+    {
+        $this->club = $club;
+
+        return $this;
+    }
 
     /**
      * Get category
