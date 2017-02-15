@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="favicon.ico">
+
+    <title>{% block title %}ASPTT Nantes{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/app/css/styles.css') }}" rel="stylesheet">
+    {% endblock stylesheets %}
+
+</head>
+
+ <body>
+
+ 	{# include de la navigation #}
+    {% include 'AppBundle:Layout:nav.html.twig' %} 
+
+    <div class="container">
+	    {# Layout de base des pages #}
+	    {% block body %}{% endblock %}
+    </div>
+
+    {# include footer#}
+    {% include 'AppBundle:Layout:footer.html.twig' %} 
+
+	{% block javascripts %}
+        <script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+    {% endblock javascripts %}
+
+  </body>
+</html>

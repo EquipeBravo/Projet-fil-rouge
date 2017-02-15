@@ -1,0 +1,18 @@
+# TODO : ADAPTER LE FICHIER AVEC LES CRUDS QUI SERONT GENERES ULTERIEUREMENT
+
+#app_admin_dashboard:
+#    path: ""
+#    defaults:
+#        _controller: AppBundle:Admin/Dashboard:index
+
+#app_admin_product:
+#    resource: "admin/product.yml"
+#    prefix:   /product
+
+#app_admin_category:
+#    resource: "admin/category.yml"
+#    prefix:   /category
+
+#app_admin_feature:
+#    resource: "admin/feature.yml"
+#    prefix:   /feature
