@@ -7,6 +7,13 @@ PlanningBundle\Entity\Matchs:
             joinColumn: 
                 name: place_id
                 referencedColumnName: id
+    # Many (two) teams for one Match (ManyToOne)
+    manyToOne:
+        team:
+            targetEntity: AccountBundle\Entity\team
+            joinColumn:
+                name: team_id
+                referencedColumnName: id
     table: null
     repositoryClass: PlanningBundle\Repository\MatchsRepository
     id:

@@ -2,6 +2,7 @@
 
 namespace PlanningBundle\Entity;
 
+use AccountBundle\Entity\Team;
 /**
  * Matchs
  */
@@ -26,6 +27,35 @@ class Matchs
      * @var Place
      */
     private $place;
+
+    /** 
+     * @var Team
+     */
+    private $team;
+
+    /**
+     * Get team
+     *
+     * @return Team
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+
+    /**
+     * Set team
+     *
+     * @param Team $team
+     *
+     * @return Matchs
+     */
+    public function setTeam(Team $team)
+    {
+        $this->team = $team;
+
+        return $this;
+    }
 
     /**
      * Get place

@@ -2,6 +2,7 @@
 
 namespace PlanningBundle\Entity;
 
+
 use AccountBundle\Entity\Person;
 
 /**
