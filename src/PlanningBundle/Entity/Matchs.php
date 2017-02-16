@@ -22,6 +22,34 @@ class Matchs
      */
     private $domicile;
 
+    /** 
+     * @var Place
+     */
+    private $place;
+
+    /**
+     * Get place
+     *
+     * @return Place
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * Set place
+     *
+     * @param Place $place
+     *
+     * @return Matchs
+     */
+    public function setPlace(Place $place)
+    {
+        $this->place = $place;
+
+        return $this;
+    }
 
     /**
      * Get id
