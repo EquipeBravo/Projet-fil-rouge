@@ -69,6 +69,35 @@ class Person
      */
     private $teams;
 
+    /** 
+     * @var ArrayCollection
+     */
+    private $roles;
+
+    /**
+     * Get roles
+     *
+     * @return ArrayCollection
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * Set roles
+     *
+     * @param ArrayCollection $roles
+     *
+     * @return Person
+     */
+    public function setRoles(ArrayCollection $roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
     /**
      * Get teams
      *
@@ -86,7 +115,7 @@ class Person
      *
      * @return Person
      */
-    public function setTeams($teams)
+    public function setTeams(ArrayCollection $teams)
     {
         $this->teams = $teams;
 
@@ -346,5 +375,6 @@ class Person
     public function __construct()
     {
         $this->teams = new ArrayCollection();
+        $this->roles = new ArrayCollection();
     }
 }
