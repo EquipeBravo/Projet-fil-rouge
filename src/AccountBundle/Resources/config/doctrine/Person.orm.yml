@@ -13,11 +13,10 @@ AccountBundle\Entity\Person:
                     team_id:
                         referencedColumnName: id       
     # Many Persons can have Many Roles
-    manyToMany:
         roles:
             targetEntity: Role
             joinTable:
-                name: users_roles
+                name: roles_users
                 joinColumns:
                     person_id:
                         referencedColumnName: id
