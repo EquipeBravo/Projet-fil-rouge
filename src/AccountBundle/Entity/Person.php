@@ -2,6 +2,8 @@
 
 namespace AccountBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Person
  */
@@ -62,6 +64,34 @@ class Person
      */
     private $token;
 
+    /** 
+     * @var ArrayCollection
+     */
+    private $teams;
+
+    /**
+     * Get teams
+     *
+     * @return ArrayCollection
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    /**
+     * Set teams
+     *
+     * @param ArrayCollection $teams
+     *
+     * @return Person
+     */
+    public function setTeams($teams)
+    {
+        $this->teams = $teams;
+
+        return $this;
+    }
 
     /**
      * Get id
@@ -312,5 +342,9 @@ class Person
     {
         return $this->token;
     }
-}
 
+    public function __construct()
+    {
+        $this->teams = new ArrayCollection();
+    }
+}

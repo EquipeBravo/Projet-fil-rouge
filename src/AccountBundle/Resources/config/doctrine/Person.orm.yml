@@ -1,5 +1,19 @@
 AccountBundle\Entity\Person:
     type: entity
+    # Many Persons can have Many Teams
+    manyToMany:
+        teams:
+            targetEntity: Team
+            joinTable:
+                name: users_teams
+                joinColumns:
+                    person_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    team_id:
+                        referencedColumnName: id       
+    # Many Persons can have Many Roles
+
     table: null
     repositoryClass: AccountBundle\Repository\PersonRepository
     id:
