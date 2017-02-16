@@ -22,6 +22,34 @@ class Event
      */
     private $dateEvent;
 
+    /**
+     * @var Club
+     */
+    private $club;
+
+    /**
+     * Get club
+     *
+     * @return Club
+     */
+    public function getClub()
+    {
+        return $this->club;
+    }
+
+    /**
+     * Set Club
+     *
+     * @param Club $club
+     *
+     * @return Event
+     */
+    public function setClub(Club $club)
+    {
+        $this->club = $club;
+
+        return $this;
+    }
 
     /**
      * Get id

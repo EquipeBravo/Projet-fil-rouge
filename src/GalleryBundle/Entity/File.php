@@ -2,6 +2,8 @@
 
 namespace GalleryBundle\Entity;
 
+use AccountBundle\Entity\Team;
+
 /**
  * File
  */
@@ -37,6 +39,34 @@ class File
      */
     private $uploadDate;
 
+    /**
+     * @var Team
+     */
+    private $team;
+
+    /**
+     * Get team
+     *
+     * @return Team
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+
+    /**
+     * Set team
+     *
+     * @param Team $team
+     *
+     * @return File
+     */
+    public function setTeam(Team $team)
+    {
+        $this->team = $team;
+
+        return $this;
+    }
 
     /**
      * Get id

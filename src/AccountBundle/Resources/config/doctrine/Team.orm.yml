@@ -1,6 +1,6 @@
 AccountBundle\Entity\Team:
     type: entity
-    # Many Categories for one Team (ManyToOne)
+    # Many Teams for one Category (ManyToOne)
     manyToOne:
         category:
             targetEntity: Category
