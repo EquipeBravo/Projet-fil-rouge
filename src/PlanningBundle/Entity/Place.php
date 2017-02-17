@@ -2,6 +2,9 @@
 
 namespace PlanningBundle\Entity;
 
+
+use AccountBundle\Entity\Person;
+
 /**
  * Place
  */
@@ -23,7 +26,7 @@ class Place
     private $city;
 
     /**
-     * @var int
+     * @var Person
      */
     private $roomManager;
 
@@ -89,11 +92,11 @@ class Place
     /**
      * Set roomManager
      *
-     * @param integer $roomManager
+     * @param Person $roomManager
      *
      * @return Place
      */
-    public function setRoomManager($roomManager)
+    public function setRoomManager(Person $roomManager)
     {
         $this->roomManager = $roomManager;
 
@@ -103,7 +106,7 @@ class Place
     /**
      * Get roomManager
      *
-     * @return int
+     * @return Person
      */
     public function getRoomManager()
     {

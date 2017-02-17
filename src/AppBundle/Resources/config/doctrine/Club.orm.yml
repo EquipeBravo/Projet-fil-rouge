@@ -1,0 +1,18 @@
+AppBundle\Entity\Club:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ClubRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        history:
+            type: text
+            nullable: true
+        clubValues:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

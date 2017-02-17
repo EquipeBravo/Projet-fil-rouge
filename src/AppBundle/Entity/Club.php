@@ -2,39 +2,25 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Club
- *
- * @ORM\Table(name="club")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ClubRepository")
  */
 class Club
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="history", type="text", nullable=true)
      */
     private $history;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="value", type="text", nullable=true)
      */
-    private $value;
-
+    private $clubValues;
 
     /**
      * Get id
@@ -71,27 +57,27 @@ class Club
     }
 
     /**
-     * Set value
+     * Set clubValues
      *
-     * @param string $value
+     * @param string $clubValues
      *
      * @return Club
      */
-    public function setValue($value)
+    public function setClubValues($clubValues)
     {
-        $this->value = $value;
+        $this->clubValues = $clubValues;
 
         return $this;
     }
 
     /**
-     * Get value
+     * Get clubValues
      *
      * @return string
      */
-    public function getValue()
+    public function getClubValues()
     {
-        return $this->value;
+        return $this->clubValues;
     }
 }
 

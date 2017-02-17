@@ -1,5 +1,19 @@
 PlanningBundle\Entity\Matchs:
     type: entity
+    # Many Matches in one Place (ManyToOne)
+    manyToOne:
+        place:
+            targetEntity: Place
+            joinColumn: 
+                name: place_id
+                referencedColumnName: id
+    # Many Match played by One Team
+    manyToOne:
+        team:
+            targetEntity: AccountBundle\Entity\team
+            joinColumn:
+                name: team_id
+                referencedColumnName: id
     table: null
     repositoryClass: PlanningBundle\Repository\MatchsRepository
     id:

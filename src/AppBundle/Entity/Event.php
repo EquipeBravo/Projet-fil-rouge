@@ -2,39 +2,54 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Event
- *
- * @ORM\Table(name="event")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EventRepository")
  */
 class Event
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date", type="datetime")
      */
-    private $date;
+    private $dateEvent;
 
+    /**
+     * @var Club
+     */
+    private $club;
+
+    /**
+     * Get club
+     *
+     * @return Club
+     */
+    public function getClub()
+    {
+        return $this->club;
+    }
+
+    /**
+     * Set Club
+     *
+     * @param Club $club
+     *
+     * @return Event
+     */
+    public function setClub(Club $club)
+    {
+        $this->club = $club;
+
+        return $this;
+    }
 
     /**
      * Get id
@@ -71,30 +86,27 @@ class Event
     }
 
     /**
-     * Set date
+     * Set dateEvent
      *
-     * @param \DateTime $date
+     * @param \DateTime $dateEvent
      *
      * @return Event
      */
-    public function setDate($date)
+    public function setDateEvent($dateEvent)
     {
-        $this->date = $date;
+        $this->dateEvent = $dateEvent;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get dateEvent
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateEvent()
     {
-        return $this->date;
+        return $this->dateEvent;
     }
-
-    // on pourrait écrire des méthodes qui renvoient le jour de l'évènement à partir de la date
-    // idem pour renvoyer l'heure
 }
 

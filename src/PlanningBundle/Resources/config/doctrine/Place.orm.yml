@@ -1,5 +1,12 @@
 PlanningBundle\Entity\Place:
     type: entity
+    # One place have One room manager (OneToOne)
+    oneToOne:
+        roomManager:
+            targetEntity: AccountBundle\Entity\Person
+            joinColumn: 
+                name: roommanager_id
+                referencedColumnName: id
     table: null
     repositoryClass: PlanningBundle\Repository\PlaceRepository
     id:
@@ -15,7 +22,4 @@ PlanningBundle\Entity\Place:
         city:
             type: string
             length: '128'
-        roomManager:
-            type: integer
-            nullable: true
     lifecycleCallbacks: {  }

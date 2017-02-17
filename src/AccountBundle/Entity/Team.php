@@ -2,6 +2,8 @@
 
 namespace AccountBundle\Entity;
 
+use AppBundle\Entity\Club;
+
 /**
  * Team
  */
@@ -32,6 +34,63 @@ class Team
      */
     private $trainingTime;
 
+    /**
+     * @var Category
+     */
+    private $category;
+
+    /**
+     * @var AppBundle\Entity\Club
+     */
+    private $club;
+
+    /**
+     * Get category
+     *
+     * @return Club
+     */
+    public function getClub()
+    {
+        return $this->club;
+    }
+
+    /**
+     * Set club
+     *
+     * @param Club $club
+     *
+     * @return Team
+     */
+    public function setClub(Club $club)
+    {
+        $this->club = $club;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set category
+     *
+     * @param Category $category
+     *
+     * @return Team
+     */
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
 
     /**
      * Get id
