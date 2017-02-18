@@ -3,11 +3,6 @@ category_index:
     defaults: { _controller: "AccountBundle:Category:index" }
     methods:  GET
 
-category_show:
-    path:     /{id}/show
-    defaults: { _controller: "AccountBundle:Category:show" }
-    methods:  GET
-
 category_new:
     path:     /new
     defaults: { _controller: "AccountBundle:Category:new" }
