@@ -1,23 +1,21 @@
 {% extends 'AppBundle:Layout:layout.html.twig' %}
 {% block body %}
-    <h1>Files list</h1>
+    <h1>Liste des fichiers</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th>Nom du fichier</th>
                 <th>Path</th>
                 <th>Type</th>
                 <th>Alt</th>
-                <th>Uploaddate</th>
+                <th>Date de téléchargement</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for file in files %}
             <tr>
-                <td><a href="{{ path('file_show', { 'id': file.id }) }}">{{ file.id }}</a></td>
                 <td>{{ file.name }}</td>
                 <td>{{ file.path }}</td>
                 <td>{{ file.type }}</td>
@@ -26,7 +24,7 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('file_show', { 'id': file.id }) }}">show</a>
+                            <a href="{{ path('file_show', { 'id': file.id }) }}">détails</a>
                         </li>
                         <li>
                             <a href="{{ path('file_edit', { 'id': file.id }) }}">Modifier</a>
