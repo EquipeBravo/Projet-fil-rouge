@@ -9,3 +9,7 @@ account_homepage:
 account_category:
     resource: "@AccountBundle/Resources/config/routing/category.yml"
     prefix:   /category
+
+account_role:
+    resource: "@AccountBundle/Resources/config/routing/role.yml"
+    prefix:   /role

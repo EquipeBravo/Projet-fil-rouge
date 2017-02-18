@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Modifier une catégorie</h1>
+    <h1>Modifier le rôle</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('category_index') }}">Retour à la liste</a>
+            <a href="{{ path('role_index') }}">Retour à la liste</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
