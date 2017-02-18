@@ -1,19 +1,15 @@
 {% extends 'AppBundle:Layout:layout.html.twig' %}
 {% block body %}
-    <h1>Place</h1>
+    <h1>Lieu</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ place.id }}</td>
-            </tr>
-            <tr>
-                <th>Room</th>
+                <th>Salle</th>
                 <td>{{ place.room }}</td>
             </tr>
             <tr>
-                <th>City</th>
+                <th>Ville</th>
                 <td>{{ place.city }}</td>
             </tr>
         </tbody>
@@ -21,14 +17,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('place_index') }}">Back to the list</a>
+            <a href="{{ path('place_index') }}">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('place_edit', { 'id': place.id }) }}">Edit</a>
+            <a href="{{ path('place_edit', { 'id': place.id }) }}">Modifier</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>

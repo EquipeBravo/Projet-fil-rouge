@@ -6,10 +6,6 @@
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ match.id }}</td>
-            </tr>
-            <tr>
                 <th>Datematch</th>
                 <td>{% if match.dateMatch %}{{ match.dateMatch|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
@@ -22,14 +18,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('matchs_index') }}">Back to the list</a>
+            <a href="{{ path('matchs_index') }}">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('matchs_edit', { 'id': match.id }) }}">Edit</a>
+            <a href="{{ path('matchs_edit', { 'id': match.id }) }}">Modifier</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>
