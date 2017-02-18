@@ -1,3 +1,7 @@
+account_person:
+    resource: "@AccountBundle/Resources/config/routing/person.yml"
+    prefix:   /person
+
 account_homepage:
     path:     /account
     defaults: { _controller: AccountBundle:Default:index }

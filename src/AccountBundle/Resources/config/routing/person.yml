@@ -1,0 +1,24 @@
+person_index:
+    path:     /
+    defaults: { _controller: "AccountBundle:Person:index" }
+    methods:  GET
+
+person_show:
+    path:     /{id}/show
+    defaults: { _controller: "AccountBundle:Person:show" }
+    methods:  GET
+
+person_new:
+    path:     /new
+    defaults: { _controller: "AccountBundle:Person:new" }
+    methods:  [GET, POST]
+
+person_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AccountBundle:Person:edit" }
+    methods:  [GET, POST]
+
+person_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AccountBundle:Person:delete" }
+    methods:  DELETE
