@@ -1,3 +1,7 @@
+gallery_file:
+    resource: "@GalleryBundle/Resources/config/routing/file.yml"
+    prefix:   /file
+
 gallery_homepage:
     path:     /
     defaults: { _controller: GalleryBundle:Default:index }

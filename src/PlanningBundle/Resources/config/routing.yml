@@ -1,3 +1,7 @@
+planning_matchs:
+    resource: "@PlanningBundle/Resources/config/routing/matchs.yml"
+    prefix:   /matchs
+
 planning_homepage:
     path:     /
     defaults: { _controller: PlanningBundle:Default:index }

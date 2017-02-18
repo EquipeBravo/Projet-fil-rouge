@@ -1,0 +1,24 @@
+matchs_index:
+    path:     /
+    defaults: { _controller: "PlanningBundle:Matchs:index" }
+    methods:  GET
+
+matchs_show:
+    path:     /{id}/show
+    defaults: { _controller: "PlanningBundle:Matchs:show" }
+    methods:  GET
+
+matchs_new:
+    path:     /new
+    defaults: { _controller: "PlanningBundle:Matchs:new" }
+    methods:  [GET, POST]
+
+matchs_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PlanningBundle:Matchs:edit" }
+    methods:  [GET, POST]
+
+matchs_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PlanningBundle:Matchs:delete" }
+    methods:  DELETE
