@@ -1,29 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Membres inscrits</h1>
+    <h1>Membres inscrits</h1>  
+    {# 
+        La liste des membres devrait s'afficher si enregistré uniquement 
+        Régler le routage (cf security.yml)
+    #}
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Lastname</th>
-                <th>Firstname</th>
-                <th>Birthdate</th>
-                <th>Phone</th>
-                <th>Street</th>
-                <th>Zip</th>
-                <th>City</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Token</th>
+                <th>Nom/th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th>Téléphone</th>
+                <th>Rue</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>E-mail</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for person in people %}
             <tr>
-                <td><a href="{{ path('person_show', { 'id': person.id }) }}">{{ person.id }}</a></td>
                 <td>{{ person.lastName }}</td>
                 <td>{{ person.firstName }}</td>
                 <td>{% if person.birthDate %}{{ person.birthDate|date('Y-m-d') }}{% endif %}</td>
@@ -32,15 +32,14 @@
                 <td>{{ person.zip }}</td>
                 <td>{{ person.city }}</td>
                 <td>{{ person.email }}</td>
-                <td>{{ person.password }}</td>
-                <td>{{ person.token }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('person_show', { 'id': person.id }) }}">show</a>
+                            <a href="{{ path('person_show', { 'id': person.id }) }}">détails</a>
                         </li>
+                        {# A masquer/afficher en fonction des droits #}
                         <li>
-                            <a href="{{ path('person_edit', { 'id': person.id }) }}">edit</a>
+                            <a href="{{ path('person_edit', { 'id': person.id }) }}">éditer</a>
                         </li>
                     </ul>
                 </td>
@@ -49,9 +48,4 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('person_new') }}">Create a new person</a>
-        </li>
-    </ul>
 {% endblock %}
