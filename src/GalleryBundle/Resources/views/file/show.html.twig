@@ -1,0 +1,39 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+{% block body %}
+    <h1>Détails</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Nom du fichier</th>
+                <td>{{ file.name }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ file.type }}</td>
+            </tr>
+            <tr>
+                <th>Alt</th>
+                <td>{{ file.alt }}</td>
+            </tr>
+            <tr>
+                <th>Uploaddate</th>
+                <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('file_index') }}">Retour à la liste</a>
+        </li>
+        <li>
+            <a href="{{ path('file_edit', { 'id': file.id }) }}">Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

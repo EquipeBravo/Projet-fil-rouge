@@ -1,0 +1,19 @@
+category_index:
+    path:     /
+    defaults: { _controller: "AccountBundle:Category:index" }
+    methods:  GET
+
+category_new:
+    path:     /new
+    defaults: { _controller: "AccountBundle:Category:new" }
+    methods:  [GET, POST]
+
+category_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AccountBundle:Category:edit" }
+    methods:  [GET, POST]
+
+category_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AccountBundle:Category:delete" }
+    methods:  DELETE

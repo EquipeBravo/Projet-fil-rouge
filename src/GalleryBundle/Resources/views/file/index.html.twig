@@ -1,0 +1,44 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+{% block body %}
+    <h1>Liste des fichiers</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom du fichier</th>
+                <th>Path</th>
+                <th>Type</th>
+                <th>Alt</th>
+                <th>Date de téléchargement</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for file in files %}
+            <tr>
+                <td>{{ file.name }}</td>
+                <td>{{ file.path }}</td>
+                <td>{{ file.type }}</td>
+                <td>{{ file.alt }}</td>
+                <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('file_show', { 'id': file.id }) }}">détails</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('file_edit', { 'id': file.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('file_new') }}">Create a new file</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+    <h1>Membres inscrits</h1>  
+    {# 
+        La liste des membres devrait s'afficher si enregistré uniquement 
+        Régler le routage (cf security.yml)
+    #}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom/th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th>Téléphone</th>
+                <th>Rue</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>E-mail</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for person in people %}
+            <tr>
+                <td>{{ person.lastName }}</td>
+                <td>{{ person.firstName }}</td>
+                <td>{% if person.birthDate %}{{ person.birthDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ person.phone }}</td>
+                <td>{{ person.street }}</td>
+                <td>{{ person.zip }}</td>
+                <td>{{ person.city }}</td>
+                <td>{{ person.email }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('person_show', { 'id': person.id }) }}">détails</a>
+                        </li>
+                        {# A masquer/afficher en fonction des droits #}
+                        <li>
+                            <a href="{{ path('person_edit', { 'id': person.id }) }}">éditer</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

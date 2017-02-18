@@ -1,0 +1,57 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+    <h1>Informations</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ person.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ person.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance</th>
+                <td>{% if person.birthDate %}{{ person.birthDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <thNuméro de téléphone</th>
+                <td>{{ person.phone }}</td>
+            </tr>
+            <tr>
+                <th>Rue</th>
+                <td>{{ person.street }}</td>
+            </tr>
+            <tr>
+                <th>Code Postal</th>
+                <td>{{ person.zip }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ person.city }}</td>
+            </tr>
+            <tr>
+                <th>E-mail</th>
+                <td>{{ person.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul> {# A masquer/afficher en fonction des droits #}
+        <li>
+            <a href="{{ path('person_index') }}">Retour à la liste</a>
+        </li>
+        <li>
+            <a href="{{ path('person_edit', { 'id': person.id }) }}">Modifier</a>
+        </li>
+        <li>
+           
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

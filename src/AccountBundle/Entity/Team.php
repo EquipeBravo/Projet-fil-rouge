@@ -197,5 +197,10 @@ class Team
     {
         return $this->trainingTime;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
 

@@ -1,0 +1,39 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+    <h1>Salles</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Salle</th>
+                <th>Ville</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for place in places %}
+            <tr>
+                <td>{{ place.room }}</td>
+                <td>{{ place.city }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('place_show', { 'id': place.id }) }}">détails</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('place_edit', { 'id': place.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('place_new') }}">Nouvelle salle</a>
+        </li>
+    </ul>
+{% endblock %}

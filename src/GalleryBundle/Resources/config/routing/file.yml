@@ -1,0 +1,24 @@
+file_index:
+    path:     /
+    defaults: { _controller: "GalleryBundle:File:index" }
+    methods:  GET
+
+file_show:
+    path:     /{id}/show
+    defaults: { _controller: "GalleryBundle:File:show" }
+    methods:  GET
+
+file_new:
+    path:     /new
+    defaults: { _controller: "GalleryBundle:File:new" }
+    methods:  [GET, POST]
+
+file_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "GalleryBundle:File:edit" }
+    methods:  [GET, POST]
+
+file_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "GalleryBundle:File:delete" }
+    methods:  DELETE

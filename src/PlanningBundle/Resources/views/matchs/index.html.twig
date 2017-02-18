@@ -1,0 +1,38 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+{% block body %}
+    <h1>Les matchs</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date du match</th>
+                <th>Domicile</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for match in matchs %}
+            <tr>
+                <td>{% if match.dateMatch %}{{ match.dateMatch|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if match.domicile %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('matchs_show', { 'id': match.id }) }}">détails</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('matchs_edit', { 'id': match.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('matchs_new') }}">Nouveau match</a>
+        </li>
+    </ul>
+{% endblock %}

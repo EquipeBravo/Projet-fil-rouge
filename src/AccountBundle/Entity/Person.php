@@ -377,4 +377,10 @@ class Person
         $this->teams = new ArrayCollection();
         $this->roles = new ArrayCollection();
     }
+
+    public function __toString()
+    {
+        $name = $this->firstName . " " . $this->lastName; 
+        return $name;
+    }
 }

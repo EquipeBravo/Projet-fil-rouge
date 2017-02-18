@@ -1,3 +1,19 @@
+account_person:
+    resource: "@AccountBundle/Resources/config/routing/person.yml"
+    prefix:   /person
+
 account_homepage:
     path:     /account
     defaults: { _controller: AccountBundle:Default:index }
+
+account_category:
+    resource: "@AccountBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+account_role:
+    resource: "@AccountBundle/Resources/config/routing/role.yml"
+    prefix:   /role
+
+account_team:
+    resource: "@AccountBundle/Resources/config/routing/team.yml"
+    prefix:   /team
