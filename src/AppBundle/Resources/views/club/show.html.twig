@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Le club</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Historique</th>
+                <td>{{ club.history }}</td>
+            </tr>
+            <tr>
+                <th>Valeurs</th>
+                <td>{{ club.clubValues }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('club_index') }}">Retour à la liste</a>
+        </li>
+        <li>
+            <a href="{{ path('club_edit', { 'id': club.id }) }}">Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

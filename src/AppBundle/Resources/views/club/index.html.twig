@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Les profils du club enregistrés</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Historique</th>
+                <th>Valeurs</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for club in clubs %}
+            <tr>
+                <td>{{ club.history }}</td>
+                <td>{{ club.clubValues }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('club_show', { 'id': club.id }) }}">details</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('club_edit', { 'id': club.id }) }}">modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('club_new') }}">Nouveau profil du club</a>
+        </li>
+    </ul>
+{% endblock %}
