@@ -6,7 +6,6 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Rôle</th>
                 <th>Droits</th>
                 <th>Actions</th>
@@ -15,14 +14,10 @@
         <tbody>
         {% for role in roles %}
             <tr>
-                <td><a href="{{ path('role_show', { 'id': role.id }) }}">{{ role.id }}</a></td>
                 <td>{{ role.roleName }}</td>
                 <td>{{ role.roleRights }}</td>
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('role_show', { 'id': role.id }) }}">details</a>
-                        </li>
                         <li>
                             <a href="{{ path('role_edit', { 'id': role.id }) }}">éditer</a>
                         </li>

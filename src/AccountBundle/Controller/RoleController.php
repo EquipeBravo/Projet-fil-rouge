@@ -52,20 +52,6 @@ class RoleController extends Controller
     }
 
     /**
-     * Finds and displays a role entity.
-     *
-     */
-    public function showAction(Role $role)
-    {
-        $deleteForm = $this->createDeleteForm($role);
-
-        return $this->render('AccountBundle:role:show.html.twig', array(
-            'role' => $role,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
      * Displays a form to edit an existing role entity.
      *
      */

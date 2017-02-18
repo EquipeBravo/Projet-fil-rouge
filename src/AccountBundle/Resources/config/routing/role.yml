@@ -3,11 +3,6 @@ role_index:
     defaults: { _controller: "AccountBundle:Role:index" }
     methods:  GET
 
-role_show:
-    path:     /{id}/show
-    defaults: { _controller: "AccountBundle:Role:show" }
-    methods:  GET
-
 role_new:
     path:     /new
     defaults: { _controller: "AccountBundle:Role:new" }
