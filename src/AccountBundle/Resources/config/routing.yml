@@ -5,3 +5,7 @@ account_person:
 account_homepage:
     path:     /account
     defaults: { _controller: AccountBundle:Default:index }
+
+account_category:
+    resource: "@AccountBundle/Resources/config/routing/category.yml"
+    prefix:   /category
