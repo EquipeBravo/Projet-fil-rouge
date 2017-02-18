@@ -16,21 +16,21 @@ class PersonType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('lastName')
-                ->add('firstName')
-                ->add('birthDate')
-                ->add('phone')
-                ->add('street')
-                ->add('zip')
-                ->add('city')
+        $builder->add('lastName', null, ['label' => 'Nom'])
+                ->add('firstName', null, ['label' => 'Prénom'])
+                ->add('birthDate', null, ['label' => 'Date de naissance'])
+                ->add('phone', null, ['label' => 'Téléphone'])
+                ->add('street', null, ['label' => 'Rue'])
+                ->add('zip', null, ['label' => 'Code Postal'])
+                ->add('city', null, ['label' => 'Adresse'])
                 ->add('email', EmailType::class)
                 ->add('password', RepeatedType::class, [
                     'type' => PasswordType::class,
-                    'first_options'  => ['label' => 'Password'],
-                    'second_options' => ['label' => 'Repeat Password']
+                    'first_options'  => ['label' => 'Mot de passe'],
+                    'second_options' => ['label' => 'Confirmer le mot de passe']
                     ,])
-                ->add('teams')
-                ->add('roles')        
+                ->add('teams', null, ['label' => 'Equipes'])
+                ->add('roles', null, ['label' => 'Roles'])        
             ;
     }
     
