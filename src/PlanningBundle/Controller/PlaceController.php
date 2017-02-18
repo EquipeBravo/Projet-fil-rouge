@@ -22,7 +22,7 @@ class PlaceController extends Controller
 
         $places = $em->getRepository('PlanningBundle:Place')->findAll();
 
-        return $this->render('place/index.html.twig', array(
+        return $this->render('PlanningBundle:place:index.html.twig', array(
             'places' => $places,
         ));
     }
@@ -45,7 +45,7 @@ class PlaceController extends Controller
             return $this->redirectToRoute('place_show', array('id' => $place->getId()));
         }
 
-        return $this->render('place/new.html.twig', array(
+        return $this->render('PlanningBundle:place:new.html.twig', array(
             'place' => $place,
             'form' => $form->createView(),
         ));
@@ -59,7 +59,7 @@ class PlaceController extends Controller
     {
         $deleteForm = $this->createDeleteForm($place);
 
-        return $this->render('place/show.html.twig', array(
+        return $this->render('PlanningBundle:place:show.html.twig', array(
             'place' => $place,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -81,7 +81,7 @@ class PlaceController extends Controller
             return $this->redirectToRoute('place_edit', array('id' => $place->getId()));
         }
 
-        return $this->render('place/edit.html.twig', array(
+        return $this->render('PlanningBundle:place:edit.html.twig', array(
             'place' => $place,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -22,7 +22,7 @@ class MatchsController extends Controller
 
         $matchs = $em->getRepository('PlanningBundle:Matchs')->findAll();
 
-        return $this->render('matchs/index.html.twig', array(
+        return $this->render('PlanningBundle:matchs:index.html.twig', array(
             'matchs' => $matchs,
         ));
     }
@@ -33,7 +33,7 @@ class MatchsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $match = new Match();
+        $match = new Matchs();
         $form = $this->createForm('PlanningBundle\Form\MatchsType', $match);
         $form->handleRequest($request);
 
@@ -45,7 +45,7 @@ class MatchsController extends Controller
             return $this->redirectToRoute('matchs_show', array('id' => $match->getId()));
         }
 
-        return $this->render('matchs/new.html.twig', array(
+        return $this->render('PlanningBundle:matchs:new.html.twig', array(
             'match' => $match,
             'form' => $form->createView(),
         ));
@@ -59,7 +59,7 @@ class MatchsController extends Controller
     {
         $deleteForm = $this->createDeleteForm($match);
 
-        return $this->render('matchs/show.html.twig', array(
+        return $this->render('PlanningBundle:matchs:show.html.twig', array(
             'match' => $match,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -81,7 +81,7 @@ class MatchsController extends Controller
             return $this->redirectToRoute('matchs_edit', array('id' => $match->getId()));
         }
 
-        return $this->render('matchs/edit.html.twig', array(
+        return $this->render('PlanningBundle:matchs:edit.html.twig', array(
             'match' => $match,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
