@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Equipe {{ team.name }}</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Date de reprise</th>
+                <td>{% if team.resumptionDate %}{{ team.resumptionDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Jour d'entrainement</th>
+                <td>{{ team.trainingDay }}</td>
+            </tr>
+            <tr>
+                <th>Horaire d'entrainement</th>
+                <td>{{ team.trainingTime }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('team_index') }}">Retour à la liste</a>
+        </li>
+        <li>
+            <a href="{{ path('team_edit', { 'id': team.id }) }}">Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

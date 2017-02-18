@@ -13,3 +13,7 @@ account_category:
 account_role:
     resource: "@AccountBundle/Resources/config/routing/role.yml"
     prefix:   /role
+
+account_team:
+    resource: "@AccountBundle/Resources/config/routing/team.yml"
+    prefix:   /team

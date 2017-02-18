@@ -51,5 +51,10 @@ class Category
     {
         return $this->description;
     }
+
+    public function __tostring()
+    {
+        return $this->getDescription();
+    }
 }
 

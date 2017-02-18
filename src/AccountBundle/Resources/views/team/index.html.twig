@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Les équipes</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom de l'équipe</th>
+                <th>Date de reprise</th>
+                <th>Jour d'entrainement</th>
+                <th>Horaire d'entrainement</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for team in teams %}
+            <tr>
+                <td>{{ team.name }}</td>
+                <td>{% if team.resumptionDate %}{{ team.resumptionDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ team.trainingDay }}</td>
+                <td>{{ team.trainingTime }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('team_show', { 'id': team.id }) }}">détails</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('team_edit', { 'id': team.id }) }}">modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('team_new') }}">Nouvelle équipe</a>
+        </li>
+    </ul>
+{% endblock %}
