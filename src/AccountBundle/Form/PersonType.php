@@ -5,6 +5,9 @@ namespace AccountBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class PersonType extends AbstractType
 {
@@ -13,7 +16,22 @@ class PersonType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('lastName')->add('firstName')->add('birthDate')->add('phone')->add('street')->add('zip')->add('city')->add('email')->add('password')->add('token')->add('teams')->add('roles')        ;
+        $builder->add('lastName')
+                ->add('firstName')
+                ->add('birthDate')
+                ->add('phone')
+                ->add('street')
+                ->add('zip')
+                ->add('city')
+                ->add('email', EmailType::class)
+                ->add('password', RepeatedType::class, [
+                    'type' => PasswordType::class,
+                    'first_options'  => ['label' => 'Password'],
+                    'second_options' => ['label' => 'Repeat Password']
+                    ,])
+                ->add('teams')
+                ->add('roles')        
+            ;
     }
     
     /**
