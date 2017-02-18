@@ -1,0 +1,49 @@
+/*navbar*/
+#logo{
+    color: #7fbb00;
+}
+.menu{
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+/*siderbar*/
+.btn-social-icon{
+    color: white;
+}
+.btn-facebook{
+    background-color: #3B5998;
+}
+.btn-twitter{
+    background-color:#55ACEE;
+}
+.btn-google{
+    background-color:#DD4B39;
+}
+.btn-instagram{
+    background-color:#3F729B;
+}
+.btn-social-icon:hover{
+    opacity: 0.9;
+    color:white;
+}
+
+/*footer*/
+.footer{
+    padding: 20px;
+    font-size: 0.9em;
+}
+.footer ul li{
+    list-style: none;
+    padding: 2px;
+}
+.footer ul li a{
+     color: rgba(200,200,200,0.5);
+ }
+.footer ul li a:hover{
+    color: white;
+    text-decoration: none;
+}
+.footer-main{
+    background-color: #0f0f0f;
+}
