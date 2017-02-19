@@ -13,7 +13,7 @@ class EventType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title' , null, ['label' => 'Titre de l\évènement'])
+        $builder->add('title' , null, ['label' => 'Titre de l\'évènement'])
                 ->add('dateEvent', null, ['label' => 'Date et heure'])
         ;
     }

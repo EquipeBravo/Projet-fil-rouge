@@ -33,4 +33,9 @@ class DefaultController extends Controller
     {
     	return $this->render('AppBundle::contact.html.twig');
     }
+
+    public function adminAction()
+    {
+        return $this->render('AppBundle::admin/index.html.twig');
+    }
 }

@@ -1,4 +1,4 @@
-{% extends 'AppBundle:Layout:layout.html.twig' %}
+{% extends 'AppBundle:admin:layout/layout.html.twig' %}
 
 {% block body %}
     <h1>Membres inscrits</h1>  
@@ -7,10 +7,10 @@
         Régler le routage (cf security.yml)
     #}
 
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nom/th>
+                <th>Nom</th>
                 <th>Prénom</th>
                 <th>Date de naissance</th>
                 <th>Téléphone</th>

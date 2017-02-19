@@ -1,10 +1,37 @@
+body{
+}
+.admin-container{
+    padding-bottom: 10px;
+    min-height: 60vh;
+}
+
+/*changed default bootstrap*/
+.well{
+    /*background-color: white;*/
+    border-radius: 0px;
+    box-shadow: 5px 5px 5px 0px gray;
+}
+.btn{
+    border-radius: 0px;
+}
+
 /*navbar*/
+.navbar{
+    border-radius: 0px;
+}
+#navbar-login a{
+    color: #7fbb00;
+}
 #logo{
     color: #7fbb00;
 }
 .menu{
     text-transform: uppercase;
     font-weight: bolder;
+}
+/*main*/
+main{
+    min-height: 50vh;
 }
 
 /*siderbar*/
@@ -32,18 +59,30 @@
 .footer{
     padding: 20px;
     font-size: 0.9em;
+    margin-bottom: -0.25em;
+    color: #888;
 }
 .footer ul li{
     list-style: none;
     padding: 2px;
 }
 .footer ul li a{
-     color: rgba(200,200,200,0.5);
+     color: #888;
  }
 .footer ul li a:hover{
     color: white;
     text-decoration: none;
 }
 .footer-main{
-    background-color: #0f0f0f;
+    background-color: #000;
 }
+.footer-copyright{
+    background-color:#222;
+    color: mintcream;
+}
+#newsletter-heading{
+    font-size: 1.2em;
+}
+
+/*forms*/
+

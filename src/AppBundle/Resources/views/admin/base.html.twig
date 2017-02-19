@@ -17,23 +17,23 @@
 
 </head>
 
- <body>
+<body>
 
- 	{# include de la navigation #}
-    {% include 'AppBundle:Layout:nav.html.twig' %}
+{# include de la navigation #}
+{% include 'AppBundle:admin:layout/nav.html.twig' %}
 
-    <div class="container">
-	    {# Layout de base des pages #}
-	    {% block body %}{% endblock %}
-    </div>
+<div class="container admin-container" >
+    {# Layout de base des pages #}
+    {% block body %}{% endblock %}
+</div>
 
-    {# include footer#}
-    {% include 'AppBundle:Layout:footer.html.twig' %}
+{# include footer#}
+{% include 'AppBundle:Layout:footer.html.twig' %}
 
-	{% block javascripts %}
-        <script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
-    {% endblock javascripts %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+{% endblock javascripts %}
 
-  </body>
+</body>
 </html>
