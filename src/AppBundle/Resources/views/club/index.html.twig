@@ -1,9 +1,9 @@
-{% extends 'AppBundle:Layout:layout.html.twig' %}
+{% extends 'AppBundle:admin:layout/layout.html.twig' %}
 
 {% block body %}
     <h1>Les profils du club enregistrés</h1>
 
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Historique</th>
@@ -17,12 +17,21 @@
                 <td>{{ club.history }}</td>
                 <td>{{ club.clubValues }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('club_show', { 'id': club.id }) }}">details</a>
+                    <ul class="list-inline">
+                        <li title="details">
+                            <a href="{{ path('club_show', { 'id': club.id }) }}" class="btn btn-sm btn-info">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
                         </li>
-                        <li>
-                            <a href="{{ path('club_edit', { 'id': club.id }) }}">modifier</a>
+                        <li title="modifier">
+                            <a href="{{ path('club_edit', { 'id': club.id }) }}" class="btn btn-sm btn-warning">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </li>
+                        <li title="suprimer">
+                            <a href="{{ path('club_delete', { 'id': club.id }) }}" class="btn btn-sm btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
                         </li>
                     </ul>
                 </td>
@@ -31,9 +40,9 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('club_new') }}">Nouveau profil du club</a>
+            <a href="{{ path('club_new') }}" class="btn btn-sm btn-success">Nouveau profil du club</a>
         </li>
     </ul>
 {% endblock %}

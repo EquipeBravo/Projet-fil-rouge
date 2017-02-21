@@ -1,0 +1,27 @@
+<nav class="navbar navbar-inverse" >
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a title="Partie publique" class="navbar-brand" href="{{path('app_homepage')}}"><span id="logo">ASPTT</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-left menu">
+                <li title="Admin accueil"><a href="{{path('app_admin_dashboard')}}" ><span class="glyphicon glyphicon-home"></span></a></li>
+                <li><a href="{{ path('person_index') }}" >Membres</a></li>
+                <li><a href="{{ path('club_index') }}" >Club</a></li>
+                <li><a href="{{ path('team_index') }}" >Équipes</a></li>
+                <li><a href="{{ path('event_index') }}" >Évènements</a></li>
+                <li><a href="{{ path('matchs_index') }}" >Matches</a></li>
+                <!-- manque école d'arbitrage et contact
+                le lien pour s'inscrire peut éventuellent être déporter à droite du menu et disparaitre si la personne est logguée-->
+            </ul>
+            <ul class="nav navbar-nav navbar-right list-inline" >
+                <li title="Logout"><a href="#"><span class="glyphicon glyphicon-log-out"></span>  Deconnexion</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,14 @@
+{% extends 'AppBundle:admin:base.html.twig' %}
+
+{% block body %}
+
+    <main class="row">
+        <article class="col-md-9">
+            {% block article %}{% endblock %}
+        </article>
+        <aside class="col-md-3">
+            {% include 'AppBundle:admin:layout/sidebar.html.twig' %}
+        </aside>
+    </main>
+
+{% endblock %}

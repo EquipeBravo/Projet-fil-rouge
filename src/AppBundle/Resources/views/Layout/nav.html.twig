@@ -1,25 +1,43 @@
 {# Navigation #}
-<nav class="navbar navbar-default" >
+<!--show navbarlogin on small devices: class="hidden-md-up"-->
+<nav  class="collapse navbar-collapse hidden-sm-down" id="navbar-login">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right list-inline" >
+            {#{% if not is_granted('ROLE_ADMIN') %}#}
+            <li title="Sign up"><a href="{{path('person_new')}}"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>
+            <li title="Login"><a href="#"><span class="glyphicon glyphicon-log-in"></span>  Connexion</a></li>
+            {#{% endif %}#}
+            {#{% if is_granted('ROLE_ADMIN') %}#}
+            <li>
+                <a href="{{ path('app_admin_dashboard') }}">
+                    Admin
+                </a>
+            </li>
+            {#{% endif %}#}
+        </ul>
+    </div>
+</nav>
+<nav class="navbar navbar-inverse" ><!--class menu-->
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>                        
+                <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="{{path('app_homepage')}}"><span id="logo">ASPTT</span></a>
         </div>
         <div class="collapse navbar-collapse" id="navbar">
-    		<ul class="nav navbar-nav navbar-left">
+    		<ul class="nav navbar-nav navbar-left menu">
     			<li><a href="{{path('app_homepage')}}" >Accueil</a></li>
     			<li><a href="{{path('planning_homepage')}}" >Plannings</a></li>
     			<li><a href="{{path('app_apropos')}}" >A Propos</a></li>
-    			<li><a href="{{path('app_inscription')}}" >S'inscrire au club</a></li>
     			<li><a href="{{path('app_teams')}}" >Les équipes</a></li>
     			<li><a href="{{path('app_contact')}}" >Contactez nous</a></li>
     			<!-- manque école d'arbitrage et contact
     			le lien pour s'inscrire peut éventuellent être déporter à droite du menu et disparaitre si la personne est logguée-->
     		</ul>
+
     		<ul class="nav navbar-nav navbar-right">
                 {#{% if not is_granted('ROLE_ADMIN') %}#}
                     <li title="Sign up"><a href="{{path('person_new')}}"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>
@@ -34,5 +52,5 @@
                 {#{% endif %}#}
             </ul>
         </div>
-</div>
+    </div>
 </nav>

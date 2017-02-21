@@ -1,9 +1,9 @@
-{% extends 'AppBundle:Layout:layout.html.twig' %}
+{% extends 'AppBundle:admin:layout/layout.html.twig' %}
 
 {% block body %}
     <h1>Les évènements du handball</h1>
 
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Nom de l'évènement</th>
@@ -14,15 +14,26 @@
         <tbody>
         {% for event in events %}
             <tr>
-                <td>{{ event.title }}</td>
+                <td>
+                    <a href="{{ path('event_show', { 'id': event.id }) }}">{{ event.title }}</a>
+                </td>
                 <td>{% if event.dateEvent %}{{ event.dateEvent|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('event_show', { 'id': event.id }) }}">details</a>
+                    <ul class="list-inline">
+                        <li title="details" >
+                            <a href="{{ path('event_show', { 'id': event.id }) }}" class="btn btn-sm btn-info">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
                         </li>
-                        <li>
-                            <a href="{{ path('event_edit', { 'id': event.id }) }}">modifier</a>
+                        <li title="modifier" >
+                            <a href="{{ path('event_edit', { 'id': event.id }) }}" class="btn btn-sm btn-warning">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </li>
+                        <li title="suprimer">
+                            <a href="{{ path('event_delete', { 'id': event.id }) }}" class="btn btn-sm btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
                         </li>
                     </ul>
                 </td>
@@ -31,9 +42,9 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('event_new') }}">Nouvel évènement</a>
+            <a href="{{ path('event_new') }}" class="btn btn-sm btn-success">Nouvel évènement</a>
         </li>
     </ul>
 {% endblock %}

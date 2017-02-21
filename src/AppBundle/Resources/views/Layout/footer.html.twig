@@ -1,14 +1,38 @@
-<footer class="footer navbar-default">
-	<div class="container">
-		<ul class="pull-left">
-            <li>
-                <a href="#">Footer left</a>
-            </li>
-        </ul>
-        <ul class="pull-right">
-            <li>
-                <a href="#">Footer right</a>
-            </li>
-        </ul>
-	</div>	
+<footer class="footer footer-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <ul class="col-lg-4">
+                    <li><a href="{{path('app_homepage')}}">Accueil</a></li>
+                    <li><a href="{{path('planning_homepage')}}">Plannings</a></li>
+                    <li><a href="{{path('app_apropos')}}">A Propos</a></li>
+                </ul>
+                <ul class="col-lg-4">
+                    <li><a href="{{path('app_inscription')}}">S'inscrire au club</a></li>
+                    <li><a href="{{path('app_teams')}}">Les équipes</a></li>
+                    <li><a href="{{path('app_contact')}}">Contactez nous</a></li>
+                </ul>
+                <ul class="col-lg-4">
+                    <li><a href="#">Inscription</a></li>
+                    <li><a href="#">Connection</a></li>
+                    <li><a href="{{ path('app_admin_dashboard')}}">Administration</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <label for="email" id="newsletter-heading">Inscription à la newsletter</label>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        <input type="email" class="form-control" placeholder="Votre adresse email" required>
+                        <input type="submit" class="btn btn-success" value="Si'inscrire">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>
+<footer class="footer footer-copyright">
+    <div class="container"><!--pull-right-->
+        &copy;IMIE 2017 Equipe Bravo
+    </div>
 </footer>
