@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AccountBundle\Entity\Person;
 
 class DefaultController extends Controller
 {
@@ -16,12 +17,19 @@ class DefaultController extends Controller
 
     public function aproposAction()
     {
-    	return $this->render('AppBundle::apropos.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $clubs = $em->getRepository('AppBundle:Club')->findAll();
+
+        return $this->render('AppBundle::apropos.html.twig', array(
+            'clubs' => $clubs[0]
+            )
+        );
     }
 
-    public function inscriptionAction()
+    public function inscriptionAction(Request $request)
     {
-    	return $this->render('AppBundle::inscription.html.twig');
+        return $this->render('AppBundle::inscription.html.twig');
     }
 
     public function teamsAction()
@@ -32,5 +40,10 @@ class DefaultController extends Controller
     public function contactAction()
     {
     	return $this->render('AppBundle::contact.html.twig');
+    }
+
+    public function loginAction()
+    {
+        return $this->render('AppBundle::login.html.twig');
     }
 }

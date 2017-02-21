@@ -10,7 +10,7 @@ PlanningBundle\Entity\Matchs:
     # Many Match played by One Team
     manyToOne:
         team:
-            targetEntity: AccountBundle\Entity\team
+            targetEntity: AccountBundle\Entity\Team
             joinColumn:
                 name: team_id
                 referencedColumnName: id

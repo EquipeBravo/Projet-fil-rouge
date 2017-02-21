@@ -5,6 +5,8 @@ namespace PlanningBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 class MatchsType extends AbstractType
 {
@@ -13,7 +15,17 @@ class MatchsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateMatch')->add('domicile')->add('place')        ;
+        $builder->add('dateMatch', null, ['label' => 'Date du match'])
+                ->add('domicile')
+                ->add('place', null, ['label' => 'Lieu'])   
+                //->add('team', null, [
+                  //  'data_class'=>'AccountBundle\Entity\Team',
+                    //'choices' => 'displayName',
+                    //])     
+    //             ('users', EntityType::class, array(
+    // // query choices from this entity
+    // 'class' => 'AppBundle:User',
+            ;
     }
     
     /**

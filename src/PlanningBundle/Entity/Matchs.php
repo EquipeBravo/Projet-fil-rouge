@@ -29,7 +29,7 @@ class Matchs
     private $place;
 
     /** 
-     * @var Team
+     * @var ArrayCollection
      */
     private $team;
 

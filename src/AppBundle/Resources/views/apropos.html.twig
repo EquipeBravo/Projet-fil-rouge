@@ -1,9 +1,20 @@
 {% extends 'AppBundle:Layout:layout.html.twig' %}
 {% block article %}
 {{ parent() }}
-A propos
+<h1>A propos du club</h1>
 
 {# 
-on affichera l'historique et les valeurs du club
+	on affiche l'historique et les valeurs du club
 #}
+<h2>Histoire de l'ASPTT</h2>
+<p>
+	{{ clubs.history }}
+
+</p>
+
+<h2>Nos valeurs</h2>
+<p>
+	{{ clubs.clubValues }}
+
+</p>
 {% endblock %}

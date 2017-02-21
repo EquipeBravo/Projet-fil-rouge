@@ -4,6 +4,7 @@ namespace AccountBundle\Entity;
 
 use AppBundle\Entity\Club;
 
+
 /**
  * Team
  */

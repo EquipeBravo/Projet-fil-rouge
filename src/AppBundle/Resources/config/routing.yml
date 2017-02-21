@@ -41,3 +41,7 @@ app_plannings:
 
 app_teams:
     resource: routing/teams/teams.yml
+
+app_login:
+    path: /login
+    defaults: { _controller: AppBundle:Default:login }    

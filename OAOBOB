@@ -1,0 +1,175 @@
+[1mdiff --git a/src/AccountBundle/Entity/Team.php b/src/AccountBundle/Entity/Team.php[m
+[1mindex ab1fd3b..18bc0a4 100644[m
+[1m--- a/src/AccountBundle/Entity/Team.php[m
+[1m+++ b/src/AccountBundle/Entity/Team.php[m
+[36m@@ -4,6 +4,7 @@[m [mnamespace AccountBundle\Entity;[m
+ [m
+ use AppBundle\Entity\Club;[m
+ [m
+[32m+[m
+ /**[m
+  * Team[m
+  */[m
+[1mdiff --git a/src/AppBundle/Controller/DefaultController.php b/src/AppBundle/Controller/DefaultController.php[m
+[1mindex 31fa336..4902d7e 100755[m
+[1m--- a/src/AppBundle/Controller/DefaultController.php[m
+[1m+++ b/src/AppBundle/Controller/DefaultController.php[m
+[36m@@ -17,27 +17,19 @@[m [mclass DefaultController extends Controller[m
+ [m
+     public function aproposAction()[m
+     {[m
+[31m-    	return $this->render('AppBundle::apropos.html.twig');[m
+[32m+[m[32m        $em = $this->getDoctrine()->getManager();[m
+[32m+[m
+[32m+[m[32m        $clubs = $em->getRepository('AppBundle:Club')->findAll();[m
+[32m+[m
+[32m+[m[32m        return $this->render('AppBundle::apropos.html.twig', array([m
+[32m+[m[32m            'clubs' => $clubs[0][m
+[32m+[m[32m            )[m
+[32m+[m[32m        );[m
+     }[m
+ [m
+     public function inscriptionAction(Request $request)[m
+     {[m
+[31m-        $person = new Person();[m
+[31m-        $form = $this->createForm('AccountBundle\Form\PersonType', $person);[m
+[31m-        $form->handleRequest($request);[m
+[31m-[m
+[31m-        if ($form->isSubmitted() && $form->isValid()) {[m
+[31m-            $em = $this->getDoctrine()->getManager();[m
+[31m-            $em->persist($person);[m
+[31m-            $em->flush($person);[m
+[31m-[m
+[31m-            return $this->redirectToRoute('person_show', array('id' => $person->getId()));[m
+[31m-        }[m
+[31m-[m
+[31m-        return $this->render('AccountBundle:person:new.html.twig', array([m
+[31m-            'person' => $person,[m
+[31m-            'form' => $form->createView(),[m
+[31m-        ));[m
+[32m+[m[32m        return $this->render('AppBundle::inscription.html.twig');[m
+     }[m
+ [m
+     public function teamsAction()[m
+[36m@@ -49,4 +41,9 @@[m [mclass DefaultController extends Controller[m
+     {[m
+     	return $this->render('AppBundle::contact.html.twig');[m
+     }[m
+[32m+[m
+[32m+[m[32m    public function loginAction()[m
+[32m+[m[32m    {[m
+[32m+[m[32m        return $this->render('AppBundle::login.html.twig');[m
+[32m+[m[32m    }[m
+ }[m
+[1mdiff --git a/src/AppBundle/Resources/config/routing.yml b/src/AppBundle/Resources/config/routing.yml[m
+[1mindex d3948b6..a854a3c 100644[m
+[1m--- a/src/AppBundle/Resources/config/routing.yml[m
+[1m+++ b/src/AppBundle/Resources/config/routing.yml[m
+[36m@@ -41,3 +41,7 @@[m [mapp_plannings:[m
+ [m
+ app_teams:[m
+     resource: routing/teams/teams.yml[m
+[32m+[m
+[32m+[m[32mapp_login:[m
+[32m+[m[32m    path: /login[m
+[32m+[m[32m    defaults: { _controller: AppBundle:Default:login }[m[41m    [m
+\ No newline at end of file[m
+[1mdiff --git a/src/AppBundle/Resources/views/Layout/nav.html.twig b/src/AppBundle/Resources/views/Layout/nav.html.twig[m
+[1mindex 15a4eb3..6d39209 100644[m
+[1m--- a/src/AppBundle/Resources/views/Layout/nav.html.twig[m
+[1m+++ b/src/AppBundle/Resources/views/Layout/nav.html.twig[m
+[36m@@ -23,7 +23,7 @@[m
+     		<ul class="nav navbar-nav navbar-right">[m
+                 {#{% if not is_granted('ROLE_ADMIN') %}#}[m
+                     <li title="Sign up"><a href="{{path('person_new')}}"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>[m
+[31m-                    <li title="Login"><a href="#"><span class="glyphicon glyphicon-log-in"></span>  Connexion</a></li>[m
+[32m+[m[32m                    <li title="Login"><a href="{{path('app_login')}}"><span class="glyphicon glyphicon-log-in"></span>  Connexion</a></li>[m
+                 {#{% endif %}#}[m
+                 {#{% if is_granted('ROLE_ADMIN') %}#}[m
+                     <li>[m
+[1mdiff --git a/src/AppBundle/Resources/views/apropos.html.twig b/src/AppBundle/Resources/views/apropos.html.twig[m
+[1mindex f3db927..dc644c2 100644[m
+[1m--- a/src/AppBundle/Resources/views/apropos.html.twig[m
+[1m+++ b/src/AppBundle/Resources/views/apropos.html.twig[m
+[36m@@ -1,9 +1,20 @@[m
+ {% extends 'AppBundle:Layout:layout.html.twig' %}[m
+ {% block article %}[m
+ {{ parent() }}[m
+[31m-A propos[m
+[32m+[m[32m<h1>A propos du club</h1>[m
+ [m
+ {# [m
+[31m-on affichera l'historique et les valeurs du club[m
+[32m+[m	[32mon affiche l'historique et les valeurs du club[m
+ #}[m
+[32m+[m[32m<h2>Histoire de l'ASPTT</h2>[m
+[32m+[m[32m<p>[m
+[32m+[m	[32m{{ clubs.history }}[m
+[32m+[m
+[32m+[m[32m</p>[m
+[32m+[m
+[32m+[m[32m<h2>Nos valeurs</h2>[m
+[32m+[m[32m<p>[m
+[32m+[m	[32m{{ clubs.clubValues }}[m
+[32m+[m
+[32m+[m[32m</p>[m
+ {% endblock %}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/PlanningBundle/Entity/Matchs.php b/src/PlanningBundle/Entity/Matchs.php[m
+[1mindex 0e49ab0..041b9b4 100644[m
+[1m--- a/src/PlanningBundle/Entity/Matchs.php[m
+[1m+++ b/src/PlanningBundle/Entity/Matchs.php[m
+[36m@@ -29,7 +29,7 @@[m [mclass Matchs[m
+     private $place;[m
+ [m
+     /** [m
+[31m-     * @var Team[m
+[32m+[m[32m     * @var ArrayCollection[m
+      */[m
+     private $team;[m
+ [m
+[1mdiff --git a/src/PlanningBundle/Form/MatchsType.php b/src/PlanningBundle/Form/MatchsType.php[m
+[1mindex 42117f6..f80fa7e 100644[m
+[1m--- a/src/PlanningBundle/Form/MatchsType.php[m
+[1m+++ b/src/PlanningBundle/Form/MatchsType.php[m
+[36m@@ -5,6 +5,8 @@[m [mnamespace PlanningBundle\Form;[m
+ use Symfony\Component\Form\AbstractType;[m
+ use Symfony\Component\Form\FormBuilderInterface;[m
+ use Symfony\Component\OptionsResolver\OptionsResolver;[m
+[32m+[m[32muse Symfony\Bridge\Doctrine\Form\Type\EntityType;[m
+[32m+[m
+ [m
+ class MatchsType extends AbstractType[m
+ {[m
+[36m@@ -13,7 +15,17 @@[m [mclass MatchsType extends AbstractType[m
+      */[m
+     public function buildForm(FormBuilderInterface $builder, array $options)[m
+     {[m
+[31m-        $builder->add('dateMatch')->add('domicile')->add('place')        ;[m
+[32m+[m[32m        $builder->add('dateMatch', null, ['label' => 'Date du match'])[m
+[32m+[m[32m                ->add('domicile')[m
+[32m+[m[32m                ->add('place', null, ['label' => 'Lieu'])[m[41m   [m
+[32m+[m[32m                //->add('team', null, [[m
+[32m+[m[32m                  //  'data_class'=>'AccountBundle\Entity\Team',[m
+[32m+[m[32m                    //'choices' => 'displayName',[m
+[32m+[m[32m                    //])[m[41m     [m
+[32m+[m[32m    //             ('users', EntityType::class, array([m
+[32m+[m[32m    // // query choices from this entity[m
+[32m+[m[32m    // 'class' => 'AppBundle:User',[m
+[32m+[m[32m            ;[m
+     }[m
+     [m
+     /**[m
+[1mdiff --git a/src/PlanningBundle/Resources/config/doctrine/Matchs.orm.yml b/src/PlanningBundle/Resources/config/doctrine/Matchs.orm.yml[m
+[1mindex 9ad22a6..9584e6c 100644[m
+[1m--- a/src/PlanningBundle/Resources/config/doctrine/Matchs.orm.yml[m
+[1m+++ b/src/PlanningBundle/Resources/config/doctrine/Matchs.orm.yml[m
+[36m@@ -10,7 +10,7 @@[m [mPlanningBundle\Entity\Matchs:[m
+     # Many Match played by One Team[m
+     manyToOne:[m
+         team:[m
+[31m-            targetEntity: AccountBundle\Entity\team[m
+[32m+[m[32m            targetEntity: AccountBundle\Entity\Team[m
+             joinColumn:[m
+                 name: team_id[m
+                 referencedColumnName: id[m
