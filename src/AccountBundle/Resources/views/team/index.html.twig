@@ -21,12 +21,21 @@
                 <td>{{ team.trainingDay }}</td>
                 <td>{{ team.trainingTime }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('team_show', { 'id': team.id }) }}">détails</a>
+                    <ul class="list-inline">
+                        <li title="détails">
+                            <a href="{{ path('team_show', { 'id': team.id }) }}" class="btn btn-sm btn-info">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
                         </li>
-                        <li>
-                            <a href="{{ path('team_edit', { 'id': team.id }) }}">modifier</a>
+                        <li title="modifier">
+                            <a href="{{ path('team_edit', { 'id': team.id }) }}" class="btn btn-sm btn-warning">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </li>
+                        <li title="supprimer">
+                            <a href="{{ path('team_delete', { 'id': team.id }) }}" class="btn btn-sm btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
                         </li>
                     </ul>
                 </td>
@@ -35,9 +44,9 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('team_new') }}">Nouvelle équipe</a>
+            <a href="{{ path('team_new') }}" class="btn btn-sm btn-success">Nouvelle équipe</a>
         </li>
     </ul>
 {% endblock %}

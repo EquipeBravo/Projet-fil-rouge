@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Liste des catégories</h1>
 
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Description</th>
@@ -15,7 +15,7 @@
             <tr>
                 <td>{{ category.description }}</td>
                 <td>
-                    <ul>
+                    <ul class="list-inline">
                         <li>
                             <a href="{{ path('category_edit', { 'id': category.id }) }}">Modifier</a>
                         </li>
@@ -26,10 +26,10 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
             {# A masquer/afficher en fonction des droits #}
-            <a href="{{ path('category_new') }}">Nouvelle catégorie</a> 
+            <a href="{{ path('category_new') }}" class="btn btn-sm btn-success">Nouvelle catégorie</a>
         </li>
     </ul>
 {% endblock %}

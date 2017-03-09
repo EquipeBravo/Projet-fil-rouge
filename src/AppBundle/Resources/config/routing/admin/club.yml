@@ -1,0 +1,9 @@
+app_admin_club:
+    path:     /
+    defaults: { _controller: "AppBundle:Admin:club" }
+    methods:  GET
+
+app_admin_club_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Admin:editClub" }
+    methods:  GET

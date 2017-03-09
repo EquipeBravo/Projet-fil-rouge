@@ -5,6 +5,35 @@ body{
     min-height: 60vh;
 }
 
+/*admin_club*/
+.frame{
+    border-radius: 0px;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.1);
+}
+.frame-title {
+    color: #8ee000;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.frame-body{
+
+}
+.frame-footer{
+    min-height: 40px;
+    margin-right: 20px;
+}
+.icons li a{
+    color: #000;
+    opacity: 0.8;
+}
+.icons li a:hover{
+    opacity: 1;
+}
+.flatBtn{
+    border-radius: 0px;
+}
+
+
 /*changed default bootstrap*/
 .well{
     /*background-color: white;*/
@@ -14,6 +43,17 @@ body{
 .btn{
     border-radius: 0px;
 }
+/* version2 of glyphicon buttons
+.glyphicon-info-sign{
+    color: #0000F0;
+}
+.glyphicon-pencil{
+     color: #eb9316;
+ }
+.glyphicon-trash{
+    color: #DD4B39;
+}
+*/
 
 /*navbar*/
 .navbar{
@@ -85,4 +125,3 @@ main{
 }
 
 /*forms*/
-

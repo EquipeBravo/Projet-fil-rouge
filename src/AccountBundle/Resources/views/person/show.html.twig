@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Informations</h1>
 
-    <table>
+    <table class="table table-responsive">
         <tbody>
             <tr>
                 <th>Nom</th>
@@ -18,7 +18,7 @@
                 <td>{% if person.birthDate %}{{ person.birthDate|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <thNuméro de téléphone</th>
+                <th>Numéro de téléphone</th>
                 <td>{{ person.phone }}</td>
             </tr>
             <tr>
@@ -40,17 +40,17 @@
         </tbody>
     </table>
 
-    <ul> {# A masquer/afficher en fonction des droits #}
+    <ul class="list-inline"> {# A masquer/afficher en fonction des droits #}
         <li>
-            <a href="{{ path('person_index') }}">Retour à la liste</a>
+            <a href="{{ path('person_index') }}" class="btn btn-sm btn-default">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('person_edit', { 'id': person.id }) }}">Modifier</a>
+            <a href="{{ path('person_edit', { 'id': person.id }) }}" class="btn btn-sm btn-warning">Modifier</a>
         </li>
         <li>
            
             {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
+                <input type="submit" value="Supprimer" class="btn btn-sm btn-danger">
             {{ form_end(delete_form) }}
         </li>
     </ul>
