@@ -33,6 +33,11 @@
 {% block javascripts %}
     <script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
     <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 {% endblock javascripts %}
 
 </body>

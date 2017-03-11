@@ -18,6 +18,8 @@
                 <th>Code Postal</th>
                 <th>Ville</th>
                 <th>E-mail</th>
+                <th>Rôles</th>
+                <th>Équipes</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -32,14 +34,25 @@
                 <td>{{ person.zip }}</td>
                 <td>{{ person.city }}</td>
                 <td>{{ person.email }}</td>
+                <td>{% for role in person.roles %}
+                        {{ role }}
+                    {% endfor %}
+                </td>
+                <td>{% for team in person.teams %}
+                        {{ team }}
+                    {% endfor %}
+                </td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('person_show', { 'id': person.id }) }}">détails</a>
+                    <ul class="list-inline">
+                        <li data-toggle="tooltip" title="détails">
+                            <a href="{{ path('person_show', { 'id': person.id }) }}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-info-sign"></span></a>
                         </li>
                         {# A masquer/afficher en fonction des droits #}
-                        <li>
-                            <a href="{{ path('person_edit', { 'id': person.id }) }}">éditer</a>
+                        <li data-toggle="tooltip" title="éditer">
+                            <a href="{{ path('person_edit', { 'id': person.id }) }}" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
+                        </li>
+                        <li data-toggle="tooltip" title="suprimer">
+                            <a href="{{ path('person_delete', { 'id': person.id }) }}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
                         </li>
                     </ul>
                 </td>

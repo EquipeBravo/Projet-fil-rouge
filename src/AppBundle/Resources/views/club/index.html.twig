@@ -1,15 +1,16 @@
 {% extends 'AppBundle:admin:layout/layout.html.twig' %}
 
 {% block body %}
+
     <h1>Les profils du club enregistrés</h1>
 
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Historique</th>
-                <th>Valeurs</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Historique</th>
+            <th>Valeurs</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for club in clubs %}

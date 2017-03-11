@@ -11,9 +11,63 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav navbar-left menu">
                 <li title="Admin accueil"><a href="{{path('app_admin_dashboard')}}" ><span class="glyphicon glyphicon-home"></span></a></li>
-                <li><a href="{{ path('person_index') }}" >Membres</a></li>
-                <li><a href="{{ path('club_index') }}" >Club</a></li>
-                <li><a href="{{ path('team_index') }}" >Équipes</a></li>
+                <li class="dropdown">
+                    <a href="{{ path('person_index') }}" class="dropdown-toggle" data-toggle="dropdown">
+                        Membres
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('person_index') }}">Jouers</a></li>
+                        <li><a href="{{ path('person_index') }}">Parents</a></li>
+                        <li><a href="{{ path('person_index') }}">Entraîneurs</a></li>
+                        <li><a href="{{ path('person_index') }}">Sponsors</a></li>
+                        <li><a href="{{ path('person_index') }}">Secreteriat</a></li>
+                        <li><a href="{{ path('person_index') }}">Admin</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="{{ path('app_admin_club') }}" class="dropdown-toggle" data-toggle="dropdown">
+                        Club
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('app_admin_club') }}">Historique</a></li>
+                        <li><a href="{{ path('app_admin_club') }}">Valeurs du club</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ path('category_index') }}" >Categories</a></li>
+                <li><a href="{{ path('role_index') }}" >Roles</a></li>
+                <li  class="dropdown">
+                    <a href="{{ path('team_index') }}" class="dropdown-toggle" data-toggle="dropdown">
+                        Équipes
+                        <span class="caret"></span>
+                    </a>
+                    <table class="dropdown-menu">
+                        <tr>
+                            <th>
+                                <a class="dropdown-toggle" data-toggle="dropdown">SM</a>
+                            </th>
+                            <th>
+                                <a href="{{ path('team_index') }}" >SF</a>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li><a href="{{ path('team_index') }}">SM1</a></li>
+                                    <li><a href="{{ path('team_index') }}">SM2</a></li>
+                                    <li><a href="{{ path('team_index') }}">SM3</a></li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li><a href="{{ path('team_index') }}">SF1</a></li>
+                                    <li><a href="{{ path('team_index') }}">SF1</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
                 <li><a href="{{ path('event_index') }}" >Évènements</a></li>
                 <li><a href="{{ path('matchs_index') }}" >Matches</a></li>
                 <!-- manque école d'arbitrage et contact

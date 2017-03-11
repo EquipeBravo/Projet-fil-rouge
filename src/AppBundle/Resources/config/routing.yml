@@ -34,7 +34,8 @@ app_inscription:
 # Pages nécéssitant plusieurs routes :
 
 app_admin:
-    resource: routing/admin/admin.yml
+    resource: "@AppBundle/Resources/config/routing/admin.yml"
+    prefix:   /admin
 
 app_plannings:
     resource: routing/plannings/plannings.yml

@@ -29,6 +29,16 @@ class Role
     private $club;
 
     /**
+     * Get the string representation.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getRoleName();
+    }
+
+    /**
      * Get category
      *
      * @return Club
