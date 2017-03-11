@@ -1,11 +1,11 @@
 <div class="panel">
-    <a class="btn btn-social-icon btn-facebook">
+    <a href="http://www.facebook.com/share.php?u={{  app.request.uri }}" class="btn btn-social-icon btn-facebook">
         <span class="fa fa-facebook"></span>
     </a>
-    <a class="btn btn-social-icon btn-twitter">
+    <a href="http://www.twitter.com/share?url={{ app.request.uri }}" class="btn btn-social-icon btn-twitter">
         <span class="fa fa-twitter"></span>
     </a>
-    <a class="btn btn-social-icon btn-google">
+    <a href="https://plus.google.com/share?url={{ app.request.uri }}" class="btn btn-social-icon btn-google">
         <span class="fa fa-google"></span>
     </a>
 
@@ -14,3 +14,4 @@
     <p>Inscription au club</p>
     <a href="{{path('app_inscription')}}" class="btn btn-success">S'inscrire</a>
 </div>
+
