@@ -52,3 +52,4 @@ class DefaultController extends Controller
         return $this->render('AppBundle::admin/index.html.twig');
     }
 
+}

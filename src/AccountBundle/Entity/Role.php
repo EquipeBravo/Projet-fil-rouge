@@ -120,9 +120,5 @@ class Role
         return $this->roleRights;
     }
 
-    public function __toString()
-    {
-        return $this->roleName;
-    }
 }
 
