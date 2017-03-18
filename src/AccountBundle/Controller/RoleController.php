@@ -51,6 +51,11 @@ class RoleController extends Controller
         ));
     }
 
+    public function showAction(Request $request) 
+    {
+        return  $this->indexAction();
+    }
+
     /**
      * Displays a form to edit an existing role entity.
      *
