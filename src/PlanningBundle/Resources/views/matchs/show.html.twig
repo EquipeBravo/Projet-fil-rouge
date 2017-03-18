@@ -13,6 +13,18 @@
                 <th>Domicile</th>
                 <td>{% if match.domicile %}Yes{% else %}No{% endif %}</td>
             </tr>
+            <tr>
+                <th>Lieu de rencontre</th>
+                <td>{{ match.place }}</td>
+            </tr>
+            <tr>
+                <th>Equipe</th>
+                <td>{{ match.team }}</td>
+            </tr>
+            <tr>
+                <th>Equipe adverse</th>
+                <td>{{ match.team2 }}</td>
+            </tr>
         </tbody>
     </table>
 

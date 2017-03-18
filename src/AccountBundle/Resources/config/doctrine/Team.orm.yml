@@ -7,6 +7,10 @@ AccountBundle\Entity\Team:
             joinColumn:
                 name: category_id
                 referencedColumnName: id
+        matchs:
+            targetEntity: PlanningBundle\Entity\Matchs
+            mappedBy: team
+
     # One Team belongs to One Club (OneToOne)
     oneToOne:
         club:

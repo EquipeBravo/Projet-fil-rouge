@@ -3,7 +3,7 @@
 namespace AccountBundle\Entity;
 
 use AppBundle\Entity\Club;
-
+use PlanningBundle\Entity\Match;
 
 /**
  * Team
@@ -45,10 +45,37 @@ class Team
      */
     private $club;
 
-
+    /**
+     * @var PlanningBundle\Entity\Match
+     */
+    private $matchs;
 
     /**
-     * Get category
+     * Get match
+     *
+     * @return Match
+     */
+    public function getMatch()
+    {
+        return $this->matchs;
+    }
+
+    /**
+     * Set match
+     *
+     * @param Match $match
+     *
+     * @return Team
+     */
+    public function setMatch(Match $match)
+    {
+        $this->matchs = $match;
+
+        return $this;
+    }
+
+    /**
+     * Get club
      *
      * @return Club
      */

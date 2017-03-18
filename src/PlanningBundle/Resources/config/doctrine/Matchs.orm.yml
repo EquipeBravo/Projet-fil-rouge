@@ -8,18 +8,13 @@ PlanningBundle\Entity\Matchs:
                 name: place_id
                 referencedColumnName: id
     # Many Match played by One Team
-    oneToOne:
+    manyToOne:
         team:
             targetEntity: AccountBundle\Entity\Team
+            inversedBy: Match
             joinColumn:
                 name: team_id
-                referencedColumnName: id
-        team2:
-            targetEntity: AccountBundle\Entity\Team
-            joinColumn:
-                name: team2_id
-                referencedColumnName: id         
-                       
+                referencedColumnName: id  
     table: null
     repositoryClass: PlanningBundle\Repository\MatchsRepository
     id:

@@ -7,14 +7,21 @@
             <tr>
                 <th>Date du match</th>
                 <th>Domicile</th>
+                <th>Lieu de rencontre</th>
+                <th>Equipe</th>
+                <th>Adversaires</th>
                 <th>Actions</th>
+                
             </tr>
         </thead>
         <tbody>
         {% for match in matchs %}
             <tr>
                 <td>{% if match.dateMatch %}{{ match.dateMatch|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if match.domicile %}Yes{% else %}No{% endif %}</td>
+                <td>{% if match.domicile %}Oui{% else %}Non{% endif %}</td>
+                <td> {{ match.place }} </td>
+                <td> {{ match.team }} </td>
+                <td> {{ match.team2 }} </td>
                 <td>
                     <ul>
                         <li>
