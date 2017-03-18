@@ -29,9 +29,14 @@ class Matchs
     private $place;
 
     /** 
-     * @var ArrayCollection
+     * @var Team
      */
     private $team;
+
+    /** 
+     * @var Team
+     */
+    private $team2;
 
     /**
      * Get team
@@ -53,6 +58,30 @@ class Matchs
     public function setTeam(Team $team)
     {
         $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return Team
+     */
+    public function getTeam2()
+    {
+        return $this->team2;
+    }
+
+    /**
+     * Set team
+     *
+     * @param Team $team
+     *
+     * @return Matchs
+     */
+    public function setTeam2(Team $team)
+    {
+        $this->team2 = $team;
 
         return $this;
     }

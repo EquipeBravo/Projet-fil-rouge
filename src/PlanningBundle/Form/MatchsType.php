@@ -6,10 +6,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use AccountBundle\Entity\Team;
+use AccountBundle\Repository\TeamRepository;
 
 class MatchsType extends AbstractType
 {
+
     /**
      * {@inheritdoc}
      */
@@ -18,13 +21,14 @@ class MatchsType extends AbstractType
         $builder->add('dateMatch', null, ['label' => 'Date du match'])
                 ->add('domicile')
                 ->add('place', null, ['label' => 'Lieu'])   
-                //->add('team', null, [
-                  //  'data_class'=>'AccountBundle\Entity\Team',
-                    //'choices' => 'displayName',
-                    //])     
-    //             ('users', EntityType::class, array(
-    // // query choices from this entity
-    // 'class' => 'AppBundle:User',
+                ->add('team', EntityType::class,  [
+                    'class' => 'AccountBundle:Team',
+                    'label' => 'Equipe'
+                  ])
+                ->add('team2', EntityType::class,  [
+                    'class' => 'AccountBundle:Team',
+                    'label' => 'Equipe adverse'
+                  ])
             ;
     }
     
