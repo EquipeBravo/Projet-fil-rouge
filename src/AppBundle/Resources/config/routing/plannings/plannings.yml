@@ -1,4 +1,7 @@
-# TODO : AJOUTER LES CRUDS DANS LA PARTIE ADMIN
 app_plannings:
     path: /plannings
     defaults: { _controller: AppBundle:Default:plannings }
+
+planning_homepage:
+    path:     /
+    defaults: { _controller: PlanningBundle:Default:index }

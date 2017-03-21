@@ -1,12 +1,12 @@
-account:
-    resource: "@AccountBundle/Resources/config/routing.yml"
-    prefix:   /
-
 app:
     resource: "@AppBundle/Resources/config/routing.yml"
 
+account:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /
+
 planning:
-    resource: "@PlanningBundle/Resources/config/routing.yml"
+    resource: "@AppBundle/Resources/config/routing/plannings/plannings.yml"
     prefix:   /planning
 
 gallery:

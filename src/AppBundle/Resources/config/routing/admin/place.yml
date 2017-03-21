@@ -1,0 +1,24 @@
+place_index:
+    path:     /
+    defaults: { _controller: "PlanningBundle:Place:index" }
+    methods:  GET
+
+place_show:
+    path:     /{id}/show
+    defaults: { _controller: "PlanningBundle:Place:show" }
+    methods:  GET
+
+place_new:
+    path:     /new
+    defaults: { _controller: "PlanningBundle:Place:new" }
+    methods:  [GET, POST]
+
+place_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PlanningBundle:Place:edit" }
+    methods:  [GET, POST]
+
+place_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PlanningBundle:Place:delete" }
+    methods:  DELETE

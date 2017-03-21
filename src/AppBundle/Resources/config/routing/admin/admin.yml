@@ -1,0 +1,51 @@
+# Admin.yml
+# Routing de la partie Admin
+
+# Index page Admin
+
+app_admin_dashboard:
+    path: /
+    defaults:
+        _controller: AppBundle:Admin:index
+
+# --- CRUDs Admin ---
+
+# Redirection des CRUDs de l'entité CLUB vers /admin
+
+app_club:
+    resource: club.yml
+    prefix: /club
+
+# Redirection des CRUDs des entités
+
+app_event:
+    resource: event.yml
+    prefix: /event
+
+planning_matchs:
+    resource: matchs.yml
+    prefix:   /matchs
+
+planning_place:
+    resource: place.yml
+    prefix:   /place
+
+account_homepage:
+    path:     /account
+    defaults: { _controller: AccountBundle:Default:index }
+
+account_person:
+    resource: "@AppBundle/Resources/config/routing/admin/person.yml"
+    prefix:   /person
+
+account_category:
+    resource: "@AppBundle/Resources/config/routing/admin/category.yml"
+    prefix:   /category
+
+account_role:
+    resource: "@AppBundle/Resources/config/routing/admin/role.yml"
+    prefix:   /role
+
+account_team:
+    resource: "@AppBundle/Resources/config/routing/admin/team.yml"
+    prefix:   /team

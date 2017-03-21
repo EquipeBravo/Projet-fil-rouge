@@ -1,12 +1,10 @@
-app_club:
-    resource: "@AppBundle/Resources/config/routing/club.yml"
-    prefix:   /club
+# Routing.yml
+#
+# Fichier de Routing principal du site
+# (Tous les CRUDS sont redirigés vers /admin)
 
-app_event:
-    resource: "@AppBundle/Resources/config/routing/event.yml"
-    prefix:   /event
+# Partie publique :
 
-# Pages ne nécéssitant qu'une seule route :
 app_homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
@@ -31,12 +29,6 @@ app_inscription:
     path: /inscription
     defaults: { _controller: AppBundle:Default:inscription }
 
-# Pages nécéssitant plusieurs routes :
-
-app_admin:
-    resource: "@AppBundle/Resources/config/routing/admin.yml"
-    prefix:   /admin
-
 app_plannings:
     resource: routing/plannings/plannings.yml
 
@@ -45,4 +37,18 @@ app_teams:
 
 app_login:
     path: /login
-    defaults: { _controller: AppBundle:Default:login }    
+    defaults: { _controller: AppBundle:Default:login }
+
+# Partie Admin:
+
+app_admin:
+    resource: "@AppBundle/Resources/config/routing/admin/admin.yml"
+    prefix:   /admin
+
+app_club:
+    resource: "@AppBundle/Resources/config/routing/admin/club.yml"
+    prefix:   /club
+
+app_event:
+    resource: "@AppBundle/Resources/config/routing/admin/event.yml"
+    prefix:   /event
