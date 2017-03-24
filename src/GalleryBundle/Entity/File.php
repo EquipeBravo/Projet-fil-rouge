@@ -54,6 +54,10 @@ class File
         return $this->team;
     }
 
+    public function __construct()
+    {
+        $this->uploadDate = new \DateTime();
+    }
     /**
      * Set team
      *
@@ -198,4 +202,3 @@ class File
         return $this->uploadDate;
     }
 }
-
