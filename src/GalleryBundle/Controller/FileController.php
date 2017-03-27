@@ -39,6 +39,14 @@ class FileController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $fileUpload = $file->getFiles();
+            $fileName = md5(uniqid()).'.'.$fileUpload->guessExtension();
+            $fileName = $this->get('app.files_uploader')->upload($fileUpload);
+            // $fileUpload->move(
+            //     $this->getParameter('files_directory'),
+            //     $fileName
+            // );
+            $file->setFiles($fileName);
             $em->persist($file);
             $em->flush($file);
 

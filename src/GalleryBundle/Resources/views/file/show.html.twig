@@ -17,8 +17,12 @@
                 <td>{{ file.alt }}</td>
             </tr>
             <tr>
-                <th>Uploaddate</th>
+                <th>Date de mise en ligne</th>
                 <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ file.files }}</td>
             </tr>
         </tbody>
     </table>

@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class FileType extends AbstractType
 {
@@ -19,7 +20,7 @@ class FileType extends AbstractType
                 ->add('type', null, ['label' => 'Type de fichier'])
                 ->add('alt', null, ['label' => 'Balise alt'])
                 ->add('team', null, ['label' => 'Equipe'])
-                ->add('path', null, ['label' => 'Chemin du fichier'])     ;
+                ->add('files',  FileType::class, ['label' => 'Photo à ajouter'])     ;
     }
 
     /**
