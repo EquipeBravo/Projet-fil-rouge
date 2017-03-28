@@ -6,4 +6,4 @@ parameters:
 services:
     app.files_uploader:
         class: GalleryBundle\FileUploader
-        arguments: ['files_directory']
+        arguments: ['%files_directory%']

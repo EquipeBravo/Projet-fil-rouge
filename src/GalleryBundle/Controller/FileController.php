@@ -41,12 +41,14 @@ class FileController extends Controller
             $em = $this->getDoctrine()->getManager();
             $fileUpload = $file->getFiles();
             $fileName = md5(uniqid()).'.'.$fileUpload->guessExtension();
-            $fileName = $this->get('app.files_uploader')->upload($fileUpload);
-            // $fileUpload->move(
-            //     $this->getParameter('files_directory'),
-            //     $fileName
-            // );
+            $fileUpload->move(
+                $this->getParameter('files_directory'),
+                $fileName
+            );
             $file->setFiles($fileName);
+            //$root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+            $root = 'C:\wamp64\www\projet_fil_rouge\Projet-fil-rouge\galery_photos\\';
+            $total = $root . $fileName;
             $em->persist($file);
             $em->flush($file);
 

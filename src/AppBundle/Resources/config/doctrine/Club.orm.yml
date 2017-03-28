@@ -9,10 +9,10 @@ AppBundle\Entity\Club:
             generator:
                 strategy: AUTO
     fields:
-        history:
+        title:
             type: text
             nullable: true
-        clubValues:
+        clubcontent:
             type: text
             nullable: true
     lifecycleCallbacks: {  }

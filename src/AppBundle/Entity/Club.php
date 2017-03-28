@@ -15,12 +15,12 @@ class Club
     /**
      * @var string
      */
-    private $history;
+    private $title;
 
     /**
      * @var string
      */
-    private $clubValues;
+    private $clubcontent;
 
     /**
      * Get id
@@ -33,51 +33,50 @@ class Club
     }
 
     /**
-     * Set history
+     * Set title
      *
-     * @param string $history
+     * @param string $title
      *
      * @return Club
      */
-    public function setHistory($history)
+    public function settitle($title)
     {
-        $this->history = $history;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get history
+     * Get title
      *
      * @return string
      */
-    public function getHistory()
+    public function gettitle()
     {
-        return $this->history;
+        return $this->title;
     }
 
     /**
-     * Set clubValues
+     * Set clubcontent
      *
-     * @param string $clubValues
+     * @param string $clubcontent
      *
      * @return Club
      */
-    public function setClubValues($clubValues)
+    public function setClubcontent($clubcontent)
     {
-        $this->clubValues = $clubValues;
+        $this->clubcontent = $clubcontent;
 
         return $this;
     }
 
     /**
-     * Get clubValues
+     * Get clubcontent
      *
      * @return string
      */
-    public function getClubValues()
+    public function getClubcontent()
     {
-        return $this->clubValues;
+        return $this->clubcontent;
     }
 }
-

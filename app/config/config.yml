@@ -9,8 +9,8 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
-    files_directory: 'C:\wamp64\www\projet_fil_rouge\Projet-fil-rouge\galery_photos'
+    locale: fr
+    files_directory: '%kernel.root_dir%/../galery_photos'
 
 framework:
     #esi:             ~
