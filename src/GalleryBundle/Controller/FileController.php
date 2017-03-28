@@ -41,7 +41,7 @@ class FileController extends Controller
             $em = $this->getDoctrine()->getManager();
             $fileUpload = $file->getFiles();
             //$root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
-            $fileName = /*$root . 'web/img/' . */md5(uniqid()).'.'.$fileUpload->guessExtension();
+            $fileName = md5(uniqid()).'.'.$fileUpload->guessExtension();
             $fileUpload->move(
                 $this->getParameter('files_directory'),
                 $fileName
