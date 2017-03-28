@@ -25,15 +25,15 @@ class DefaultController extends Controller
 
         $clubs = $em->getRepository('AppBundle:Club')->findAll();
 
-        if (!empty($clubs)) {
-            $clubs = $clubs[0];
-        }
-        else {
-            $clubs[0] = '';
-        }
+        // if (!empty($clubs)) {
+        //     $clubs = $clubs[0];
+        // }
+        // else {
+        //     $clubs[0] = '';
+        // }
 
         return $this->render('AppBundle::apropos.html.twig', array(
-                'clubs' => $clubs[0]
+                'clubs' => $clubs
             )
         );
     }
