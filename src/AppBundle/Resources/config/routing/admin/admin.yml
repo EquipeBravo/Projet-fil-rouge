@@ -49,3 +49,11 @@ account_role:
 account_team:
     resource: "@AppBundle/Resources/config/routing/admin/team.yml"
     prefix:   /team
+
+app_club:
+    resource: "@AppBundle/Resources/config/routing/admin/club.yml"
+    prefix:   /club
+
+app_event:
+    resource: "@AppBundle/Resources/config/routing/admin/event.yml"
+    prefix:   /event
