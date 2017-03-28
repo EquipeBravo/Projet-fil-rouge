@@ -21,4 +21,3 @@ place_edit:
 place_delete:
     path:     /{id}/delete
     defaults: { _controller: "PlanningBundle:Place:delete" }
-    methods:  DELETE

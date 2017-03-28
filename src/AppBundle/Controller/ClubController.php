@@ -94,14 +94,15 @@ class ClubController extends Controller
      */
     public function deleteAction(Request $request, Club $club)
     {
-        $form = $this->createDeleteForm($club);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:Club')->find($club);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($club);
-            $em->flush($club);
+        if (!$entity) {
+            throw $this->createNotFoundException('ERROR : No such entity');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirectToRoute('club_index');
     }
@@ -118,7 +119,6 @@ class ClubController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('club_delete', array('id' => $club->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }
