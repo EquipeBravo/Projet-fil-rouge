@@ -40,6 +40,7 @@ AccountBundle\Entity\Person:
             length: '128'
         birthDate:
             type: date
+            nullable: true
         phone:
             type: string
             length: '64'
