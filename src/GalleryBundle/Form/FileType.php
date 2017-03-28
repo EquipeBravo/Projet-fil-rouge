@@ -20,7 +20,7 @@ class FileType extends AbstractType
             ->add('type', null, ['label' => 'Type de fichier'])
             ->add('alt', null, ['label' => 'Balise alt'])
             ->add('team', null, ['label' => 'Equipe'])
-            ->add('files', FileTypeForm::class, ['label' => 'Photo à ajouter']);
+            ->add('files', FileTypeForm::class, ['label' => 'Photo à ajouter', 'data_class' => null]);
     }
 
     /**
