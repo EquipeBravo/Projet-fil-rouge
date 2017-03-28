@@ -25,7 +25,7 @@ class DefaultController extends Controller
 
         $clubs = $em->getRepository('AppBundle:Club')->findAll();
         return $this->render('AppBundle::apropos.html.twig', array(
-                'clubs' => $clubs
+                'clubs' => $clubs[0]
             )
         );
     }
