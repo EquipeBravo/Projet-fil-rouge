@@ -57,3 +57,7 @@ app_club:
 app_event:
     resource: "@AppBundle/Resources/config/routing/admin/event.yml"
     prefix:   /event
+
+gallery_file:
+    resource: "@AppBundle/Resources/config/routing/admin/file.yml"
+    prefix:   /gallery
