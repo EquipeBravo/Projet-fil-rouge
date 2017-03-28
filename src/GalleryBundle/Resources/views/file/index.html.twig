@@ -17,7 +17,7 @@
         {% for file in files %}
             <tr>
                 <td>{{ file.name }}</td>
-                <td>{{ file.path }}</td>
+                <td>{{ file.files }}</td>
                 <td>{{ file.type }}</td>
                 <td>{{ file.alt }}</td>
                 <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}</td>

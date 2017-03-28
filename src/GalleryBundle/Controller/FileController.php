@@ -39,6 +39,16 @@ class FileController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $fileUpload = $file->getFiles();
+            $fileName = md5(uniqid()).'.'.$fileUpload->guessExtension();
+            $fileUpload->move(
+                $this->getParameter('files_directory'),
+                $fileName
+            );
+            $file->setFiles($fileName);
+            //$root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+            $root = 'C:\wamp64\www\projet_fil_rouge\Projet-fil-rouge\galery_photos\\';
+            $total = $root . $fileName;
             $em->persist($file);
             $em->flush($file);
 

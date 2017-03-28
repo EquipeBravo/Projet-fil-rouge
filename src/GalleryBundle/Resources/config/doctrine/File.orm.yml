@@ -19,10 +19,6 @@ GalleryBundle\Entity\File:
         name:
             type: string
             length: '65'
-        path:
-            type: string
-            length: 255
-            unique: true
         type:
             type: string
             length: '45'
@@ -32,4 +28,8 @@ GalleryBundle\Entity\File:
             nullable: true
         uploadDate:
             type: datetime
+        files:
+            type: string
+            length: 255
+            unique: true
     lifecycleCallbacks: {  }

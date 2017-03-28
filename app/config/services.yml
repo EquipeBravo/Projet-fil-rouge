@@ -11,3 +11,7 @@ services:
         class: Twig_Extensions_Extension_Intl
         tags:
             - { name: twig.extension }
+
+    app.files_uploader:
+        class: GalleryBundle\FileUploader
+        arguments: ['%files_directory%']

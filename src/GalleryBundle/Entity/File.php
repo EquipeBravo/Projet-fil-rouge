@@ -5,7 +5,7 @@ namespace GalleryBundle\Entity;
 use AccountBundle\Entity\Team;
 
 /**
- * File
+ * file
  */
 class File
 {
@@ -22,7 +22,7 @@ class File
     /**
      * @var string
      */
-    private $path;
+    private $files;
 
     /**
      * @var string
@@ -54,12 +54,16 @@ class File
         return $this->team;
     }
 
+    public function __construct()
+    {
+        $this->uploadDate = new \DateTime();
+    }
     /**
      * Set team
      *
      * @param Team $team
      *
-     * @return File
+     * @return files
      */
     public function setTeam(Team $team)
     {
@@ -83,7 +87,7 @@ class File
      *
      * @param string $name
      *
-     * @return File
+     * @return files
      */
     public function setName($name)
     {
@@ -103,27 +107,27 @@ class File
     }
 
     /**
-     * Set path
+     * Set files
      *
-     * @param string $path
+     * @param string $files
      *
-     * @return File
+     * @return files
      */
-    public function setPath($path)
+    public function setfiles($files)
     {
-        $this->path = $path;
+        $this->files = $files;
 
         return $this;
     }
 
     /**
-     * Get path
+     * Get files
      *
      * @return string
      */
-    public function getPath()
+    public function getfiles()
     {
-        return $this->path;
+        return $this->files;
     }
 
     /**
@@ -131,7 +135,7 @@ class File
      *
      * @param string $type
      *
-     * @return File
+     * @return files
      */
     public function setType($type)
     {
@@ -155,7 +159,7 @@ class File
      *
      * @param string $alt
      *
-     * @return File
+     * @return files
      */
     public function setAlt($alt)
     {
@@ -179,7 +183,7 @@ class File
      *
      * @param \DateTime $uploadDate
      *
-     * @return File
+     * @return files
      */
     public function setUploadDate($uploadDate)
     {
@@ -198,4 +202,3 @@ class File
         return $this->uploadDate;
     }
 }
-

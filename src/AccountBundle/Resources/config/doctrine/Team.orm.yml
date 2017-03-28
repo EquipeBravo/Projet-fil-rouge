@@ -18,7 +18,7 @@ AccountBundle\Entity\Team:
         #         name: match_id
         #         referencedColumnName: id
     # One Team belongs to One Club (OneToOne)
-    oneToOne:
+    manyToOne:
         club:
             targetEntity: AppBundle\Entity\Club
             joinColumn:
