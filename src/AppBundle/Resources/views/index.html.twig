@@ -15,36 +15,28 @@
 	#}
 	</div>
 
-	<div class="row">
-		<div class="col-lg-4">
-			<div class="well">
-				Page d'accueil
-			</div>
-		</div>
-		<div class="col-lg-4">
-			<div class="well">
-				Planning
-			</div>
-		</div>
-		<div class="col-lg-4">
-			<div class="well">
-				A propos
-			</div>
-		</div>
-	</div>
+    {% for event in events %}
 
-	<div class="row">
-		<div class="col-lg-4">
-			<div class="well"></div>
+        {% if loop.index0 % 3 == 0 %}
+			<div class="row">
+        {% endif %}
+		<div class="col-sm-4">
+			<div class="well event-box">
+				<h2 class="event-title">{{ event.title }}</h2>
+				<p class="event-date">{{ event.dateEvent|localizeddate('none', 'none', app.request.locale, "Europe/Paris", "cccc d MMMM Y 'à' HH'h'mm")|capitalize}}</p>
+			</div>
 		</div>
-		<div class="col-lg-4">
-			<div class="well"></div>
-		</div>
-		<div class="col-lg-4">
-			<div class="well"></div>
-		</div>
-	</div>
+        {% if loop.index0 % 3 == 2 %}
+			</div>
+        {% endif %}
 
+    {% else %}
+
+		<div>
+			<p>No events</p>
+		</div>
+
+    {% endfor %}
 
     {#
     on affichera un formulaire de login si l'utilisateur n'est pas

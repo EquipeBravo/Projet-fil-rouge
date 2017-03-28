@@ -1,6 +1,6 @@
 {# Navigation #}
 <!--show navbarlogin on small devices: class="hidden-md-up"-->
-<nav  class="collapse navbar-collapse hidden-sm-down" id="navbar-login">
+<!--<nav  class="collapse navbar-collapse hidden-sm-down" id="navbar-login">
     <div class="container">
         <ul class="nav navbar-nav navbar-right list-inline" >
             {#{% if not is_granted('ROLE_ADMIN') %}#}
@@ -17,6 +17,7 @@
         </ul>
     </div>
 </nav>
+-->
 <nav class="navbar navbar-inverse" ><!--class menu-->
     <div class="container">
         <div class="navbar-header">
@@ -30,22 +31,23 @@
         <div class="collapse navbar-collapse" id="navbar">
     		<ul class="nav navbar-nav navbar-left menu">
     			<li><a href="{{path('app_homepage')}}" >Accueil</a></li>
+                <li><a href="{{path('app_apropos')}}" >Club</a></li>
     			<li><a href="{{path('planning_homepage')}}" >Plannings</a></li>
-    			<li><a href="{{path('app_apropos')}}" >A Propos</a></li>
     			<li><a href="{{path('app_teams')}}" >Les équipes</a></li>
-    			<li><a href="{{path('app_contact')}}" >Contactez nous</a></li>
+                <li>><a href="{{ path('event_index') }}" >Évènements</a></li>
+                <li><a href="{{path('app_contact')}}" >Contactez nous</a></li>
     			<!-- manque école d'arbitrage et contact
     			le lien pour s'inscrire peut éventuellent être déporter à droite du menu et disparaitre si la personne est logguée-->
     		</ul>
 
-    		<ul class="nav navbar-nav navbar-right">
+    		<ul class="nav navbar-nav navbar-right" id="navbar-login">
                 {#{% if not is_granted('ROLE_ADMIN') %}#}
                     <li title="Sign up"><a href="{{path('person_new')}}"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>
                     <li title="Login"><a href="{{path('app_login')}}"><span class="glyphicon glyphicon-log-in"></span>  Connexion</a></li>
                 {#{% endif %}#}
                 {#{% if is_granted('ROLE_ADMIN') %}#}
                     <li>
-                        <a href="#">
+                        <a href="{{ path('app_admin_dashboard') }}">
                             Administration
                         </a>
                     </li>

@@ -33,7 +33,6 @@ body{
     border-radius: 0px;
 }
 
-
 /*changed default bootstrap*/
 .well{
     /*background-color: white;*/
@@ -95,6 +94,26 @@ main{
     color:white;
 }
 
+/*index: events*/
+/*.event-box{
+    border-radius: 0px;
+    box-shadow: 5px 5px 5px 0px gray;
+    text-align: center;
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('../img/handball.jpg');
+    background-blend-mode: multiply;
+}
+.event-box:hover{
+    opacity: 0.9;
+    cursor: pointer;
+}
+.event-title{
+    color: #7fbb00;
+}
+.event-date{
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}*/
+
 /*footer*/
 .footer{
     padding: 20px;
@@ -107,8 +126,8 @@ main{
     padding: 2px;
 }
 .footer ul li a{
-     color: #888;
- }
+    color: #888;
+}
 .footer ul li a:hover{
     color: white;
     text-decoration: none;
