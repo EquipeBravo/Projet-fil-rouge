@@ -11,8 +11,8 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-      // replace this example code with whatever you need
-      return $this->render('AppBundle::index.html.twig');
+        // replace this example code with whatever you need
+        return $this->render('AppBundle::index.html.twig');
     }
 
     public function aproposAction()
@@ -21,8 +21,15 @@ class DefaultController extends Controller
 
         $clubs = $em->getRepository('AppBundle:Club')->findAll();
 
+        if (!empty($clubs)) {
+            $clubs = $clubs[0];
+        }
+        else {
+            $clubs[0] = '';
+        }
+
         return $this->render('AppBundle::apropos.html.twig', array(
-            'clubs' => $clubs[0]
+                'clubs' => $clubs[0]
             )
         );
     }
@@ -34,12 +41,12 @@ class DefaultController extends Controller
 
     public function teamsAction()
     {
-    	return $this->render('AppBundle::teams.html.twig');
+        return $this->render('AppBundle::teams.html.twig');
     }
 
     public function contactAction()
     {
-    	return $this->render('AppBundle::contact.html.twig');
+        return $this->render('AppBundle::contact.html.twig');
     }
 
     public function loginAction()
