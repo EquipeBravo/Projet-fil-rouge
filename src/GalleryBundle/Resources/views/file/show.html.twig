@@ -18,11 +18,12 @@
             </tr>
             <tr>
                 <th>Date de mise en ligne</th>
-                <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    {% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}
+                </td>
             </tr>
             <tr>
-                <th>Photo</th>
-                <td>{{ file.files }}</td>
+                <img src="{{ asset('web/img/' ~ file.files) }}">Voir photo</>
             </tr>
         </tbody>
     </table>
@@ -36,7 +37,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
+            <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>
