@@ -79,4 +79,9 @@ class Club
     {
         return $this->clubcontent;
     }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
 }
