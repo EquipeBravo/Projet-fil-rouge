@@ -41,7 +41,7 @@
 
     		<ul class="nav navbar-nav navbar-right" id="navbar-login">
                 {#{% if not is_granted('ROLE_ADMIN') %}#}
-                    <li title="Sign up"><a href="{{path('person_new')}}"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>
+                    <li title="Sign up"><a href="{{path('app_register')}}"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>
                     <li title="Login"><a href="{{path('app_login')}}"><span class="glyphicon glyphicon-log-in"></span>  Connexion</a></li>
                 {#{% endif %}#}
                 {#{% if is_granted('ROLE_ADMIN') %}#}
