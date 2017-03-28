@@ -12,6 +12,3 @@ planning:
 gallery:
     resource: "@GalleryBundle/Resources/config/routing.yml"
     prefix:   /gallery
-
-
-

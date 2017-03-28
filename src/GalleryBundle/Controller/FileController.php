@@ -46,7 +46,6 @@ class FileController extends Controller
                 $fileName
             );
             $file->setFiles($fileName);
-            //$root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
             $root = 'C:\wamp64\www\projet_fil_rouge\Projet-fil-rouge\galery_photos\\';
             $total = $root . $fileName;
             $em->persist($file);
