@@ -15,6 +15,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $events = $em->getRepository('AppBundle:Event')->findAll();
+        
 
         return $this->render('AppBundle::index.html.twig', [
             'events' => $events
@@ -26,8 +27,10 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $clubs = $em->getRepository('AppBundle:Club')->findAll();
+
+        
         return $this->render('AppBundle::apropos.html.twig', array(
-                'clubs' => $clubs[0]
+                'clubs' => $clubs
             )
         );
     }
