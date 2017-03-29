@@ -4,18 +4,15 @@ security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory:
-                users:
-                    user@gmail.com:
-                        password: ryanpass
-                        roles: 'ROLE_USER'
-                    admin@mail.ru:
-                        password: kitten
-                        roles: 'ROLE_ADMIN'
+        our_user_provider:
+            entity:
+                class: AccountBundle:Person
+                property: email
 
     encoders:
-         Symfony\Component\Security\Core\User\User: plaintext
+          AccountBundle\Entity\Person:
+              algorithm: bcrypt
+              cost: 12
 
     role_hierarchy:
         ROLE_USER:    ROLE_USER
@@ -31,6 +28,7 @@ security:
         main:
             anonymous: ~
             pattern: ^/
+            provider: our_user_provider
             # activate different ways to authenticate
 
             # http_basic: ~

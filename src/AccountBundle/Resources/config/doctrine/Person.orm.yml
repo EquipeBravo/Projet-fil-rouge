@@ -15,7 +15,7 @@ AccountBundle\Entity\Person:
                         referencedColumnName: id
                         onDelete: CASCADE
     # Many Persons can have Many Roles
-        roles:
+        userRoles:
             targetEntity: Role
             joinTable:
                 name: roles_users
