@@ -1,6 +1,8 @@
 <?php
 namespace GalleryBundle\Entity;
 use AccountBundle\Entity\Team;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * file
  */
@@ -15,7 +17,10 @@ class File
      */
     private $name;
     /**
-     * @var string
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Veuillez envoyer une photo svp")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $files;
     /**
