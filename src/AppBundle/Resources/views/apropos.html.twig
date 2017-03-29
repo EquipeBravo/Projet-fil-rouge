@@ -3,17 +3,16 @@
     {{ parent() }}
     <h1>A propos du club</h1>
 
-    {#
-        on affiche l'historique et les valeurs du club
-    #}
-    <h2>Histoire de l'ASPTT</h2>
-    <p>
-        {{ clubs.title }}
+    {% for club in clubs %}
+        <div class="panel frame">
+            <div class="panel-heading frame-title">
+                <h3>{{ club.title }}</h3>
+            </div>
+            <div class="panel-body frame-body text-justify">
+                {{ club.clubcontent| raw }}
+            </div>
+        </div>
 
-    </p>
+    {% endfor %}
 
-    <h2>Nos valeurs</h2>
-    <p>
-        {{ clubs.clubcontent }}
-    </p>
 {% endblock %}
