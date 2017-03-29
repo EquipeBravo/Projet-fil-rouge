@@ -9,9 +9,11 @@ AccountBundle\Entity\Person:
                 joinColumns:
                     person_id:
                         referencedColumnName: id
+                        onDelete: CASCADE
                 inverseJoinColumns:
                     team_id:
-                        referencedColumnName: id       
+                        referencedColumnName: id
+                        onDelete: CASCADE
     # Many Persons can have Many Roles
         roles:
             targetEntity: Role

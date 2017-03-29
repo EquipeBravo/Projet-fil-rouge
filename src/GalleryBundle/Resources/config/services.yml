@@ -1,4 +1,4 @@
-services:
-#    gallery.example:
-#        class: GalleryBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+parameters:
+    files_directory: '%kernel.root_dir%/../web/uploads/images'
+
+#services:

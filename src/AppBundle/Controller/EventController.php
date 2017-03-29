@@ -94,14 +94,15 @@ class EventController extends Controller
      */
     public function deleteAction(Request $request, Event $event)
     {
-        $form = $this->createDeleteForm($event);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:Event')->find($event);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($event);
-            $em->flush($event);
+        if (!$entity) {
+            throw $this->createNotFoundException('ERROR : No such entity');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirectToRoute('event_index');
     }
@@ -118,7 +119,6 @@ class EventController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('event_delete', array('id' => $event->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

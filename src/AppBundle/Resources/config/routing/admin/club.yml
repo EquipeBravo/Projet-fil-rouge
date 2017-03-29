@@ -31,4 +31,3 @@ club_edit:
 club_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:Club:delete" }
-    methods:  DELETE

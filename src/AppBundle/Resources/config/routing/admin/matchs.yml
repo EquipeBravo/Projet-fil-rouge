@@ -21,4 +21,3 @@ matchs_edit:
 matchs_delete:
     path:     /{id}/delete
     defaults: { _controller: "PlanningBundle:Matchs:delete" }
-    methods:  DELETE

@@ -18,25 +18,26 @@
             </tr>
             <tr>
                 <th>Date de mise en ligne</th>
-                <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    {% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}
+                </td>
             </tr>
             <tr>
-                <th>Photo</th>
-                <td>{{ file.files }}</td>
+                <img src="{{ asset('uploads/images/'~ file.files) }}" />
             </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
+    <ul class="list-inline">
+        <li class="btn btn-default">
             <a href="{{ path('file_index') }}">Retour à la liste</a>
         </li>
-        <li>
+        <li class="btn btn-warning">
             <a href="{{ path('file_edit', { 'id': file.id }) }}">Modifier</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
+            <input type="submit" value="Supprimer"  class="btn btn-danger">
             {{ form_end(delete_form) }}
         </li>
     </ul>

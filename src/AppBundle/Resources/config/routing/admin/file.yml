@@ -21,4 +21,3 @@ file_edit:
 file_delete:
     path:     /{id}/delete
     defaults: { _controller: "GalleryBundle:File:delete" }
-    methods:  DELETE

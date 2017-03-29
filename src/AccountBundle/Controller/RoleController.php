@@ -51,9 +51,9 @@ class RoleController extends Controller
         ));
     }
 
-    public function showAction(Request $request) 
+    public function showAction(Request $request)
     {
-        return  $this->indexAction();
+        return $this->indexAction();
     }
 
     /**
@@ -85,14 +85,15 @@ class RoleController extends Controller
      */
     public function deleteAction(Request $request, Role $role)
     {
-        $form = $this->createDeleteForm($role);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AccountBundle:Role')->find($role);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($role);
-            $em->flush($role);
+        if (!$entity) {
+            throw $this->createNotFoundException('ERROR : No such entity');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirectToRoute('role_index');
     }
@@ -109,7 +110,6 @@ class RoleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('role_delete', array('id' => $role->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

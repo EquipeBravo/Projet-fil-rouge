@@ -16,4 +16,3 @@ category_edit:
 category_delete:
     path:     /{id}/delete
     defaults: { _controller: "AccountBundle:Category:delete" }
-    methods:  DELETE

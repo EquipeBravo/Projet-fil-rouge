@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Person
  * @UniqueEntity("email", message="Cet email existe déjà")
  */
-class Person 
+class Person
 {
     /**
      * @var int
