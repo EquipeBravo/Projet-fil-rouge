@@ -37,11 +37,18 @@ app_teams:
 
 app_login:
     path: /login
-    defaults: { _controller: AccountBundle:Asptt:login }
+    defaults: { _controller: AccountBundle:Security:login }
+
+app_logout:
+    path: /logout
 
 app_register:
     path: /register
-    defaults: { _controller: AccountBundle:Asptt:register }
+    defaults: { _controller: AccountBundle:Security:register }
+
+app_search:
+    path: /search
+    defaults: { _controller: AppBundle:Default:search }
 
 # Partie Admin:
 
