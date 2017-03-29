@@ -18,12 +18,19 @@ class PersonType extends AbstractType
     {
         $builder->add('lastName', null, ['label' => 'Nom'])
                 ->add('firstName', null, ['label' => 'Prénom'])
-                ->add('email', EmailType::class)
+                ->add('email', EmailType::class);
+
+        if (!$options['admin']) {
+            $builder
                 ->add('password', RepeatedType::class, [
                     'type' => PasswordType::class,
-                    'first_options'  => ['label' => 'Mot de passe'],
-                    'second_options' => ['label' => 'Confirmer le mot de passe']
-                    ,]);
+                    'invalid_message' => 'Les champs de mot de passe doivent correspondre.',
+                    'options' => array('attr' => array('class' => 'password-field')),
+                    'required' => true,
+                    'first_options' => ['label' => 'Mot de passe *'],
+                    'second_options' => ['label' => 'Confirmer le mot de passe'],
+                ]);
+        }
 
         if ($options['admin']){
             $builder

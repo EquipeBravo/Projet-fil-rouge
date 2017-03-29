@@ -6,6 +6,10 @@
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
+    <p class="col-sm-offset-2 col-sm-10">
+        * Votre mot de passe doit contenir une minuscule, une majuscule, un caractère spécial '@*#!_',
+        un chiffre et être compris entre 8 et 15 caractères.
+    </p>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <input type="submit" value="Valider" class="btn btn-sm btn-success"/>

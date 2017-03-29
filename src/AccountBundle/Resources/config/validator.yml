@@ -1,0 +1,3 @@
+AccountBundle\Entity\Person:
+    constraints:
+        - AccountBundle\Validator\Constraints\Person: ~
