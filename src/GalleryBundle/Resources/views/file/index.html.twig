@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 <th>Nom du fichier</th>
-                <th>Path</th>
+                <th>Photo</th>
                 <th>Type</th>
                 <th>Alt</th>
                 <th>Date de téléchargement</th>
@@ -17,7 +17,7 @@
         {% for file in files %}
             <tr>
                 <td>{{ file.name }}</td>
-                <td>{{ file.files }}</td>
+                <td><img width="25%" height="25%" src="{{ asset('uploads/images/'~ file.files)  }}" /></td>
                 <td>{{ file.type }}</td>
                 <td>{{ file.alt }}</td>
                 <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}</td>
