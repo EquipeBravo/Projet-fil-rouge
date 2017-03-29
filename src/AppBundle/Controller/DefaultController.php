@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AccountBundle\Entity\Person;
+use AccountBundle\Entity\Team;
 
 class DefaultController extends Controller
 {
@@ -37,7 +38,18 @@ class DefaultController extends Controller
 
     public function teamsAction()
     {
-        return $this->render('AppBundle::teams.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $teams = $em->getRepository('AccountBundle:Team')->findAll();
+        return $this->render('AppBundle::teams.html.twig', array(
+            'teams' => $teams
+         ));
+    }
+
+    public function teamsShowAction(Team $team)
+    {
+        return $this->render('AppBundle:team:show.html.twig', array(
+            'team' => $team,
+        ));
     }
 
     public function contactAction()
@@ -49,5 +61,4 @@ class DefaultController extends Controller
     {
         return $this->render('AppBundle::admin/index.html.twig');
     }
-
 }

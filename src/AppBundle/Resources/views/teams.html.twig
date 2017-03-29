@@ -1,6 +1,49 @@
-{% extends('AppBundle:Layout:layout.html.twig') %}
+{% extends 'AppBundle:Layout:layout.html.twig' %}
 
-{% block article %}
-{{ parent() }}
-Les équipes
+{% block body %}
+    <h1>Les équipes</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom de l'équipe</th>
+                <th>Date de reprise</th>
+                <th>Jour d'entrainement</th>
+                <th>Horaire d'entrainement</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for team in teams %}
+                <tr>
+                    <td>{{ team.name }}</td>
+                    <td>
+                        {% if team.resumptionDate %}{{ team.resumptionDate|date('Y-m-d H:i:s') }}{% endif %}
+                    </td>
+                    <td>{{ team.trainingDay }}</td>
+                    <td>{{ team.trainingTime }}</td>
+                    <td>
+                        <ul class="list-inline">
+                            <li title="détails">
+                                <a href="{{ path('app_teams_show', { 'id': team.id }) }}" class="btn btn-sm btn-info">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                </a>
+                            </li>
+                            <li title="Galerie">
+                                <a href="{{ path('app_teams_show', { 'id': team.id }) }}" class="btn btn-sm btn-info">
+                                    <span class="glyphicon glyphicon-picture"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <ul class="list-inline">
+        <li>
+            <a href="{{ path('team_new') }}" class="btn btn-sm btn-success">Nouvelle équipe</a>
+        </li>
+    </ul>
 {% endblock %}
