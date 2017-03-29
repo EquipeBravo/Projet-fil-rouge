@@ -1,65 +1,68 @@
 {% extends('AppBundle:Layout:layout.html.twig') %}
 
 {% block article %}
-{{ parent() }}
-<h1>Contact</h1>
+    {{ parent() }}
+    <h1>Contact</h1>
+    <div class="col-sm-6">
+        <div class="well event-box">
+            <h3>Secrétariat</h3>
+            <p>
+                42 Rue Nicolas Appert
+                44 000 Nantes
+            </p>
+            <p>
+                Lundi : 14H00 - 17H15
+                Jeudi : 16H00 - 18H15
+            </p>
+            <p>
+                Tél. Fixe : 02.51.84.91.55
+                Tél. Mobile : 06.52.96.76.65
+            </p>
 
-  <div class="panel frame">
-  <div class="panel-heading frame-title">
-<h3>Personnes à contacter</h3>
-</div>
- <div class="panel-body frame-body text-justify">
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <th>Fusce</th>
-                <td>hendrerit</td>
-                <td>hendrerit</td>
-                <td>hendrerit</td>
-                <td>hendrerit</td>
-            </tr>
-            <tr>
-                <th>tellus</th>
-                <td>a felis</td>
-                <td>hendrerit</td>
-                <td>hendrerit</td>
-                <td>hendrerit</td>
-            </tr>
-            <tr>
-                <th>tellus</th>
-                <td>a felis</td>
-                <td>hendrerit</td>
-                <td>hendrerit</td>
-                <td>hendrerit</td>
-            </tr>
-            <tr>
-                <th>tellus</th>
-                <td>a felis</td>
-                <td>hendrerit</td>
-                <td>hendrerit</td>
-                <td>hendrerit</td>
-            </tr>
-        </tbody>
-     </table>
-     </div>
-</div>
+            <h3>Adresse de la Salle</h3>
 
+            <p>
+                44 Rue Chanteclerc
+                44 300 Nantes
+            </p>
 
+            <p>
+                Tél. Salle : 02.40.76.54.59
+            </p>
 
-  <div class="panel frame">
-  <div class="panel-heading frame-title">
-    <h3>Salles</h3>
-</div>
-     <div class="panel-body frame-body text-justify">
-    <p>
-        Fusce hendrerit tellus a felis placerat, sit amet ultrices ligula laoreet. Sed porta velit quis ipsum feugiat, sit amet suscipit orci tristique.
-    </p>
-    <p>
-        Praesent vehicula fringilla quam pharetra porta. In quis mi bibendum, pellentesque turpis vel, ullamcorper libero.
-    </p>
-    <p>
-        Proin commodo finibus dui, eget sodales dolor facilisis ut. Sed ultrices ex risus, in aliquet dolor dictum sed. Aliquam vitae ante quam.
-    </p>
+        </div>
     </div>
-</div>
+    <div class="col-sm-6">
+        <div class="well event-box">
+            <h3>Nous contacter</h3>
+            {{ form_start(form) }}
+
+            <div>
+                {{ form_widget(form.subject) }}
+                {{ form_errors(form.subject) }}
+            </div>
+            <div>
+                {{ form_widget(form.name) }}
+                {{ form_errors(form.name) }}
+            </div>
+            <div>
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+            <div>
+                {{ form_widget(form.message) }}
+                {{ form_errors(form.message) }}
+            </div>
+
+            {# Render CSRF token etc .#}
+            <div style="display:none">
+                {{ form_rest(form) }}
+            </div>
+
+            <input type="submit" value="Submit">
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
 {% endblock %}

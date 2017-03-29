@@ -45,9 +45,57 @@ class DefaultController extends Controller
         return $this->render('AppBundle::teams.html.twig');
     }
 
-    public function contactAction()
+    public function contactAction(Request $request)
     {
-        return $this->render('AppBundle::contact.html.twig');
+        // Create the form according to the FormType created previously.
+        // And give the proper parameters
+        $form = $this->createForm('AppBundle\Form\ContactType',null,array(
+            // To set the action use $this->generateUrl('route_identifier')
+            'action' => $this->generateUrl('app_contact'),
+            'method' => 'POST'
+        ));
+
+        if ($request->isMethod('POST')) {
+            // Refill the fields in case the form is not valid.
+            $form->handleRequest($request);
+
+            if($form->isValid()){
+                // Send mail
+                if($this->sendEmail($form->getData())){
+
+                    // Everything OK, redirect to wherever you want ! :
+
+                    return $this->redirectToRoute('app_contact');
+                }else{
+                    // An error ocurred, handle
+                    var_dump("Une erreur est survenue, veuillez recharger la page.");
+                }
+            }
+        }
+        return $this->render('AppBundle::contact.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    private function sendEmail($data){
+        $myappContactMail = 'asptt.imie@gmail.com';
+        $myappContactPassword = 'asptt1993';
+
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')
+            ->setUsername($myappContactMail)
+            ->setPassword($myappContactPassword);
+
+        $mailer = \Swift_Mailer::newInstance($transport);
+
+        $message = \Swift_Message::newInstance("[Site Asptt] Formulaire de contact : ". $data["subject"])
+            ->setFrom(array($myappContactMail => "Nouveau message de ".$data["name"]))
+            ->setTo(array(
+                $myappContactMail => $myappContactMail
+            ))
+            ->setBody($data["message"]."\n\rEmail de contact :".$data["email"]);
+
+        return $mailer->send($message);
+
     }
 
     public function adminAction()
