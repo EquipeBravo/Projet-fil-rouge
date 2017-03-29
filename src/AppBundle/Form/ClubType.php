@@ -13,8 +13,8 @@ class ClubType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('history', null, ['label' => 'Historique'])
-                ->add('clubValues', null, ['label' => 'Valeur du club'])        ;
+        $builder->add('title', null, ['label' => 'Titre'])
+                ->add('clubcontent', null, ['label' => 'Contenu'])        ;
     }
     
     /**
