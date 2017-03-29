@@ -15,11 +15,13 @@ PlanningBundle\Entity\Matchs:
             joinColumn:
                 name: team_id
                 referencedColumnName: id
+                onDelete: CASCADE
         team2:
             targetEntity: AccountBundle\Entity\Team
             joinColumn:
                 name: team2_id
-                referencedColumnName: id         
+                referencedColumnName: id
+                onDelete: CASCADE
                        
     table: null
     repositoryClass: PlanningBundle\Repository\MatchsRepository
