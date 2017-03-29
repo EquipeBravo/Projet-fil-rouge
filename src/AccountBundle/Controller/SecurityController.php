@@ -46,6 +46,9 @@ class SecurityController extends Controller
         // last username entered by the user
         $email = $authenticationUtils->getLastUsername();
 
+        //if needed to use in controller
+        //$user= $this->get('security.context')->getToken()->getUser();
+
         return $this->render('AccountBundle:security:login.html.twig', array(
             'last_username' => $email,
             'error'         => $error,
