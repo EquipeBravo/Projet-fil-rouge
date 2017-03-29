@@ -55,4 +55,31 @@ class DefaultController extends Controller
         return $this->render('AppBundle::admin/index.html.twig');
     }
 
+    public function searchAction(Request $request)
+    {
+        $search = trim($request->query->get('keyword'));
+
+        $em = $this->getDoctrine()->getManager();
+
+        $qb = $em
+            ->createQuery('select a.id from AppBundle:Event a WHERE a.title LIKE ?1')
+            ->setParameter(1, '%'.$search.'%')
+            ->getResult();
+
+        // qb.id
+
+        //modifier le findAll par un findOneById
+/*
+        app_search:
+        path: /search
+    defaults: { _controller: AppBundle:Default:search }
+
+    */
+        $events = $em->getRepository('AppBundle:Event')->findAll();
+
+        return $this->render('AppBundle::index.html.twig', [
+            'events' => $events,
+        ]);
+    }
+
 }

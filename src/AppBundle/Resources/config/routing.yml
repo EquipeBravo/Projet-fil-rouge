@@ -46,6 +46,10 @@ app_register:
     path: /register
     defaults: { _controller: AccountBundle:Security:register }
 
+app_search:
+    path: /search
+    defaults: { _controller: AppBundle:Default:search }
+
 # Partie Admin:
 
 app_admin:
