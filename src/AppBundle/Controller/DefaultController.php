@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AccountBundle\Entity\Person;
+use AppBundle\Entity\Event;
 
 class DefaultController extends Controller
 {
@@ -14,6 +15,8 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $events = $em->getRepository('AppBundle:Event')->findAll();
+        
+
         return $this->render('AppBundle::index.html.twig', [
             'events' => $events
         ]);
@@ -24,8 +27,10 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $clubs = $em->getRepository('AppBundle:Club')->findAll();
+
+        
         return $this->render('AppBundle::apropos.html.twig', array(
-                'clubs' => $clubs[0]
+                'clubs' => $clubs
             )
         );
     }

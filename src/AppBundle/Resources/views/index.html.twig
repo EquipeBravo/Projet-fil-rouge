@@ -21,7 +21,7 @@
 		<div class="col-sm-4">
 			<div class="well event-box">
 				<h2 class="event-title">{{ event.title }}</h2>
-				<p class="event-date">{{ event.dateEvent|localizeddate('none', 'none', app.request.locale, "Europe/Paris", "cccc d MMMM Y 'à' HH'h'mm")|capitalize}}</p>
+				<p class="event-date">{{ event.dateEvent|date("h:i:M") }}</p>
 			</div>
 		</div>
         {% if loop.index0 % 3 == 2 %}

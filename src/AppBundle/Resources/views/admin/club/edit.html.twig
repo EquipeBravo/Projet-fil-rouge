@@ -1,110 +1,25 @@
 {% extends 'AppBundle:admin:layout/layout.html.twig' %}
 
 {% block body %}
+    <h1>Modifier les informations du club</h1>
 
-    <div class="panel frame">
-        <div class="panel-heading frame-title">
-            <h1>Historique</h1>
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Modifier" class="btn btn-sm btn-warning"/>
+            </div>
         </div>
-        <div class="panel-body frame-body text-justify">
-            {{ club.history | raw }}
-        </div>
-        <hr>
-        <div class="frame-footer">
-            <ul class="list-inline icons pull-right">
-                <li title="modifier">
-                    <a href="{{ path('app_admin_club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                </li>
-                <li title="add title">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-header"></span>
-                    </a>
-                </li>
-                <li title="add paragraph">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-text-size"></span>
-                    </a>
-                </li>
-                <li title="add list">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-list"></span>
-                    </a>
-                </li>
-                <li title="add link">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-link"></span>
-                    </a>
-                </li>
-                <li title="upload image">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-camera"></span>
-                    </a>
-                </li>
-                <li title="bold">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-bold"></span>
-                    </a>
-                </li>
-                <li title="italic">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-italic"></span>
-                    </a>
-                </li>
-            </ul>
+    {{ form_end(edit_form) }}
 
-        </div>
-    </div>
-    <div class="panel frame">
-        <div class="panel-heading frame-title">
-            <h1>Valuers</h1>
-        </div>
-        <div class="panel-body frame-body text-justify">
-            <p>{{ club.clubValues | raw}}</p>
-        </div>
-        <hr>
-        <div class="frame-footer">
-            <ul class="list-inline icons pull-right">
-                <li title="modifier">
-                <li title="add title">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-header"></span>
-                    </a>
-                </li>
-                <li title="add paragraph">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-text-size"></span>
-                    </a>
-                </li>
-                <li title="add list">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-list"></span>
-                    </a>
-                </li>
-                <li title="add link">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-link"></span>
-                    </a>
-                </li>
-                <li title="upload image">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-camera"></span>
-                    </a>
-                </li>
-                <li title="bold">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-bold"></span>
-                    </a>
-                </li>
-                <li title="italic">
-                    <a href="{{ path('club_edit', { 'id': club.id }) }}" class="icon">
-                        <span class="glyphicon glyphicon-italic"></span>
-                    </a>
-                </li>
-                </li>
-            </ul>
-        </div>
-    </div>
-
+    <ul class="list-inline">
+        <li>
+            <a href="{{ path('club_index') }}" class="btn btn-sm btn-default">Retour à la liste</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer" class="btn btn-sm btn-danger">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
 {% endblock %}
