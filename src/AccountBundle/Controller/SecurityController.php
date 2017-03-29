@@ -17,6 +17,12 @@ class SecurityController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            //crypt password
+            $encoder = $this->container->get('security.password_encoder');
+            $encoded = $encoder->encodePassword($person, $person->getPassword());
+            $person->setPassword($encoded);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($person);
             $em->flush($person);
