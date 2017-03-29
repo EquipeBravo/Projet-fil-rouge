@@ -4,6 +4,7 @@ namespace AccountBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -11,7 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Person
  * @UniqueEntity("email", message="Cet email existe déjà")
  */
-class Person
+class Person implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -96,10 +97,32 @@ class Person
      */
     private $teams;
 
+    /**
+     * @var ArrayCollection
+     */
+    private $userRoles;
+
     /** 
      * @var ArrayCollection
      */
-    private $roles;
+    private $roles = [];
+
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getUserRoles()
+    {
+        return $this->userRoles;
+    }
+
+    /**
+     * @param ArrayCollection $userRoles
+     */
+    public function setUserRoles(ArrayCollection $userRoles)
+    {
+        $this->userRoles = $userRoles;
+    }
 
     /**
      * Get roles
@@ -114,11 +137,11 @@ class Person
     /**
      * Set roles
      *
-     * @param ArrayCollection $roles
+     * @param array
      *
      * @return Person
      */
-    public function setRoles(ArrayCollection $roles)
+    public function setRoles(array $roles)
     {
         $this->roles = $roles;
 
@@ -399,8 +422,51 @@ class Person
         return $this->token;
     }
 
+    /* Needed for UserInterface */
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
+    }
+    /*************************/
+
     public function __construct()
     {
+        $this->roles = ['ROLE_USER'];
         $this->teams = new ArrayCollection();
         $this->roles = new ArrayCollection();
     }

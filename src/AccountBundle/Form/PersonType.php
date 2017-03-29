@@ -40,7 +40,7 @@ class PersonType extends AbstractType
                 ->add('zip', null, ['label' => 'Code Postal'])
                 ->add('city', null, ['label' => 'Adresse'])
                 ->add('teams', null, ['label' => 'Equipes'])
-                ->add('roles', null, ['label' => 'Roles']);
+                ->add('userRoles', null, ['label' => 'Roles']);
         }
     }
     
