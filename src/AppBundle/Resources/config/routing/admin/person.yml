@@ -21,4 +21,3 @@ person_edit:
 person_delete:
     path:     /{id}/delete
     defaults: { _controller: "AccountBundle:Person:delete" }
-    methods:  DELETE

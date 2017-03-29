@@ -80,14 +80,16 @@ class CategoryController extends Controller
      */
     public function deleteAction(Request $request, Category $category)
     {
-        $form = $this->createDeleteForm($category);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AccountBundle:Category')->find($category);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($category);
-            $em->flush($category);
+        if (!$entity) {
+            throw $this->createNotFoundException('ERROR : No such entity');
         }
+
+        $em->remove($entity);
+        $em->flush();
+
 
         return $this->redirectToRoute('category_index');
     }

@@ -94,14 +94,16 @@ class PersonController extends Controller
      */
     public function deleteAction(Request $request, Person $person)
     {
-        $form = $this->createDeleteForm($person);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AccountBundle:Person')->find($person);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($person);
-            $em->flush($person);
+        if (!$entity) {
+            throw $this->createNotFoundException('ERROR : No such entity');
         }
+
+        $em->remove($entity);
+        $em->flush();
+
 
         return $this->redirectToRoute('person_index');
     }
