@@ -40,17 +40,24 @@
     		</ul>
 
     		<ul class="nav navbar-nav navbar-right" id="navbar-login">
-                {#{% if not is_granted('ROLE_ADMIN') %}#}
+
+                {% if not is_granted('ROLE_USER') %}
                     <li title="Sign up"><a href="{{path('app_register')}}"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>
                     <li title="Login"><a href="{{path('app_login')}}"><span class="glyphicon glyphicon-log-in"></span>  Connexion</a></li>
-                {#{% endif %}#}
-                {#{% if is_granted('ROLE_ADMIN') %}#}
+                {% endif %}
+
+                {% if is_granted('ROLE_USER')  %}
+                    <li title="Logout"><a href="{{path('app_logout')}}"><span class="glyphicon glyphicon-log-in"></span>  Déconnexion</a></li>
+                {% endif %}
+
+                {% if is_granted('ROLE_ADMIN') %}
                     <li>
                         <a href="{{ path('app_admin_dashboard') }}">
                             Administration
                         </a>
                     </li>
-                {#{% endif %}#}
+                {% endif %}
+
             </ul>
         </div>
     </div>

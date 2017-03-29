@@ -3,9 +3,13 @@
 namespace AccountBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Person
+ * @UniqueEntity("email", message="Cet email existe déjà")
  */
 class Person
 {
@@ -16,11 +20,25 @@ class Person
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre prénom ne peut pas contenir un nombre"
+     * )
      */
     private $lastName;
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre nom ne peut pas contenir un nombre"
+     * )
      */
     private $firstName;
 
@@ -51,11 +69,20 @@ class Person
 
     /**
      * @var string
+     *
+     * @Assert\Email(
+     *     message = "Cet email '{{ value }}' n'est pas valide."
+     * )
      */
     private $email;
 
     /**
      * @var string
+     * @Assert\Regex(
+     *     pattern="/^([a-zA-Z0-9@*!_#]{8,15})$/",
+     *     match=true,
+     *     message="Votre mot de passe doit contenir une minuscule, une majuscule, un caractère spécial '@*#!_', un chiffre et être compris entre 8 et 15 caractères"
+     * )
      */
     private $password;
 

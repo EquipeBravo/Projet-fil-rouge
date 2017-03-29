@@ -1,9 +1,8 @@
 <?php
-
 namespace GalleryBundle\Entity;
-
 use AccountBundle\Entity\Team;
-
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * file
  */
@@ -13,37 +12,33 @@ class File
      * @var int
      */
     private $id;
-
     /**
      * @var string
      */
     private $name;
-
     /**
-     * @var string
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Veuillez envoyer une photo svp")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $files;
-
     /**
      * @var string
      */
     private $type;
-
     /**
      * @var string
      */
     private $alt;
-
     /**
      * @var \DateTime
      */
     private $uploadDate;
-
     /**
      * @var Team
      */
     private $team;
-
     /**
      * Get team
      *
@@ -53,7 +48,6 @@ class File
     {
         return $this->team;
     }
-
     public function __construct()
     {
         $this->uploadDate = new \DateTime();
@@ -68,10 +62,8 @@ class File
     public function setTeam(Team $team)
     {
         $this->team = $team;
-
         return $this;
     }
-
     /**
      * Get id
      *
@@ -81,7 +73,6 @@ class File
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -92,10 +83,8 @@ class File
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -105,7 +94,6 @@ class File
     {
         return $this->name;
     }
-
     /**
      * Set files
      *
@@ -116,10 +104,8 @@ class File
     public function setfiles($files)
     {
         $this->files = $files;
-
         return $this;
     }
-
     /**
      * Get files
      *
@@ -129,7 +115,6 @@ class File
     {
         return $this->files;
     }
-
     /**
      * Set type
      *
@@ -140,10 +125,8 @@ class File
     public function setType($type)
     {
         $this->type = $type;
-
         return $this;
     }
-
     /**
      * Get type
      *
@@ -153,7 +136,6 @@ class File
     {
         return $this->type;
     }
-
     /**
      * Set alt
      *
@@ -164,10 +146,8 @@ class File
     public function setAlt($alt)
     {
         $this->alt = $alt;
-
         return $this;
     }
-
     /**
      * Get alt
      *
@@ -177,7 +157,6 @@ class File
     {
         return $this->alt;
     }
-
     /**
      * Set uploadDate
      *
@@ -188,10 +167,8 @@ class File
     public function setUploadDate($uploadDate)
     {
         $this->uploadDate = $uploadDate;
-
         return $this;
     }
-
     /**
      * Get uploadDate
      *

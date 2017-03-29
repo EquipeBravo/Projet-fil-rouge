@@ -3,8 +3,10 @@
 namespace GalleryBundle\Controller;
 
 use GalleryBundle\Entity\File;
+use GalleryBundle\Form\FileType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * File controller.
@@ -12,10 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class FileController extends Controller
 {
-    /**
-     * Lists all file entities.
-     *
-     */
+
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -28,17 +27,19 @@ class FileController extends Controller
     }
 
     /**
-     * Creates a new file entity.
-     *
+     * @Route("/admin/gallery/new", name="app_file_new")
      */
+
     public function newAction(Request $request)
     {
+
         $file = new File();
         $form = $this->createForm('GalleryBundle\Form\FileType', $file);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $fileUpload = $file->getFiles();
             $fileName = md5(uniqid()).'.'.$fileUpload->guessExtension();
             $fileUpload->move(
@@ -46,12 +47,12 @@ class FileController extends Controller
                 $fileName
             );
             $file->setFiles($fileName);
-            $root = 'C:\wamp64\www\projet_fil_rouge\Projet-fil-rouge\galery_photos\\';
-            $total = $root . $fileName;
             $em->persist($file);
             $em->flush($file);
 
-            return $this->redirectToRoute('file_show', array('id' => $file->getId()));
+            return $this->redirect($this->generateUrl('file_show', array(
+                'id' => $file->getId(),
+            )));
         }
 
         return $this->render('GalleryBundle:file:new.html.twig', array(
