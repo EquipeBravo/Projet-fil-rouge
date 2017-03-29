@@ -16,7 +16,6 @@ role_edit:
 role_delete:
     path:     /{id}/delete
     defaults: { _controller: "AccountBundle:Role:delete" }
-    methods:  DELETE
 
 role_show:
     path:     /{id}/show

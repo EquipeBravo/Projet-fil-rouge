@@ -94,14 +94,15 @@ class TeamController extends Controller
      */
     public function deleteAction(Request $request, Team $team)
     {
-        $form = $this->createDeleteForm($team);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AccountBundle:Team')->find($team);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($team);
-            $em->flush($team);
+        if (!$entity) {
+            throw $this->createNotFoundException('ERROR : No such entity');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirectToRoute('team_index');
     }
@@ -118,7 +119,6 @@ class TeamController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('team_delete', array('id' => $team->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

@@ -7,10 +7,13 @@ AccountBundle\Entity\Team:
             joinColumn:
                 name: category_id
                 referencedColumnName: id
+                onDelete: CASCADE
             # oneToMany:
         matchs:
             targetEntity: PlanningBundle\Entity\Matchs
             mappedBy: team
+            joinColumn:
+                onDelete: CASCADE
         # matchs:
         #     targetEntity: PlanningBundle\Entity\Matchs
         #     inversedBy: Team
@@ -24,6 +27,7 @@ AccountBundle\Entity\Team:
             joinColumn:
                 name: club_id
                 referencedColumnName: id
+                onDelete: CASCADE
     table: null
     repositoryClass: AccountBundle\Repository\TeamRepository
     id:

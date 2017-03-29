@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav navbar-left menu">
                 <li title="Accueil Admin"><a href="{{ path('app_admin_dashboard') }}"><span
-                                class="glyphicon glyphicon-home"></span> Accueil</a></li>
+                                class="glyphicon glyphicon-home"></span></a></li>
                 <li class="dropdown">
                     <a href="{{ path('person_index') }}" class="dropdown-toggle" data-toggle="dropdown">
                         Membres
@@ -39,7 +39,6 @@
                 </li>
                 <li><a href="{{ path('app_admin_dashboard') }}gallery">Galerie</a></li>
                 <li><a href="{{ path('category_index') }}">Categories</a></li>
-                <li><a href="{{ path('role_index') }}">Roles</a></li>
                 <li class="dropdown">
                     <a href="{{ path('team_index') }}" class="dropdown-toggle" data-toggle="dropdown">
                         Équipes
@@ -77,7 +76,7 @@
                 le lien pour s'inscrire peut éventuellent être déporter à droite du menu et disparaitre si la personne est logguée-->
             </ul>
             <ul class="nav navbar-nav navbar-right list-inline">
-                <li title="Logout"><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Deconnexion</a>
+                <li title="Logout"><a href="{{ path('app_homepage') }}logout"><span class="glyphicon glyphicon-log-out"></span> Deconnexion</a>
                 </li>
             </ul>
         </div>

@@ -21,4 +21,3 @@ event_edit:
 event_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:Event:delete" }
-    methods:  DELETE
