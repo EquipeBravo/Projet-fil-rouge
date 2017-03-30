@@ -60,7 +60,7 @@ class DefaultController extends Controller
     public function teamsGalleryAction(Team $team)
     {
         $em = $this->getDoctrine()->getManager();
-        $files = $em->getRepository('GalleryBundle:File')->findAll();
+        $files = $em->getRepository('GalleryBundle:File')->findBy(['team' => $team], ['uploadDate' => 'DESC']);
 
         return $this->render('AppBundle:team:gallery.html.twig', array(
             'team' => $team,
