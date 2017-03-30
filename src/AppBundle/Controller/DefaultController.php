@@ -41,6 +41,15 @@ class DefaultController extends Controller
         return $this->render('AppBundle::inscription.html.twig');
     }
 
+    public function planningsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $matchs = $em->getRepository('PlanningBundle:Matchs')->findAll();
+        return $this->render('AppBundle:plannings:plannings.html.twig', array(
+            'matchs' => $matchs
+        ));
+    }
+
     public function teamsAction()
     {
         $em = $this->getDoctrine()->getManager();
