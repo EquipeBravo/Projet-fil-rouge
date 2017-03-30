@@ -30,7 +30,7 @@
                                 </a>
                             </li>
                             <li title="Galerie">
-                                <a href="{{ path('app_teams_show', { 'id': team.id }) }}" class="btn btn-sm btn-info">
+                                <a href="{{ path('app_teams_gallery', { 'id': team.id }) }}" class="btn btn-sm btn-info">
                                     <span class="glyphicon glyphicon-picture"></span>
                                 </a>
                             </li>
@@ -40,10 +40,4 @@
             {% endfor %}
         </tbody>
     </table>
-
-    <ul class="list-inline">
-        <li>
-            <a href="{{ path('team_new') }}" class="btn btn-sm btn-success">Nouvelle équipe</a>
-        </li>
-    </ul>
 {% endblock %}

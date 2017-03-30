@@ -1,0 +1,34 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+{% block body %}
+    <h1>Photo de {{ team }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom du fichier</th>
+                <th>Photo</th>
+                <th>Alt</th>
+                <th>Date de téléchargement</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in files %}
+                <tr>
+                    <td>{{ file.name }}</td>
+                    <td><img width="25%" height="25%" src="{{ asset('uploads/images/'~ file.files)  }}"/></td>
+                    <td>{{ file.alt }}</td>
+                    <td>
+                        {% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}
+                    </td>
+                    {#<td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('file_show', { 'id': file.id }) }}">détails</a>
+                            </li>
+                        </ul>
+                    </td>
+                    #}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
