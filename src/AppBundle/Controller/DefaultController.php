@@ -57,6 +57,17 @@ class DefaultController extends Controller
         ));
     }
 
+    public function teamsGalleryAction(Team $team)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $files = $em->getRepository('GalleryBundle:File')->findAll();
+
+        return $this->render('AppBundle:team:gallery.html.twig', array(
+            'team' => $team,
+            'files' => $files
+        ));
+    }
+
     public function contactAction(Request $request)
     {
         // Create the form according to the FormType created previously.
