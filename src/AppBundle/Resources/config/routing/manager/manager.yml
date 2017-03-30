@@ -1,0 +1,28 @@
+manager_club_new:
+    path: /club/new
+    defaults: { _controller: AppBundle:Default:apropos }
+    methods:  [GET, POST]
+
+manager_club_edit:
+    path: /club/{id}/edit
+    defaults: { _controller: AppBundle:Default:apropos }
+    methods:  [GET, POST]
+
+manager_club_delete:
+    path: /club/{id}/delete
+    defaults: { _controller: AppBundle:Default:apropos }
+
+manager_event_new:
+    path: /event/new
+    defaults: { _controller: AppBundle:Default:apropos }
+    methods:  [GET, POST]
+
+manager_event_edit:
+    path: /event/{id}/edit
+    defaults: { _controller: AppBundle:Default:apropos }
+    methods:  [GET, POST]
+
+manager_event_delete:
+    path: /event/{id}/delete
+    defaults: { _controller: AppBundle:Default:apropos }
+

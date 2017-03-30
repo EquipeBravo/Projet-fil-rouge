@@ -41,12 +41,13 @@
 
     		<ul class="nav navbar-nav navbar-right" id="navbar-login">
 
-                {% if not is_granted('ROLE_USER') %}
+                {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li title="Sign up"><a href="{{path('app_register')}}"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>
                     <li title="Login"><a href="{{path('app_login')}}"><span class="glyphicon glyphicon-log-in"></span>  Connexion</a></li>
                 {% endif %}
 
-                {% if is_granted('ROLE_USER')  %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{ app.user.firstname | capitalize }}</a></li>
                     <li title="Logout"><a href="{{path('app_logout')}}"><span class="glyphicon glyphicon-log-in"></span>  Déconnexion</a></li>
                 {% endif %}
 
