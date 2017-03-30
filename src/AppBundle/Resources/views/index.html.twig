@@ -18,12 +18,14 @@
         {% if loop.index0 % 3 == 0 %}
             <div class="row">
         {% endif %}
-        <div class="col-sm-4">
-            <div class="well event-box">
-                <h2 class="event-title">{{ event.title }}</h2>
-                <p class="event-date">Le {{ event.dateEvent|date("d/m/Y à h\\hi") }}</p>
-            </div>
-        </div>
+
+		<div class="col-sm-4">
+			<div class="well event-box">
+				<h2 class="event-title">{{ event.title }}</h2>
+				<p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi" , "Europe/Paris") }}</p>
+			</div>
+		</div>
+
         {% if loop.index0 % 3 == 2 %}
             </div>
         {% endif %}

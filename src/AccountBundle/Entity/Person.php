@@ -80,9 +80,10 @@ class Person implements UserInterface, \Serializable
     /**
      * @var string
      * @Assert\Regex(
-     *     pattern="/^([a-zA-Z0-9@*!_#]{8,15})$/",
+     *     pattern="/^([a-zA-Z0-9@$*!_#]{8,})$/",
      *     match=true,
-     *     message="Votre mot de passe doit contenir une minuscule, une majuscule, un caractère spécial '@*#!_', un chiffre et être compris entre 8 et 15 caractères"
+     *     message="Votre mot de passe doit contenir une minuscule, une majuscule, un caractère spécial '@$*#!_', un chiffre
+     *              et doit comporter au moins 8 caractères"
      * )
      */
     private $password;
@@ -127,11 +128,23 @@ class Person implements UserInterface, \Serializable
     /**
      * Get roles
      *
-     * @return ArrayCollection
+     * @return array
      */
     public function getRoles()
     {
-        return $this->roles;
+        $roles =['ROLE_USER'];
+        foreach ($this->getUserRoles() as $role){
+            //if we add a column to the table Role: userRole which either ROLE_USER, ROLE_MANAGER or ROLE_ADMIN then:
+            //$roles[] = $role->getUserRole();
+            //otherwise computations and bad for the performance:
+            if($role->getRoleRights() > 2){
+                $roles = ['ROLE_MANAGER'];
+            }
+            if ($role->getRoleRights() > 3){
+                $roles = ['ROLE_ADMIN'];
+            }
+        }
+        return $roles;
     }
 
     /**
@@ -466,9 +479,9 @@ class Person implements UserInterface, \Serializable
 
     public function __construct()
     {
-        $this->roles = ['ROLE_USER'];
         $this->teams = new ArrayCollection();
-        $this->roles = new ArrayCollection();
+        $this->userRoles = new ArrayCollection();
+        $this->roles = ['ROLE_USER'];
     }
 
     public function __toString()
