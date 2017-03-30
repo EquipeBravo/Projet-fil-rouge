@@ -21,7 +21,7 @@
         <div class="col-sm-4">
             <div class="well event-box">
                 <h2 class="event-title">{{ event.title }}</h2>
-                <p class="event-date">Le {{ event.dateEvent|date("d/m à h:i", "Europe/Paris") }}</p>
+                <p class="event-date">Le {{ event.dateEvent|date("d/m à h:i") }}</p>
             </div>
         </div>
         {% if loop.index0 % 3 == 2 %}
