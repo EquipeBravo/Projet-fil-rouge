@@ -33,12 +33,23 @@
                     {% endif %}
 
                     {% if is_granted('ROLE_MANAGER') %}
+                        {% if event.team is defined %}
+                            <a href="{{ path('team_edit', { 'id': event.id }) }}"><span
+                                        class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="{{ path('team_delete', { 'id': event.id }) }}"><span
+                                        class="glyphicon glyphicon-trash"></span></a>
 
-                        <a href="{{ path('manager_event_edit', { 'id': event.id }) }}"><span
-                                    class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{{ path('manager_event_delete', { 'id': event.id }) }}"><span
-                                    class="glyphicon glyphicon-trash"></span></a>
-
+                        {% elseif event.match is defined %}
+                            <a href="{{ path('matchs_edit', { 'id': event.id }) }}"><span
+                                        class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="{{ path('matchs_delete', { 'id': event.id }) }}"><span
+                                        class="glyphicon glyphicon-trash"></span></a>
+                        {% else %}
+                            <a href="{{ path('event_edit', { 'id': event.id }) }}"><span
+                                        class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="{{ path('event_delete', { 'id': event.id }) }}"><span
+                                        class="glyphicon glyphicon-trash"></span></a>
+                        {% endif %}
                     {% endif %}
                 </div>
 
@@ -60,7 +71,8 @@
         <div class="row">
             <ul class="list-inline">
                 <li>
-                    <a href="{{ path('manager_event_new') }}" class="btn btn-sm btn-success">Nouvel évènement</a>
+                    <a href="{{ path('manager_event_new') }}" class="btn btn-sm btn-success">Nouvel
+                        évènement</a>
                 </li>
             </ul>
         </div>

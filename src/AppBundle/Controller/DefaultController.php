@@ -170,6 +170,7 @@ class DefaultController extends Controller
         foreach ($teams as $team) {
             $event = new Event();
             $event->setDateEvent($team['trainingDay'].' à '.$team['trainingTime']);
+            $event->setId($team['id']);
             $event->team = true;
 
             $event->setTitle($team['name']);
@@ -189,7 +190,9 @@ class DefaultController extends Controller
 
         foreach ($matchs as $match) {
             $event = new Event();
+            $event->setId($match['id']);
             $event->setDateEvent($match['dateMatch']);
+            $event->match = true;
 
             $team1 = $em
                 ->createQuery('select a.id, a.name from AccountBundle:Team a WHERE a.id = ?1')
