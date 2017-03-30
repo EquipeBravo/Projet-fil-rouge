@@ -17,7 +17,7 @@
         <tbody>
         {% for match in matchs %}
             <tr>
-                <td>{% if match.dateMatch %}{{ match.dateMatch|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if match.dateMatch %}{{ match.dateMatch|date('Y-m-d H:i') }}{% endif %}</td>
                 <td>{% if match.domicile %}Oui{% else %}Non{% endif %}</td>
                 <td> {{ match.place }} </td>
                 <td> {{ match.team }} </td>
@@ -25,7 +25,7 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('matchs_show', { 'id': match.id }) }}">détails</a>
+                            <a href="{{ path('matchs_show', { 'id': match.id }) }}">Détails</a>
                         </li>
                         <li>
                             <a href="{{ path('matchs_edit', { 'id': match.id }) }}">Modifier</a>

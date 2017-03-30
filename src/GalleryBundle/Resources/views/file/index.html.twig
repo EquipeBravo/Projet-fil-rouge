@@ -20,11 +20,11 @@
                 <td><img width="25%" height="25%" src="{{ asset('uploads/images/'~ file.files)  }}" /></td>
                 <td>{{ file.type }}</td>
                 <td>{{ file.alt }}</td>
-                <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('file_show', { 'id': file.id }) }}">détails</a>
+                            <a href="{{ path('file_show', { 'id': file.id }) }}">Détails</a>
                         </li>
                         <li>
                             <a href="{{ path('file_edit', { 'id': file.id }) }}">Modifier</a>
@@ -38,7 +38,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('file_new') }}">Create a new file</a>
+            <a href="{{ path('file_new') }}">Créer un nouveau fichier</a>
         </li>
     </ul>
 {% endblock %}

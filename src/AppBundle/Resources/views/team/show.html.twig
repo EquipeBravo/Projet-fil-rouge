@@ -6,15 +6,15 @@
     <table>
         <tbody>
             <tr>
-                <th>Date de reprise</th>
+                <th>Date de reprise  </th>
                 <td>{% if team.resumptionDate %}{{ team.resumptionDate|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Jour d'entrainement</th>
+                <th>Jour d'entrainement  </th>
                 <td>{{ team.trainingDay }}</td>
             </tr>
             <tr>
-                <th>Horaire d'entrainement</th>
+                <th>Horaire d'entrainement  </th>
                 <td>{{ team.trainingTime }}</td>
             </tr>
         </tbody>
@@ -25,4 +25,4 @@
             <a href="{{ path('app_teams') }}">Retour à la liste</a>
         </li>
     </ul>
-{% endblock %}
+{% endblock %} 
