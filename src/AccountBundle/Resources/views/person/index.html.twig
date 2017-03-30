@@ -34,7 +34,7 @@
                 <td>{{ person.zip }}</td>
                 <td>{{ person.city }}</td>
                 <td>{{ person.email }}</td>
-                <td>{% for role in person.roles %}
+                <td>{% for role in person.userRoles %}
                         {{ role }}
                     {% endfor %}
                 </td>

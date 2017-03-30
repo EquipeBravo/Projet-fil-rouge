@@ -71,12 +71,14 @@ class PersonController extends Controller
      */
     public function editAction(Request $request, Person $person)
     {
+        $password = $person->getPassword();
         $deleteForm = $this->createDeleteForm($person);
         $editForm = $this->createForm('AccountBundle\Form\PersonType', $person);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $person->setPassword($password);
+            $this->getDoctrine()->getManager()->flush($person);
 
             return $this->redirectToRoute('person_show', array('id' => $person->getId()));
         }
