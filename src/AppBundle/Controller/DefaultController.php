@@ -152,7 +152,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $events = $em
-            ->createQuery('select a.id, a.title, a.dateEvent from AppBundle:Event a WHERE a.title LIKE ?1')
+            ->createQuery('select a.id, a.title, a.dateEvent from AppBundle:Event a WHERE a.title LIKE ?1 OR a.dateEvent LIKE ?1')
             ->setParameter(1, '%' . $search . '%')
             ->getResult();
 
@@ -161,14 +161,31 @@ class DefaultController extends Controller
             ->setParameter(1, '%' . $search . '%')
             ->getResult();
 
-        // recherche par catégorie d'équipe
+        if ($search === "équipe" || $search === "equipe" || $search === "equipes" || $search === "équipes" || $search === "Equipe" || $search === "Equipes" || $search === "team" || $search === "teams" || $search === "Teams" || $search === "Team" || $search === "Équipe" || $search === "Équipes") {
+            $teams = $em
+                ->createQuery('select a.id, a.name, a.trainingTime, a.trainingDay from AccountBundle:Team a')
+                ->getResult();
+        }
 
-        // + recherche un match par équipe
+        foreach ($teams as $team) {
+            $event = new Event();
+            $event->setDateEvent($team['trainingDay'].' à '.$team['trainingTime']);
+            $event->team = true;
+
+            $event->setTitle($team['name']);
+            $events[] = $event;
+        }
 
         $matchs = $em
             ->createQuery('select a.id, a.dateMatch, IDENTITY(a.team), IDENTITY(a.team2) from PlanningBundle:Matchs a WHERE a.dateMatch LIKE ?1')
             ->setParameter(1, '%' . $search . '%')
             ->getResult();
+
+        if ($search === "match" || $search === "Match" || $search === "matchs" || $search === "Matchs") {
+            $matchs = $em
+                ->createQuery('select a.id, a.dateMatch, IDENTITY(a.team), IDENTITY(a.team2) from PlanningBundle:Matchs a')
+                ->getResult();
+        }
 
         foreach ($matchs as $match) {
             $event = new Event();
