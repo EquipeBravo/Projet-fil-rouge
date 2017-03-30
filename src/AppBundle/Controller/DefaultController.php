@@ -43,8 +43,22 @@ class DefaultController extends Controller
 
     public function planningsAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $matchs = $em->getRepository('PlanningBundle:Matchs')->findAll();
+        $year = date("Y");
+        $day = date("d");
+        $month = date("m");
+
+        $searchDate = new \DateTime($year.'-01-01');
+        $searchDateMax = new \DateTime( $day.'-'.$month.'-'.$year );
+        $searchDateMax->add(new \DateInterval('P5D'));
+
+        $week = $searchDateMax->format("W");
+
+        $matchs = $this->getDoctrine()
+            ->getManager()
+            ->createQuery('SELECT e FROM PlanningBundle:Matchs e WHERE e.dateMatch > ?1 AND e.dateMatch < ?2')
+            ->setParameter(1, $searchDate)
+            ->setParameter(2, $searchDateMax)
+            ->getResult();
 
         foreach ($matchs as $match) {
             if ($match->getDomicile() == 1) {
@@ -55,8 +69,92 @@ class DefaultController extends Controller
             }
         }
 
-        return $this->render('AppBundle:plannings:plannings.html.twig', array(
-            'matchs' => $matchs
+        return $this->render('AppBundle:plannings:plannings.html.twig', [
+            'matchs' => $matchs,
+            'year' => $year,
+            'week' => $week
+        ]);
+    }
+
+    public function planningsWeekAction($week)
+    {
+        $year = date("Y");
+
+        $test = $this->getDaysInWeek($week-1,$year);
+
+        $searchDate = new \DateTime();
+        $searchDate->setTimestamp($test[0]);
+
+        $searchDateMax = new \DateTime();
+        $searchDateMax->setTimestamp($test[0]);
+        $searchDateMax->add(new \DateInterval('P7D'));
+
+        $matchs = $this->getDoctrine()
+            ->getManager()
+            ->createQuery('SELECT e FROM PlanningBundle:Matchs e WHERE e.dateMatch > ?1 AND e.dateMatch < ?2')
+            ->setParameter(1, $searchDate)
+            ->setParameter(2, $searchDateMax)
+            ->getResult();
+
+        foreach ($matchs as $match) {
+            if ($match->getDomicile() == 1) {
+                $match->setDomicile('À domicile');
+            }
+            else {
+                $match->setDomicile("À l'extérieur");
+            }
+        }
+
+        return $this->render('AppBundle:plannings:plannings.html.twig', [
+            'matchs' => $matchs,
+            'year' => $year,
+            'week' => $week
+        ]);
+    }
+
+    function getDaysInWeek ($weekNumber, $year) {
+        // Count from '0104' because January 4th is always in week 1
+        // (according to ISO 8601).
+        $time = strtotime($year . '0104 +' . ($weekNumber - 1)
+            . ' weeks');
+        // Get the time of the first day of the week
+        $mondayTime = strtotime('-' . (date('w', $time) - 1) . ' days',
+            $time);
+        // Get the times of days 0 -> 6
+        $dayTimes = array ();
+        for ($i = 0; $i < 7; ++$i) {
+            $dayTimes[] = strtotime('+' . $i . ' days', $mondayTime);
+        }
+        // Return timestamps for mon-sun.
+        return $dayTimes;
+    }
+
+    public function planningsYearAction($id)
+    {
+        $search = trim($id);
+
+        $searchDate = new \DateTime($search.'-01-01');
+        $searchDateMax = new \DateTime(($search+1).'-01-01');
+
+        $matchs = $this->getDoctrine()
+            ->getManager()
+            ->createQuery('SELECT e FROM PlanningBundle:Matchs e WHERE e.dateMatch > ?1 AND e.dateMatch < ?2')
+            ->setParameter(1, $searchDate)
+            ->setParameter(2, $searchDateMax)
+            ->getResult();
+
+        foreach ($matchs as $match) {
+            if ($match->getDomicile() == 1) {
+                $match->setDomicile('À domicile');
+            }
+            else {
+                $match->setDomicile("À l'extérieur");
+            }
+        }
+
+        return $this->render('AppBundle:plannings:year.html.twig', array(
+            'matchs' => $matchs,
+            'year' => $search
         ));
     }
 
@@ -152,7 +250,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $events = $em
-            ->createQuery('select a.id, a.title, a.dateEvent from AppBundle:Event a WHERE a.title LIKE ?1')
+            ->createQuery('select a.id, a.title, a.dateEvent from AppBundle:Event a WHERE a.title LIKE ?1 OR a.dateEvent LIKE ?1')
             ->setParameter(1, '%' . $search . '%')
             ->getResult();
 
@@ -161,18 +259,38 @@ class DefaultController extends Controller
             ->setParameter(1, '%' . $search . '%')
             ->getResult();
 
-        // recherche par catégorie d'équipe
+        if ($search === "équipe" || $search === "equipe" || $search === "equipes" || $search === "équipes" || $search === "Equipe" || $search === "Equipes" || $search === "team" || $search === "teams" || $search === "Teams" || $search === "Team" || $search === "Équipe" || $search === "Équipes") {
+            $teams = $em
+                ->createQuery('select a.id, a.name, a.trainingTime, a.trainingDay from AccountBundle:Team a')
+                ->getResult();
+        }
 
-        // + recherche un match par équipe
+        foreach ($teams as $team) {
+            $event = new Event();
+            $event->setDateEvent($team['trainingDay'].' à '.$team['trainingTime']);
+            $event->setId($team['id']);
+            $event->team = true;
+
+            $event->setTitle($team['name']);
+            $events[] = $event;
+        }
 
         $matchs = $em
             ->createQuery('select a.id, a.dateMatch, IDENTITY(a.team), IDENTITY(a.team2) from PlanningBundle:Matchs a WHERE a.dateMatch LIKE ?1')
             ->setParameter(1, '%' . $search . '%')
             ->getResult();
 
+        if ($search === "match" || $search === "Match" || $search === "matchs" || $search === "Matchs") {
+            $matchs = $em
+                ->createQuery('select a.id, a.dateMatch, IDENTITY(a.team), IDENTITY(a.team2) from PlanningBundle:Matchs a')
+                ->getResult();
+        }
+
         foreach ($matchs as $match) {
             $event = new Event();
+            $event->setId($match['id']);
             $event->setDateEvent($match['dateMatch']);
+            $event->match = true;
 
             $team1 = $em
                 ->createQuery('select a.id, a.name from AccountBundle:Team a WHERE a.id = ?1')
