@@ -55,3 +55,7 @@ app_search:
 app_admin:
     resource: "@AppBundle/Resources/config/routing/admin/admin.yml"
     prefix:   /admin
+
+app_manager:
+    resource: "@AppBundle/Resources/config/routing/manager/manager.yml"
+    prefix: /m

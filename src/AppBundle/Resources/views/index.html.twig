@@ -7,23 +7,37 @@
             <div class="input-group">
                 <input name="keyword" type="text" class="form-control" placeholder="Chercher un évènement...">
                 <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    <button class="btn btn-default" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
                 </div>
             </div>
         </form>
     </div>
+
+    <section>
 
     {% for event in events %}
 
         {% if loop.index0 % 3 == 0 %}
             <div class="row">
         {% endif %}
-        <div class="col-sm-4">
-            <div class="well event-box">
-                <h2 class="event-title">{{ event.title }}</h2>
-                <p class="event-date">Le {{ event.dateEvent|date("d/m/Y à h\\hi") }}</p>
+
+		<div class="col-sm-4">
+			<div class="well event-box">
+				<h2 class="event-title">{{ event.title }}</h2>
+				<p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi" , "Europe/Paris") }}</p>
+
+                {% if is_granted('ROLE_MANAGER') %}
+
+                   <a href="{{ path('manager_event_edit', { 'id': event.id }) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                   <a href="{{ path('manager_event_delete', { 'id': event.id }) }}"><span class="glyphicon glyphicon-trash"></span></a>
+
+                {% endif %}
+
             </div>
-        </div>
+		</div>
+
         {% if loop.index0 % 3 == 2 %}
             </div>
         {% endif %}
@@ -35,9 +49,17 @@
         </div>
 
     {% endfor %}
+</section>
+    {% if is_granted('ROLE_MANAGER') %}
+        <div class="row">
+            <ul class="list-inline">
+                <li>
+                    <a href="{{ path('manager_event_new') }}" class="btn btn-sm btn-success">Nouvel évènement</a>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
 
-    {#
-    on affichera un formulaire de login si l'utilisateur n'est pas
-    authentifié, un menu de navigation, et les évenements du club
-    #}
+
+
 {% endblock %}

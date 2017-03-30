@@ -28,7 +28,7 @@ class Place
     /**
      * @var Person
      */
-    private $roomManager;
+   //private $roomManager;
 
 
     /**
@@ -96,27 +96,30 @@ class Place
      *
      * @return Place
      */
-    public function setRoomManager(Person $roomManager)
+   /* public function setRoomManager(Person $roomManager)
     {
         $this->roomManager = $roomManager;
 
         return $this;
     }
+   */
 
     /**
      * Get roomManager
      *
      * @return Person
      */
+   /*
     public function getRoomManager()
     {
         return $this->roomManager;
     }
-
+   */
     public function __toString()
     {
         $place = $this->room . $this->city;
         return $place;
     }
+
 }
 
