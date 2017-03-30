@@ -95,6 +95,21 @@ main{
     color:white;
 }
 
+.profile-image{
+    width: 70%;
+    margin: auto;
+    padding-top: 30px;
+    text-align: center;
+}
+
+@media screen and (max-width: 767px){
+    .profile-image{
+        display:none;
+    }
+}
+
+
+
 /*index: events*/
 /*.event-box{
     border-radius: 0px;

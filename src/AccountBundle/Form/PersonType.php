@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class PersonType extends AbstractType
 {
@@ -16,8 +18,8 @@ class PersonType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('lastName', null, ['label' => 'Nom'])
-                ->add('firstName', null, ['label' => 'Prénom'])
+        $builder->add('lastName', TextType::class, ['label' => 'Nom'])
+                ->add('firstName', TextType::class, ['label' => 'Prénom'])
                 ->add('email', EmailType::class);
 
         if (!$options['admin']) {
@@ -34,7 +36,7 @@ class PersonType extends AbstractType
 
         if ($options['admin']){
             $builder
-                ->add('birthDate', null, ['label' => 'Date de naissance'])
+                ->add('birthDate', null, ['label' => 'Date de naissance','years' => range(1900, date('Y'))])
                 ->add('phone', null, ['label' => 'Téléphone'])
                 ->add('street', null, ['label' => 'Rue'])
                 ->add('zip', null, ['label' => 'Code Postal'])

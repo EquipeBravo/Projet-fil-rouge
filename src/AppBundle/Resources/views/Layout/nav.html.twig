@@ -47,7 +47,7 @@
                 {% endif %}
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{ app.user.firstname | capitalize }}</a></li>
+                    <li><a href="{{ path('app_profile',  { 'id': app.user.id }) }}"><span class="glyphicon glyphicon-user"></span> {{ app.user.firstname | capitalize }}</a></li>
                     <li title="Logout"><a href="{{path('app_logout')}}"><span class="glyphicon glyphicon-log-in"></span>  Déconnexion</a></li>
                 {% endif %}
 

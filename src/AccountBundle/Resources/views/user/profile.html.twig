@@ -1,0 +1,40 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+
+{% block article %}
+    <p>Vous êtes connecté en tant que {{ person.firstName }} {{ person.lastName }}</p>
+
+    <div class="row">
+        <div class="col-sm-4 text-center">
+            <img src="{{ asset('uploads/images/profile.png')}}" class="profile-image" alt="Profile Image">
+        </div>
+        <div class="col-sm-8 panel frame" >
+            <h3 class="panel-heading frame-title">Informations personelles</h3>
+            <div class="panel-body frame-body">
+                <table class="table table-responsive">
+                    <tbody>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ person.lastName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prénom</th>
+                        <td>{{ person.firstName }}</td>
+                    </tr>
+                    <tr>
+                        <th>E-mail</th>
+                        <td>{{ person.email }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!--<ul class="list-inline"> {# A masquer/afficher en fonction des droits #}
+        <li>
+            <a href="{{ path('person_edit', { 'id': person.id }) }}" class="btn btn-sm btn-warning">Modifier</a>
+        </li>
+    </ul>
+    -->
+{% endblock %}

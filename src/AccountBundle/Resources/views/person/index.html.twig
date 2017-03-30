@@ -6,17 +6,19 @@
         La liste des membres devrait s'afficher si enregistré uniquement 
         Régler le routage (cf security.yml)
     #}
-
+    {% if people %}
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Nom</th>
                 <th>Prénom</th>
+                <!--
                 <th>Date de naissance</th>
                 <th>Téléphone</th>
                 <th>Rue</th>
                 <th>Code Postal</th>
                 <th>Ville</th>
+                -->
                 <th>E-mail</th>
                 <th>Rôles</th>
                 <th>Équipes</th>
@@ -28,11 +30,13 @@
             <tr>
                 <td>{{ person.lastName }}</td>
                 <td>{{ person.firstName }}</td>
+                <!--
                 <td>{% if person.birthDate %}{{ person.birthDate|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ person.phone }}</td>
                 <td>{{ person.street }}</td>
                 <td>{{ person.zip }}</td>
                 <td>{{ person.city }}</td>
+                -->
                 <td>{{ person.email }}</td>
                 <td>{% for role in person.userRoles %}
                         {{ role }}
@@ -60,9 +64,13 @@
         {% endfor %}
         </tbody>
     </table>
-    <ul class="list-inline">
+    {% else %}
+        <p>Il n'y a pas de membres inscrits</p>
+    {% endif %}
+    <!--<ul class="list-inline">
         <li>
             <a href="{{ path('person_new') }}" class="btn btn-sm btn-success">Nouveau membre</a>
         </li>
     </ul>
+    -->
 {% endblock %}

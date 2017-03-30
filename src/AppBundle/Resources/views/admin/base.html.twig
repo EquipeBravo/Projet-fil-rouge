@@ -20,7 +20,8 @@
 <body>
 
 {# include de la navigation #}
-{% include 'AppBundle:admin:layout/nav.html.twig' %}
+{#% include 'AppBundle:admin:layout/nav.html.twig' %#}
+{{ render(controller('AppBundle:Nav:navbar', {})) }}
 
 <div class="container admin-container" >
     {# Layout de base des pages #}

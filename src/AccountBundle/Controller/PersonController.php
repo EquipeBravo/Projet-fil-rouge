@@ -110,6 +110,16 @@ class PersonController extends Controller
         return $this->redirectToRoute('person_index');
     }
 
+    public function profileAction(Person $person)
+    {
+        $deleteForm = $this->createDeleteForm($person);
+
+        return $this->render('AccountBundle:user:profile.html.twig', array(
+            'person' => $person,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
     /**
      * Creates a form to delete a person entity.
      *

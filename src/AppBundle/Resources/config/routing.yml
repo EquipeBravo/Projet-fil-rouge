@@ -13,17 +13,9 @@ app_apropos:
     path: /a-propos
     defaults: { _controller: AppBundle:Default:apropos }
 
-app_ecole_arbitrage:
-    path: /ecole-arbitrage
-    defaults: { _controller: AppBundle:Default:ecole_arbitrage }
-
 app_contact:
     path: /contact
     defaults: {  _controller: AppBundle:Default:contact  }
-
-app_partner:
-    path: /partner
-    defaults: {  _controller: AppBundle:Default:partner  }
 
 app_inscription:
     path: /inscription
@@ -45,6 +37,11 @@ app_logout:
 app_register:
     path: /register
     defaults: { _controller: AccountBundle:Security:register }
+
+app_profile:
+    path: /{id}
+    defaults: { _controller: AccountBundle:Person:profile }
+    methods:  GET
 
 app_search:
     path: /search
