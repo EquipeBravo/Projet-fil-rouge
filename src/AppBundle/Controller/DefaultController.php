@@ -45,6 +45,16 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $matchs = $em->getRepository('PlanningBundle:Matchs')->findAll();
+
+        foreach ($matchs as $match) {
+            if ($match->getDomicile() == 1) {
+                $match->setDomicile('À domicile');
+            }
+            else {
+                $match->setDomicile("À l'extérieur");
+            }
+        }
+
         return $this->render('AppBundle:plannings:plannings.html.twig', array(
             'matchs' => $matchs
         ));
