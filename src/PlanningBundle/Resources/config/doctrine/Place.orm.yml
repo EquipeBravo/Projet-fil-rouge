@@ -1,12 +1,13 @@
 PlanningBundle\Entity\Place:
     type: entity
     # One place have One room manager (OneToOne)
-    oneToOne:
-        roomManager:
-            targetEntity: AccountBundle\Entity\Person
-            joinColumn: 
-                name: roommanager_id
-                referencedColumnName: id
+    #oneToOne:
+    #    roomManager:
+    #        targetEntity: AccountBundle\Entity\Person
+    #        joinColumn:
+    #            name: roommanager_id
+    #            referencedColumnName: id
+    #            onDelete: CASCADE
     table: null
     repositoryClass: PlanningBundle\Repository\PlaceRepository
     id:
