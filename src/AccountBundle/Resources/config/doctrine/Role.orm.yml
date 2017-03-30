@@ -21,6 +21,6 @@ AccountBundle\Entity\Role:
             length: '64'
             unique: true
         roleRights:
-            type: integer
-            unique: true
+            type: string
+            unique: false
     lifecycleCallbacks: {  }
