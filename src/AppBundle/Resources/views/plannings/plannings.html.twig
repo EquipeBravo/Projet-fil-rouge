@@ -1,21 +1,21 @@
 {% extends 'AppBundle:Layout:layout.html.twig' %}
 
 {% block body %}
-    <h1>Les équipes</h1>
+    <h1>Plannings</h1>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Nom de l'équipe</th>
-            <th>Date de reprise</th>
-            <th>Jour d'entrainement</th>
-            <th>Horaire d'entrainement</th>
-            <th>Actions</th>
+            <th>Date du match</th>
+            <th>Lieu</th>
+            <th>Salle</th>
+            <th>Equipe 1</th>
+            <th>Equipe 2</th>
         </tr>
         </thead>
         <tbody>
         {% for match in matchs %}
             <tr>
-                <td>{{ match.dateMatch|date('Y-m-d H:i:s') }}</td>
+                <td>{{ match.dateMatch|date('Y-m-d H:i') }}</td>
                 <td>{{ match.domicile }}</td>
                 <td>{{ match.place }}</td>
                 <td>{{ match.team }}</td>
