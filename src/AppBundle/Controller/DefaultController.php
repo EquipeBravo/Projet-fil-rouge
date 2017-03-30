@@ -41,6 +41,25 @@ class DefaultController extends Controller
         return $this->render('AppBundle::inscription.html.twig');
     }
 
+    public function planningsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $matchs = $em->getRepository('PlanningBundle:Matchs')->findAll();
+
+        foreach ($matchs as $match) {
+            if ($match->getDomicile() == 1) {
+                $match->setDomicile('À domicile');
+            }
+            else {
+                $match->setDomicile("À l'extérieur");
+            }
+        }
+
+        return $this->render('AppBundle:plannings:plannings.html.twig', array(
+            'matchs' => $matchs
+        ));
+    }
+
     public function teamsAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -136,6 +155,39 @@ class DefaultController extends Controller
             ->createQuery('select a.id, a.title, a.dateEvent from AppBundle:Event a WHERE a.title LIKE ?1')
             ->setParameter(1, '%' . $search . '%')
             ->getResult();
+
+        $teams = $em
+            ->createQuery('select a.id, a.name, a.trainingTime, a.trainingDay from AccountBundle:Team a WHERE a.name LIKE ?1')
+            ->setParameter(1, '%' . $search . '%')
+            ->getResult();
+
+        // recherche par catégorie d'équipe
+
+        // + recherche un match par équipe
+
+        $matchs = $em
+            ->createQuery('select a.id, a.dateMatch, IDENTITY(a.team), IDENTITY(a.team2) from PlanningBundle:Matchs a WHERE a.dateMatch LIKE ?1')
+            ->setParameter(1, '%' . $search . '%')
+            ->getResult();
+
+        foreach ($matchs as $match) {
+            $event = new Event();
+            $event->setDateEvent($match['dateMatch']);
+
+            $team1 = $em
+                ->createQuery('select a.id, a.name from AccountBundle:Team a WHERE a.id = ?1')
+                ->setParameter(1, $match['1'])
+                ->getResult();
+
+            $team2 = $em
+                ->createQuery('select a.id, a.name from AccountBundle:Team a WHERE a.id = ?1')
+                ->setParameter(1, $match['2'])
+                ->getResult();
+
+
+            $event->setTitle('Match '.$team1[0]['name'].' contre '.$team2[0]['name']);
+            $events[] = $event;
+        }
 
         return $this->render('AppBundle::index.html.twig', [
             'events' => $events,

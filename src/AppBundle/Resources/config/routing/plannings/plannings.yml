@@ -4,4 +4,4 @@ app_plannings:
 
 planning_homepage:
     path:     /
-    defaults: { _controller: PlanningBundle:Default:index }
+    defaults: { _controller: AppBundle:Default:plannings }
