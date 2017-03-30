@@ -1,34 +1,41 @@
 {% extends 'AppBundle:Layout:layout.html.twig' %}
 {% block body %}
-    <h1>Photo de {{ team }}</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nom du fichier</th>
-                <th>Photo</th>
-                <th>Alt</th>
-                <th>Date de téléchargement</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for file in files %}
+    {% if files != null %}
+        <h1>Photo de
+            {{ team }}</h1>
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ file.name }}</td>
-                    <td><img width="25%" height="25%" src="{{ asset('uploads/images/'~ file.files)  }}"/></td>
+                    <th>Nom du fichier</th>
+                    <th>Photo</th>
+                    <th>Alt</th>
+                    <th>Date de téléchargement</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in files %}
+                    <tr>
+                        <td>{{ file.name }}</td>
+                        <td><a href="{{ asset('uploads/images/'~ file.files)}}"><img width="25%" height="25%" src="{{ asset('uploads/images/'~ file.files)  }}"/></a></a>
+                    </td>
                     <td>{{ file.alt }}</td>
                     <td>
                         {% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}
                     </td>
-                    {#<td>
+                    <td>
                         <ul>
                             <li>
-                                <a href="{{ path('file_show', { 'id': file.id }) }}">détails</a>
+                                <a href="{{ asset('uploads/images/'~ file.files)}}">détails</a>
                             </li>
                         </ul>
                     </td>
-                    #}
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+{% else %}
+    <h2>L'équipe
+        {{ team }}
+        n'a pas de photo</h2>
+{% endif %}
 {% endblock %}
