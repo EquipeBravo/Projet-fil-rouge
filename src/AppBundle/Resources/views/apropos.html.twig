@@ -11,8 +11,21 @@
             <div class="panel-body frame-body text-justify">
                 {{ club.clubcontent| raw }}
             </div>
+
+            {% if is_granted('ROLE_MANAGER') %}
+                    <a href="{{ path('manager_club_edit', { 'id': club.id }) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                   <a href="{{ path('manager_club_delete', { 'id': club.id }) }}"><span class="glyphicon glyphicon-trash"></span></a>
+            {% endif %}
         </div>
 
     {% endfor %}
-
+    {% if is_granted('ROLE_MANAGER') %}
+        <div class="row">
+            <ul class="list-inline">
+                <li>
+                    <a href="{{ path('manager_club_new') }}" class="btn btn-sm btn-success">Ajouter une information</a>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
 {% endblock %}

@@ -51,7 +51,7 @@
                     <li title="Logout"><a href="{{path('app_logout')}}"><span class="glyphicon glyphicon-log-in"></span>  Déconnexion</a></li>
                 {% endif %}
 
-                {% if is_granted('ROLE_MANAGER') %}
+                {% if is_granted('ROLE_ADMIN') %}
                     <li>
                         <a href="{{ path('app_admin_dashboard') }}">
                             Administration
