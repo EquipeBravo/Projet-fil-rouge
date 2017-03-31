@@ -129,12 +129,12 @@ class TeamController extends Controller
      * @param Category $category
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function sortByCategoryAction(Request $request)
+    public function sortByCategoryAction(Request $request, Category $category)
     {
-        $id = trim($request->query->get('id'));
+        //$id = trim($request->query->get('id'));
         $em = $this->getDoctrine()->getManager();
 
-        $category = $em->getRepository('AccountBundle:Team')->find($id);
+        //$category = $em->getRepository('AccountBundle:Team')->find($id);
         $teams = $em->getRepository('AccountBundle:Team')->findBy(['category' => $category], ['name'=>'ASC']);
 
         return $this->render('AppBundle::teams.html.twig', array(
