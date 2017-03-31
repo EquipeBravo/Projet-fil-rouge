@@ -12,6 +12,11 @@ use AppBundle\Entity\Event;
 
 class DefaultController extends Controller
 {
+
+    /*
+     * Affichage de la page principale
+     * avec l'argument "$events" qui contient les évènements à afficher
+     */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -24,6 +29,11 @@ class DefaultController extends Controller
         ]);
     }
 
+    /*
+     * Affichage de la page A propos
+     * avec l'argument "$clubs" qui contient les informations
+     * sur le club à afficher
+     */
     public function aproposAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -37,11 +47,21 @@ class DefaultController extends Controller
         );
     }
 
+    /*
+     * Affichage de la page statique "inscriptions au club"
+     */
     public function inscriptionAction(Request $request)
     {
         return $this->render('AppBundle::inscription.html.twig');
     }
 
+    /*
+     * Affichage de la page principale des Plannings
+     * Arguments passés à la vue :
+     * $matchs : Liste des matchs de la semaine courante
+     * $year : Année actuelle
+     * $week : Semaine actuelle
+     */
     public function planningsAction()
     {
         $year = date("Y");
@@ -77,6 +97,16 @@ class DefaultController extends Controller
         ]);
     }
 
+    /*
+     * Affichage de la page PAR SEMAINE des Plannings
+     * Différente de la fonction précédente, permet de passer
+     * à une semaine suivante ou précédente
+     *
+     * Arguments passés à la vue :
+     * $matchs : Liste des matchs de la semaine courante
+     * $year : Année actuelle
+     * $week : Semaine actuelle
+     */
     public function planningsWeekAction($week)
     {
         $year = date("Y");
@@ -113,6 +143,13 @@ class DefaultController extends Controller
         ]);
     }
 
+    /*
+     * Fonction permettant aux plannings de convertir
+     * un numéro de semaine et une année en objet de type DateTime valide
+     *
+     * Ceci est utile à la fonction "planningsWeekAction" pour déterminer
+     * son intervale de recherche (entre telle et telle semaine)
+     */
     function getDaysInWeek ($weekNumber, $year) {
         // Count from '0104' because January 4th is always in week 1
         // (according to ISO 8601).
@@ -130,6 +167,15 @@ class DefaultController extends Controller
         return $dayTimes;
     }
 
+    /*
+     * Affichage de la page PAR ANNEE des Plannings
+     * Différente des fonctions précédentes, permet de passer
+     * à une année suivante ou précédente
+     *
+     * Arguments passés à la vue :
+     * $matchs : Liste des matchs de l'année courante
+     * $year : Année actuelle
+     */
     public function planningsYearAction($id)
     {
         $search = trim($id);
@@ -159,6 +205,13 @@ class DefaultController extends Controller
         ));
     }
 
+    /*
+     * Affichage de la page TEAM publique
+     * Permet d'afficher les équipes dans la partie publique du site
+     *
+     * Arguments passés à la vue :
+     * $teams : contient la liste des équipes à afficher
+     */
     public function teamsAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -168,6 +221,13 @@ class DefaultController extends Controller
          ));
     }
 
+    /*
+     * Affichage de la page publique de détails d'une TEAM
+     * Permet d'afficher une équipe et ses informations
+     *
+     * Arguments passés à la vue :
+     * $team : contient l'équipe dont on va afficher les infos
+     */
     public function teamsShowAction(Team $team)
     {
         return $this->render('AppBundle:team:show.html.twig', array(
@@ -175,6 +235,13 @@ class DefaultController extends Controller
         ));
     }
 
+    /*
+     * Affichage de la page publique de détails d'un EVENT
+     * Permet d'afficher un évènement et ses informations
+     *
+     * Arguments passés à la vue :
+     * $event : contient l'évènement dont on va afficher les infos
+     */
     public function eventShowAction(Event $event)
     {
         return $this->render('AppBundle:public:eventShow.html.twig', array(
@@ -182,6 +249,13 @@ class DefaultController extends Controller
         ));
     }
 
+    /*
+     * Affichage de la page publique de détails d'un MATCH
+     * Permet d'afficher un match et ses informations
+     *
+     * Arguments passés à la vue :
+     * $match : contient le match dont on va afficher les infos
+     */
     public function matchShowAction(Matchs $match)
     {
         return $this->render('AppBundle:public:matchShow.html.twig', array(
@@ -189,6 +263,14 @@ class DefaultController extends Controller
         ));
     }
 
+    /*
+     * Affichage de la page publique de la galerie photo d'une équipe
+     * Permet d'afficher les photos d'une équipe
+     *
+     * Arguments passés à la vue :
+     * $team : contient l'équipe dont on va afficher les photos
+     * $files : contient les photos à afficher
+     */
     public function teamsGalleryAction(Team $team)
     {
         $em = $this->getDoctrine()->getManager();
@@ -200,6 +282,15 @@ class DefaultController extends Controller
         ));
     }
 
+    /*
+     * Affichage de la page publique des Contacts
+     * Permet d'afficher les contacts du Club et un
+     * formulaire de contact qui envoie un mail avec le
+     * contenu du formulaire sur une adresse mail
+     *
+     * Arguments passés à la vue :
+     * form : Contient le formulaire permettant d'envoyer un mail de contact
+     */
     public function contactAction(Request $request)
     {
         // Create the form according to the FormType created previously.
@@ -232,6 +323,11 @@ class DefaultController extends Controller
         ));
     }
 
+    /*
+     * Cette fonction est liée à la fonction contactAction
+     * Elle permet l'envoi de mail avec les données reçues
+     * depuis le formulaire de la page Contacts
+     */
     private function sendEmail($data)
     {
         $myappContactMail = 'asptt.imie@gmail.com';
@@ -253,11 +349,28 @@ class DefaultController extends Controller
         return $mailer->send($message);
     }
 
+    /*
+     * Renvoie sur l'interface Administrateur
+     */
     public function adminAction()
     {
         return $this->render('AppBundle::admin/index.html.twig');
     }
 
+    /* Fonction RECHERCHE
+     * Affichage de la page d'accueil avec les résultats
+     * de la recherche.
+     *
+     * Permet d'afficher les matchs, les évènements et les
+     * équipes correspondant au mot clé envoyé par le formulaire
+     * de recherche présent sur la page d'accueil
+     *
+     * Arguments passés à la vue :
+     *  events : contient la liste des résultats, on la nommera events pour
+     * garder la même logique d'affichage que pour l'affichage de la page d'accueil
+     * search : contient un booléen qui indiquera à la vue que l'on est en mode RECHERCHE
+     * keyword : contient le mot clé entré par l'utilisateur pendant sa recherche
+     */
     public function searchAction(Request $request)
     {
         $search = trim($request->query->get('keyword'));

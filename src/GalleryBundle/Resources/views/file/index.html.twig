@@ -17,17 +17,21 @@
         {% for file in files %}
             <tr>
                 <td>{{ file.name }}</td>
-                <td><img width="25%" height="25%" src="{{ asset('uploads/images/'~ file.files)  }}" /></td>
+                <td class="padding"><img width="25%" height="25%" src="{{ asset('uploads/images/'~ file.files)  }}" /></td>
                 <td>{{ file.type }}</td>
                 <td>{{ file.alt }}</td>
                 <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i') }}{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('file_show', { 'id': file.id }) }}">Détails</a>
+                    <ul class="list-inline">
+                        <li title="détails">
+                            <a href="{{ path('file_show', { 'id': file.id }) }}" class="btn btn-sm btn-info">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
                         </li>
-                        <li>
-                            <a href="{{ path('file_edit', { 'id': file.id }) }}">Modifier</a>
+                        <li title="modifier">
+                            <a href="{{ path('file_edit', { 'id': file.id }) }}" class="btn btn-sm btn-warning">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
                         </li>
                     </ul>
                 </td>
@@ -36,9 +40,9 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('file_new') }}">Créer un nouveau fichier</a>
+            <a href="{{ path('file_new') }}" class="btn btn-sm btn-success">Créer un nouveau fichier</a>
         </li>
     </ul>
 {% endblock %}
