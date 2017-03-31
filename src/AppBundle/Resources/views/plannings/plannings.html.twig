@@ -5,7 +5,8 @@
     <div class="col-sm-10">
         <div class="well event-box">
             <h2>Plannings du weekend
-            <small>Semaine {{ week }}</small></h2>
+                <small>Semaine {{ week }}</small>
+            </h2>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -28,8 +29,16 @@
                 {% endfor %}
                 </tbody>
             </table>
-            <a href="{{ path('planning_week', { 'week': week-1 }) }}"><h4>Semaine {{ week-1 }}</h4></a>
-            <a href="{{ path('planning_week', { 'week': week+1 }) }}"><h4>Semaine {{ week+1 }}</h4></a>
+            <div class="row">
+                <div class="col-lg-4 col-centered">
+                    <h4>
+                        <a href="{{ path('planning_week', { 'week': week-1 }) }}"><span
+                                    class="glyphicon glyphicon-chevron-left"></span>Semaine {{ week-1 }}</a> |
+                        <a href="{{ path('planning_week', { 'week': week+1 }) }}">Semaine {{ week+1 }}<span
+                                    class="glyphicon glyphicon-chevron-right"></span></a>
+                    </h4>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-sm-2">
