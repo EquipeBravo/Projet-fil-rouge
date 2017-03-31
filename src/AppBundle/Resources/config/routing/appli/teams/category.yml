@@ -1,0 +1,3 @@
+app_teams_category_homepage:
+    path: /{id}
+    defaults: { _controller: AccountBundle:Team:sortByCategory }

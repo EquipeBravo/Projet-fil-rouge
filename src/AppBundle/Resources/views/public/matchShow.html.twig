@@ -1,0 +1,36 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+    <h1>Match</h1>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Date du match</th>
+            <td>{% if match.dateMatch %}{{ match.dateMatch|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Domicile</th>
+            <td>{% if match.domicile %}Yes{% else %}No{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Lieu de rencontre</th>
+            <td>{{ match.place }}</td>
+        </tr>
+        <tr>
+            <th>Equipe</th>
+            <td>{{ match.team }}</td>
+        </tr>
+        <tr>
+            <th>Equipe adverse</th>
+            <td>{{ match.team2 }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="list-inline">
+        <li>
+            <a href="{{ path('planning_homepage') }}" class="btn btn-sm btn-default">Retour à la liste</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,3 @@
+app_match_show:
+    path: /{id}/show
+    defaults: { _controller: AppBundle:Default:matchShow }

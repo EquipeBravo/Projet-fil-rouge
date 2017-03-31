@@ -9,3 +9,7 @@ app_teams_show:
 app_teams_gallery:
     path: /{id}/gallery
     defaults: { _controller: AppBundle:Default:teamsGallery }
+
+app_teams_category:
+    resource: "@AppBundle/Resources/config/routing/appli/teams/category.yml"
+    prefix:   /category
