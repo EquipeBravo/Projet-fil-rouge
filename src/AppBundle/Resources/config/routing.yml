@@ -39,7 +39,7 @@ app_register:
     defaults: { _controller: AccountBundle:Security:register }
 
 app_profile:
-    path: /{id}
+    path: /profile/{id}
     defaults: { _controller: AccountBundle:Person:profile }
     methods:  GET
 
