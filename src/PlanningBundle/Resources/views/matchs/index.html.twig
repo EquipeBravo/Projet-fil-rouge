@@ -23,23 +23,27 @@
                 <td> {{ match.team }} </td>
                 <td> {{ match.team2 }} </td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('matchs_show', { 'id': match.id }) }}">Détails</a>
+                    <ul class="list-inline">
+                        <li title="détails">
+                            <a href="{{ path('matchs_show', { 'id': match.id }) }}" class="btn btn-sm btn-info">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
                         </li>
-                        <li>
-                            <a href="{{ path('matchs_edit', { 'id': match.id }) }}">Modifier</a>
+                        <li title="modifier">
+                            <a href="{{ path('matchs_edit', { 'id': match.id }) }}" class="btn btn-sm btn-warning">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
                         </li>
-                    </ul>
+               </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('matchs_new') }}">Nouveau match</a>
+            <a href="{{ path('event_new') }}" class="btn btn-sm btn-success">Nouveau Match</a>
         </li>
     </ul>
 {% endblock %}
