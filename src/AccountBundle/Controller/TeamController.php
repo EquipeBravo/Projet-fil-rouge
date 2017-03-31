@@ -131,14 +131,28 @@ class TeamController extends Controller
      */
     public function sortByCategoryAction(Request $request, Category $category)
     {
-        //$id = trim($request->query->get('id'));
         $em = $this->getDoctrine()->getManager();
 
-        //$category = $em->getRepository('AccountBundle:Team')->find($id);
         $teams = $em->getRepository('AccountBundle:Team')->findBy(['category' => $category], ['name'=>'ASC']);
 
         return $this->render('AppBundle::teams.html.twig', array(
             'teams' => $teams,
+        ));
+    }
+
+    /**
+     * Finds and displays teams members
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function teamMembersAllAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $persons = $em->getRepository('AccountBundle:Person')->findBy([], ['lastName'=>'ASC']);
+
+        return $this->render('AppBundle::teams.html.twig', array(
+            'persons' => $persons,
         ));
     }
 

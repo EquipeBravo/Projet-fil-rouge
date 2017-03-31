@@ -15,7 +15,9 @@
                 <ul class="col-lg-4">
                     <li><a href="{{path('app_register')}}">Inscription</a></li>
                     <li><a href="{{path('app_login')}}">Connexion</a></li>
-                    <li><a href="{{ path('app_admin_dashboard')}}">Administration</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('app_admin_dashboard')}}">Administration</a></li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="col-lg-4">
