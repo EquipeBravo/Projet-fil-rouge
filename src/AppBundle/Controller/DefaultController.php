@@ -309,6 +309,8 @@ class DefaultController extends Controller
 
         return $this->render('AppBundle::index.html.twig', [
             'events' => $events,
+            'search' => true,
+            'keyword' => $search,
         ]);
     }
 }

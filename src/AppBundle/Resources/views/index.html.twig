@@ -17,67 +17,102 @@
     </div>
 
     <section>
+        {% if search is defined %}
+            <h2>Résultats pour la recherche "{{ keyword }}"</h2>
 
-        {% for event in events %}
+            <div class="col-sm-12">
+            <div class="well event-box">
 
-            {% if loop.index0 % 3 == 0 %}
-                <div class="row">
-            {% endif %}
-            <div class="col-sm-4">
-                <div class="well event-box">
-                    <h2 class="event-title">{{ event.title }}</h2>
+            {% for event in events %}
+
+                {% if event.team is defined %}
+                    <a href="{{ path('app_teams_show', { 'id': event.id }) }}">
+                        <h3 class="event-title">{{ event.title }}</h3>
+                    </a>
+                {% elseif event.match is defined %}
+                    <a href="{{ path('matchs_show', { 'id': event.id }) }}">
+                        <h3 class="event-title">{{ event.title }}</h3>
+                    </a>
+                {% else %}
+                    <a href="{{ path('event_show', { 'id': event.id }) }}">
+                        <h3 class="event-title">{{ event.title }}</h3>
+                    </a>
+                {% endif %}
+
+                {% if event.team is defined %}
+                    <p class="event-date">Le {{ event.dateEvent }}</p>
+                {% else %}
+                    <p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi" , "Europe/Paris") }}</p>
+                {% endif %}
+
+                {% if is_granted('ROLE_MANAGER') %}
                     {% if event.team is defined %}
-                        <p class="event-date">Le {{ event.dateEvent }}</p>
+                        <a href="{{ path('team_edit', { 'id': event.id }) }}"><span
+                                    class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="{{ path('team_delete', { 'id': event.id }) }}"><span
+                                    class="glyphicon glyphicon-trash"></span></a>
+
+                    {% elseif event.match is defined %}
+                        <a href="{{ path('matchs_edit', { 'id': event.id }) }}"><span
+                                    class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="{{ path('matchs_delete', { 'id': event.id }) }}"><span
+                                    class="glyphicon glyphicon-trash"></span></a>
                     {% else %}
-                        <p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi" , "Europe/Paris") }}</p>
+                        <a href="{{ path('manager_event_edit', { 'id': event.id }) }}"><span
+                                    class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="{{ path('manager_event_delete', { 'id': event.id }) }}"><span
+                                    class="glyphicon glyphicon-trash"></span></a>
                     {% endif %}
+                {% endif %}
+            {% else %}
+                </div>
+                </div>
+                <div>
+                    <p>Aucun évènement ne correspond à votre recherche</p>
+                </div>
 
-                    {% if is_granted('ROLE_MANAGER') %}
-                        {% if event.team is defined %}
-                            <a href="{{ path('team_edit', { 'id': event.id }) }}"><span
-                                        class="glyphicon glyphicon-pencil"></span></a>
-                            <a href="{{ path('team_delete', { 'id': event.id }) }}"><span
-                                        class="glyphicon glyphicon-trash"></span></a>
+            {% endfor %}
+        {% else %}
+            <h2>Evènements</h2>
 
-                        {% elseif event.match is defined %}
-                            <a href="{{ path('matchs_edit', { 'id': event.id }) }}"><span
-                                        class="glyphicon glyphicon-pencil"></span></a>
-                            <a href="{{ path('matchs_delete', { 'id': event.id }) }}"><span
-                                        class="glyphicon glyphicon-trash"></span></a>
-                        {% else %}
+            {% for event in events %}
+
+                {% if loop.index0 % 3 == 0 %}
+                    <div class="row">
+                {% endif %}
+
+                <div class="col-sm-4">
+                    <div class="well event-box">
+                        <a href="{{ path('event_show', { 'id': event.id }) }}">
+                            <h3 class="event-title">{{ event.title }}</h3>
+                        </a>
+
+                        <p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi" , "Europe/Paris") }}</p>
+
+                        {% if is_granted('ROLE_MANAGER') %}
+
                             <a href="{{ path('manager_event_edit', { 'id': event.id }) }}"><span
                                         class="glyphicon glyphicon-pencil"></span></a>
                             <a href="{{ path('manager_event_delete', { 'id': event.id }) }}"><span
                                         class="glyphicon glyphicon-trash"></span></a>
                         {% endif %}
-                    {% endif %}
+                    </div>
+
                 </div>
 
-            </div>
+                {% if loop.index0 % 3 == 2 %}
+                    </div>
+                {% endif %}
 
-            {% if loop.index0 % 3 == 2 %}
+            {% else %}
+
+                <div>
+                    <p>Aucun évènement ne correspond à votre recherche</p>
                 </div>
-            {% endif %}
 
-        {% else %}
+            {% endfor %}
 
-            <div>
-                <p>Aucun évènement ne correspond à votre recherche</p>
-            </div>
+        {% endif %}
 
-        {% endfor %}
     </section>
-    {% if is_granted('ROLE_MANAGER') %}
-        <div class="row">
-            <ul class="list-inline">
-                <li>
-                    <a href="{{ path('manager_event_new') }}" class="btn btn-sm btn-success">Nouvel
-                        évènement</a>
-                </li>
-            </ul>
-        </div>
-    {% endif %}
-
-
-
 {% endblock %}

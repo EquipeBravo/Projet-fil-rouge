@@ -1,5 +1,5 @@
 <div class="panel">
-    <a href="http://www.facebook.com/share.php?u={{  app.request.uri }}" class="btn btn-social-icon btn-facebook">
+    <a href="http://www.facebook.com/share.php?u={{ app.request.uri }}" class="btn btn-social-icon btn-facebook">
         <span class="fa fa-facebook"></span>
     </a>
     <a href="http://www.twitter.com/share?url={{ app.request.uri }}" class="btn btn-social-icon btn-twitter">
@@ -12,6 +12,18 @@
 </div>
 <div class="well">
     <p>Inscription au club</p>
-    <a href="{{path('app_inscription')}}" class="btn btn-success">S'inscrire</a>
+    <a href="{{ path('app_inscription') }}" class="btn btn-success">S'inscrire</a>
 </div>
 
+
+{% if is_granted('ROLE_MANAGER') %}
+    <div class="well">
+        <p>Accès Manager :</p>
+            <ul class="list-inline">
+                <li>
+                    <a href="{{ path('manager_event_new') }}" class="btn btn-sm btn-success">Nouvel
+                        évènement</a>
+                </li>
+            </ul>
+    </div>
+{% endif %}
