@@ -10,7 +10,7 @@ manager_club_edit:
 
 manager_club_delete:
     path: /club/{id}/delete
-    defaults: { _controller: AppBundle:Default:apropos }
+    defaults: { _controller: AppBundle:Manager:deleteEvent }
 
 manager_event_new:
     path: /event/new
@@ -24,5 +24,32 @@ manager_event_edit:
 
 manager_event_delete:
     path: /event/{id}/delete
+    defaults: { _controller: AppBundle:Manager:deleteEvent }
+
+manager_teams_new:
+    path: /teams/new
+    defaults: { _controller: AppBundle:Default:apropos }
+    methods:  [GET, POST]
+
+manager_teams_edit:
+    path: /teams/{id}/edit
+    defaults: { _controller: AppBundle:Default:apropos }
+    methods:  [GET, POST]
+
+manager_teams_delete:
+    path: /teams/{id}/delete
     defaults: { _controller: AppBundle:Default:apropos }
 
+manager_matchs_new:
+    path: /matchs/new
+    defaults: { _controller: AppBundle:Default:apropos }
+    methods:  [GET, POST]
+
+manager_matchs_edit:
+    path: /matchs/{id}/edit
+    defaults: { _controller: AppBundle:Default:apropos }
+    methods:  [GET, POST]
+
+manager_matchs_delete:
+    path: /matchs/{id}/delete
+    defaults: { _controller: AppBundle:Manager:deleteMatch }
