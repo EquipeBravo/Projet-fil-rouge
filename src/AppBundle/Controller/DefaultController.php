@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use PlanningBundle\Entity\Matchs;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -171,6 +172,20 @@ class DefaultController extends Controller
     {
         return $this->render('AppBundle:team:show.html.twig', array(
             'team' => $team,
+        ));
+    }
+
+    public function eventShowAction(Event $event)
+    {
+        return $this->render('AppBundle:public:eventShow.html.twig', array(
+            'event' => $event,
+        ));
+    }
+
+    public function matchShowAction(Matchs $match)
+    {
+        return $this->render('AppBundle:public:matchShow.html.twig', array(
+            'match' => $match,
         ));
     }
 

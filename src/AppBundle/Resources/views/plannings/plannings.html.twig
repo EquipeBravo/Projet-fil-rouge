@@ -18,6 +18,7 @@
                     {% if is_granted('ROLE_MANAGER') %}
                         <th>Actions</th>
                     {% endif %}
+                    <th>Détails</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,8 @@
                                 <a href="{{ path('manager_matchs_delete', { 'id': match.id }) }}"><span
                                             class="glyphicon glyphicon-trash"></span></a></td>
                         {% endif %}
+                        <td><a href="{{ path('app_match_show', { 'id': match.id }) }}">Plus d'infos</a></td>
+
                     </tr>
                 {% endfor %}
                 </tbody>

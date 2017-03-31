@@ -30,11 +30,11 @@
                         <h4 class="event-title">{{ event.title }}</h4>
                     </a>
                 {% elseif event.match is defined %}
-                    <a href="{{ path('matchs_show', { 'id': event.id }) }}">
+                    <a href="{{ path('app_match_show', { 'id': event.id }) }}">
                         <h4 class="event-title">{{ event.title }}</h4>
                     </a>
                 {% else %}
-                    <a href="{{ path('event_show', { 'id': event.id }) }}">
+                    <a href="{{ path('app_event_show', { 'id': event.id }) }}">
                         <h4 class="event-title">{{ event.title }}</h4>
                     </a>
                 {% endif %}
@@ -83,23 +83,19 @@
 
                 <div class="col-sm-4">
                     <div class="well event-box">
-                        <a href="{{ path('event_show', { 'id': event.id }) }}">
+                        <a href="{{ path('app_event_show', { 'id': event.id }) }}">
                             <h3 class="event-title">{{ event.title }}</h3>
                         </a>
-
                         <p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi" , "Europe/Paris") }}</p>
 
                         {% if is_granted('ROLE_MANAGER') %}
-
                             <a href="{{ path('manager_event_edit', { 'id': event.id }) }}"><span
                                         class="glyphicon glyphicon-pencil"></span></a>
                             <a href="{{ path('manager_event_delete', { 'id': event.id }) }}"><span
                                         class="glyphicon glyphicon-trash"></span></a>
                         {% endif %}
                     </div>
-
                 </div>
-
                 {% if loop.index0 % 3 == 2 %}
                     </div>
                 {% endif %}
