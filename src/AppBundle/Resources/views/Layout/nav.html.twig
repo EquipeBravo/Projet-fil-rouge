@@ -32,7 +32,20 @@
     		<ul class="nav navbar-nav navbar-left menu">
     			<li><a href="{{path('app_homepage')}}" >Accueil</a></li>
     			<li><a href="{{path('planning_homepage')}}" >Plannings</a></li>
-    			<li><a href="{{path('app_teams_homepage')}}" >Les équipes</a></li>
+    			<li class="dropdown">
+                    <a href="{{path('app_teams_homepage')}}" class="dropdown-toggle" data-toggle="dropdown">
+                        Les équipes
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('app_teams_homepage') }}">Toutes</a></li>
+                        {% for category in categories %}
+                            <li>
+                                <a href="#">{{ category.description }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
                 <li><a href="{{path('app_apropos') }}" >A propos</a></li>
                 <li><a href="{{path('app_contact')}}" >Contactez nous</a></li>
     			<!-- manque école d'arbitrage et contact

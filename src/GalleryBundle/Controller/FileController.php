@@ -86,9 +86,21 @@ class FileController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $fileUpload = $file->getFiles();
+            $fileName = md5(uniqid()).'.'.$fileUpload->guessExtension();
+            $fileUpload->move(
+                $this->getParameter('files_directory'),
+                $fileName
+            );
+            $file->setFiles($fileName);
+            $em->persist($file);
+            $em->flush($file);
 
-            return $this->redirectToRoute('file_edit', array('id' => $file->getId()));
+            return $this->redirect($this->generateUrl('file_show', array(
+                'id' => $file->getId(),
+            )));
         }
 
         return $this->render('GalleryBundle:file:edit.html.twig', array(
