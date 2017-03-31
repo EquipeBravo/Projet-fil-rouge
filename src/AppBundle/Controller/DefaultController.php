@@ -12,6 +12,11 @@ use AppBundle\Entity\Event;
 
 class DefaultController extends Controller
 {
+
+    /*
+     * Affichage de la page principale
+     * avec l'argument "$events" qui contient les évènements à afficher
+     */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -24,6 +29,11 @@ class DefaultController extends Controller
         ]);
     }
 
+    /*
+     * Affichage de la page A propos
+     * avec l'argument "$clubs" qui contient les informations
+     * sur le club à afficher
+     */
     public function aproposAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -37,11 +47,21 @@ class DefaultController extends Controller
         );
     }
 
+    /*
+     * Affichage de la page statique "inscriptions au club"
+     */
     public function inscriptionAction(Request $request)
     {
         return $this->render('AppBundle::inscription.html.twig');
     }
 
+    /*
+     * Affichage de la page principale des Plannings
+     * Arguments passés à la vue :
+     * $matchs : Liste des matchs de la semaine courante
+     * $year : Année actuelle
+     * $week : Semaine actuelle
+     */
     public function planningsAction()
     {
         $year = date("Y");
@@ -77,6 +97,16 @@ class DefaultController extends Controller
         ]);
     }
 
+    /*
+     * Affichage de la page PAR SEMAINE des Plannings
+     * Différent de la fonction précédente, permet de passer
+     * à une semaine suivante ou précédente
+     *
+     * Arguments passés à la vue :
+     * $matchs : Liste des matchs de la semaine courante
+     * $year : Année actuelle
+     * $week : Semaine actuelle
+     */
     public function planningsWeekAction($week)
     {
         $year = date("Y");
@@ -113,6 +143,13 @@ class DefaultController extends Controller
         ]);
     }
 
+    /*
+     * Fonction permettant aux plannings de convertir
+     * un numéro de semaine et une année en objet de type DateTime valide
+     *
+     * Ceci est utile à la fonction "planningsWeekAction" pour déterminer
+     * son intervale de recherche
+     */
     function getDaysInWeek ($weekNumber, $year) {
         // Count from '0104' because January 4th is always in week 1
         // (according to ISO 8601).
