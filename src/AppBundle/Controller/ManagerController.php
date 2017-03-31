@@ -12,6 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ManagerController extends Controller
 {
+    /*
+     * Fonction permettant à un Manager de supprimer
+     * un évènement
+     */
     public function deleteEventAction(Request $request, Event $event)
     {
         $em = $this->getDoctrine()->getManager();
@@ -27,6 +31,10 @@ class ManagerController extends Controller
         return $this->redirectToRoute('app_homepage');
     }
 
+    /*
+     * Fonction permettant à un Manager de supprimer
+     * une information du Club (page A-propos)
+     */
     public function deleteClubAction(Request $request, Club $club)
     {
         $em = $this->getDoctrine()->getManager();
@@ -42,6 +50,10 @@ class ManagerController extends Controller
         return $this->redirectToRoute('app_homepage');
     }
 
+    /*
+     * Fonction permettant à un Manager de supprimer
+     * un match
+     */
     public function deleteMatchAction(Request $request, Matchs $match)
     {
         $em = $this->getDoctrine()->getManager();
@@ -57,6 +69,10 @@ class ManagerController extends Controller
         return $this->redirectToRoute('app_homepage');
     }
 
+    /*
+     * Fonction permettant à un Manager de supprimer
+     * une salle
+     */
     public function deletePlaceAction(Request $request, Place $place)
     {
         $em = $this->getDoctrine()->getManager();
@@ -72,6 +88,10 @@ class ManagerController extends Controller
         return $this->redirectToRoute('app_homepage');
     }
 
+    /*
+     * Fonction permettant à un Manager de modifier
+     * une information du club (page A-propos)
+     */
     public function editClubAction(Request $request, Club $club)
     {
         $editForm = $this->createForm('AppBundle\Form\ClubType', $club);
@@ -89,6 +109,10 @@ class ManagerController extends Controller
         ));
     }
 
+    /*
+     * Fonction permettant à un Manager de modifier
+     * un évènement
+     */
     public function editEventAction(Request $request, Event $event)
     {
         $editForm = $this->createForm('AppBundle\Form\EventType', $event);
@@ -106,6 +130,10 @@ class ManagerController extends Controller
         ));
     }
 
+    /*
+     * Fonction permettant à un Manager de modifier
+     * une équipe
+     */
     public function editTeamAction(Request $request, Team $team)
     {
         $editForm = $this->createForm('AccountBundle\Form\TeamType', $team);
@@ -123,6 +151,10 @@ class ManagerController extends Controller
         ));
     }
 
+    /*
+     * Fonction permettant à un Manager de modifier
+     * un match
+     */
     public function editMatchAction(Request $request, Matchs $matchs)
     {
         $editForm = $this->createForm('PlanningBundle\Form\MatchsType', $matchs);
@@ -140,6 +172,10 @@ class ManagerController extends Controller
         ));
     }
 
+    /*
+     * Fonction permettant à un Manager de créer
+     * une information sur le Club (page A-propos)
+     */
     public function newClubAction(Request $request)
     {
         $club = new Club();
@@ -160,6 +196,10 @@ class ManagerController extends Controller
         ));
     }
 
+    /*
+     * Fonction permettant à un Manager de créer
+     * un évènement
+     */
     public function newEventAction(Request $request)
     {
         $event = new Event();
@@ -180,6 +220,10 @@ class ManagerController extends Controller
         ));
     }
 
+    /*
+     * Fonction permettant à un Manager de créer
+     * une équipe
+     */
     public function newTeamAction(Request $request)
     {
         $team = new Team();
@@ -200,6 +244,10 @@ class ManagerController extends Controller
         ));
     }
 
+    /*
+     * Fonction permettant à un Manager de créer
+     * un match
+     */
     public function newMatchAction(Request $request)
     {
         $matchs = new Matchs();
