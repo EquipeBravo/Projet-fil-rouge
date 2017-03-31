@@ -49,7 +49,7 @@ security:
         - { path: ^/teams/\d/gallery, roles: ROLE_USER }
         - { path: ^/teams/\d/show, roles: ROLE_USER }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/manager, roles: ROLE_MANAGER }
+        - { path: ^/m, roles: ROLE_MANAGER }
         # le panneau d'admin est réservé au superadmin (crud, attribution des droits)
         # mais il y a un role pour la gestion des plannings (ROLE_MANAGER, crud plannings, events...) 
         # access control a gérer par la suite (voir le routage)
