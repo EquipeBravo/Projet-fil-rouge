@@ -23,9 +23,11 @@ app_inscription:
 
 app_plannings:
     resource: routing/plannings/plannings.yml
+    prefix: /plannings
 
 app_teams:
     resource: routing/teams/teams.yml
+    prefix: /teams
 
 app_login:
     path: /login
@@ -39,7 +41,7 @@ app_register:
     defaults: { _controller: AccountBundle:Security:register }
 
 app_profile:
-    path: /profile/{id}
+    path: /user/{id}
     defaults: { _controller: AccountBundle:Person:profile }
     methods:  GET
 

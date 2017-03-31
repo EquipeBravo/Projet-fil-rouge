@@ -1,5 +1,5 @@
 app_teams:
-    path: /teams
+    path: /
     defaults: { _controller: AppBundle:Default:teams }
 
 app_teams_show:

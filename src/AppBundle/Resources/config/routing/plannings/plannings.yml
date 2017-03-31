@@ -1,5 +1,5 @@
 app_plannings:
-    path: /plannings
+    path: /
     defaults: { _controller: AppBundle:Default:plannings }
 
 planning_homepage:
