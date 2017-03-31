@@ -49,6 +49,13 @@ app_user:
     resource: routing/appli/user.yml
     prefix: /user
 
+app_event:
+    resource: routing/appli/event.yml
+    prefix: /event
+
+app_match:
+    resource: routing/appli/match.yml
+    prefix: /match
 
 # Partie Admin:
 app_admin:
