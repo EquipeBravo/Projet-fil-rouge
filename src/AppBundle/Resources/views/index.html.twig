@@ -27,15 +27,15 @@
 
                 {% if event.team is defined %}
                     <a href="{{ path('app_teams_show', { 'id': event.id }) }}">
-                        <h3 class="event-title">{{ event.title }}</h3>
+                        <h4 class="event-title">{{ event.title }}</h4>
                     </a>
                 {% elseif event.match is defined %}
                     <a href="{{ path('matchs_show', { 'id': event.id }) }}">
-                        <h3 class="event-title">{{ event.title }}</h3>
+                        <h4 class="event-title">{{ event.title }}</h4>
                     </a>
                 {% else %}
                     <a href="{{ path('event_show', { 'id': event.id }) }}">
-                        <h3 class="event-title">{{ event.title }}</h3>
+                        <h4 class="event-title">{{ event.title }}</h4>
                     </a>
                 {% endif %}
 
