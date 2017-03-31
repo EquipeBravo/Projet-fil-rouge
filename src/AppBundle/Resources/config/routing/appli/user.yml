@@ -1,0 +1,4 @@
+app_user_homepage:
+    path: /{id}
+    defaults: { _controller: AccountBundle:Person:profile }
+    methods:  GET

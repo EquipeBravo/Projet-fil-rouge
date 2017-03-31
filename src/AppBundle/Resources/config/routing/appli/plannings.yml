@@ -1,9 +1,5 @@
-app_plannings:
-    path: /
-    defaults: { _controller: AppBundle:Default:plannings }
-
 planning_homepage:
-    path:     /
+    path: /
     defaults: { _controller: AppBundle:Default:plannings }
 
 planning_year:

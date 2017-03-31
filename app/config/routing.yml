@@ -6,7 +6,7 @@ account:
     prefix:   /
 
 planning:
-    resource: "@AppBundle/Resources/config/routing/plannings/plannings.yml"
+    resource: "@AppBundle/Resources/config/routing/appli/plannings.yml"
     prefix:   /planning
 
 gallery:

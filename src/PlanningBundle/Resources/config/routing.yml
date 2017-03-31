@@ -6,7 +6,7 @@ planning_place:
     resource: "@PlanningBundle/Resources/config/routing/place.yml"
     prefix:   /place
 
-planning_homepage:
-    path:     /
-    defaults: { _controller: PlanningBundle:Default:index }
+#planning_homepage:
+#   path:     /
+#   defaults: { _controller: PlanningBundle:Default:index }
 

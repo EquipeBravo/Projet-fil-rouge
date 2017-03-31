@@ -32,7 +32,7 @@
     		<ul class="nav navbar-nav navbar-left menu">
     			<li><a href="{{path('app_homepage')}}" >Accueil</a></li>
     			<li><a href="{{path('planning_homepage')}}" >Plannings</a></li>
-    			<li><a href="{{path('app_teams')}}" >Les équipes</a></li>
+    			<li><a href="{{path('app_teams_homepage')}}" >Les équipes</a></li>
                 <li><a href="{{path('app_apropos') }}" >A propos</a></li>
                 <li><a href="{{path('app_contact')}}" >Contactez nous</a></li>
     			<!-- manque école d'arbitrage et contact
@@ -47,7 +47,7 @@
                 {% endif %}
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li><a href="{{ path('app_profile',  { 'id': app.user.id }) }}"><span class="glyphicon glyphicon-user"></span> {{ app.user.firstname | capitalize }}</a></li>
+                    <li><a href="{{ path('app_user_homepage',  { 'id': app.user.id }) }}"><span class="glyphicon glyphicon-user"></span> {{ app.user.firstname | capitalize }}</a></li>
                     <li title="Logout"><a href="{{path('app_logout')}}"><span class="glyphicon glyphicon-log-in"></span>  Déconnexion</a></li>
                 {% endif %}
 

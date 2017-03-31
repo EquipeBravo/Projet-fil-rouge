@@ -3,8 +3,19 @@
 # Fichier de Routing principal du site
 # (Tous les CRUDS sont redirigés vers /admin)
 
-# Partie publique :
+#Partie Security
+app_login:
+    path: /login
+    defaults: { _controller: AccountBundle:Security:login }
 
+app_logout:
+    path: /logout
+
+app_register:
+    path: /register
+    defaults: { _controller: AccountBundle:Security:register }
+
+# Partie publique avec path direct :
 app_homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
@@ -21,36 +32,25 @@ app_inscription:
     path: /inscription
     defaults: { _controller: AppBundle:Default:inscription }
 
-app_plannings:
-    resource: routing/plannings/plannings.yml
-    prefix: /plannings
-
-app_teams:
-    resource: routing/teams/teams.yml
-    prefix: /teams
-
-app_login:
-    path: /login
-    defaults: { _controller: AccountBundle:Security:login }
-
-app_logout:
-    path: /logout
-
-app_register:
-    path: /register
-    defaults: { _controller: AccountBundle:Security:register }
-
-app_profile:
-    path: /user/{id}
-    defaults: { _controller: AccountBundle:Person:profile }
-    methods:  GET
-
 app_search:
     path: /search
     defaults: { _controller: AppBundle:Default:search }
 
-# Partie Admin:
+# Partie Appli
+app_plannings:
+    resource: routing/appli/plannings.yml
+    prefix: /plannings
 
+app_teams:
+    resource: routing/appli/teams.yml
+    prefix: /teams
+
+app_user:
+    resource: routing/appli/user.yml
+    prefix: /user
+
+
+# Partie Admin:
 app_admin:
     resource: "@AppBundle/Resources/config/routing/admin/admin.yml"
     prefix:   /admin
