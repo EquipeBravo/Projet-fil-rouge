@@ -14,12 +14,6 @@ AccountBundle\Entity\Team:
             mappedBy: team
             joinColumn:
                 onDelete: CASCADE
-        # matchs:
-        #     targetEntity: PlanningBundle\Entity\Matchs
-        #     inversedBy: Team
-        #     joinColumn:
-        #         name: match_id
-        #         referencedColumnName: id
     # One Team belongs to One Club (OneToOne)
     manyToOne:
         club:
