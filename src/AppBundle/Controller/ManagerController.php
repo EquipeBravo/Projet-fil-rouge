@@ -71,6 +71,25 @@ class ManagerController extends Controller
 
     /*
      * Fonction permettant à un Manager de supprimer
+     * une équipe
+     */
+    public function deleteTeamAction(Request $request, Team $team)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AccountBundle:Team')->find($team);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('ERROR : No such entity');
+        }
+
+        $em->remove($entity);
+        $em->flush();
+
+        return $this->redirectToRoute('app_homepage');
+    }
+
+    /*
+     * Fonction permettant à un Manager de supprimer
      * une salle
      */
     public function deletePlaceAction(Request $request, Place $place)
