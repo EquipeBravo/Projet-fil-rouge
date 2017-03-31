@@ -1,28 +1,55 @@
 manager_club_new:
     path: /club/new
-    defaults: { _controller: AppBundle:Default:apropos }
+    defaults: { _controller: AppBundle:Manager:newClub }
     methods:  [GET, POST]
 
 manager_club_edit:
     path: /club/{id}/edit
-    defaults: { _controller: AppBundle:Default:apropos }
+    defaults: { _controller: AppBundle:Manager:editClub }
     methods:  [GET, POST]
 
 manager_club_delete:
     path: /club/{id}/delete
-    defaults: { _controller: AppBundle:Default:apropos }
+    defaults: { _controller: AppBundle:Manager:deleteClub }
 
 manager_event_new:
     path: /event/new
-    defaults: { _controller: AppBundle:Default:apropos }
+    defaults: { _controller: AppBundle:Manager:newEvent }
     methods:  [GET, POST]
 
 manager_event_edit:
     path: /event/{id}/edit
-    defaults: { _controller: AppBundle:Default:apropos }
+    defaults: { _controller: AppBundle:Manager:editEvent }
     methods:  [GET, POST]
 
 manager_event_delete:
     path: /event/{id}/delete
-    defaults: { _controller: AppBundle:Default:apropos }
+    defaults: { _controller: AppBundle:Manager:deleteEvent }
 
+manager_teams_new:
+    path: /teams/new
+    defaults: { _controller: AppBundle:Manager:newTeam }
+    methods:  [GET, POST]
+
+manager_teams_edit:
+    path: /teams/{id}/edit
+    defaults: { _controller: AppBundle:Manager:editTeam }
+    methods:  [GET, POST]
+
+manager_teams_delete:
+    path: /teams/{id}/delete
+    defaults: { _controller: AppBundle:Manager:deleteTeam }
+
+manager_matchs_new:
+    path: /matchs/new
+    defaults: { _controller: AppBundle:Manager:newMatch }
+    methods:  [GET, POST]
+
+manager_matchs_edit:
+    path: /matchs/{id}/edit
+    defaults: { _controller: AppBundle:Manager:editMatch }
+    methods:  [GET, POST]
+
+manager_matchs_delete:
+    path: /matchs/{id}/delete
+    defaults: { _controller: AppBundle:Manager:deleteMatch }

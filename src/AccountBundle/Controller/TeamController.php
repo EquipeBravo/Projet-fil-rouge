@@ -5,6 +5,7 @@ namespace AccountBundle\Controller;
 use AccountBundle\Entity\Team;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AccountBundle\Entity\Category;
 
 /**
  * Team controller.
@@ -121,4 +122,24 @@ class TeamController extends Controller
             ->setMethod('DELETE')
             ->getForm();
     }
+
+    /**
+     * Finds and displays teams by given category
+     *
+     * @param Category $category
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function sortByCategoryAction(Request $request)
+    {
+        $id = trim($request->query->get('id'));
+        $em = $this->getDoctrine()->getManager();
+
+        $category = $em->getRepository('AccountBundle:Team')->find($id);
+        $teams = $em->getRepository('AccountBundle:Team')->findBy(['category' => $category], ['name'=>'ASC']);
+
+        return $this->render('AppBundle::teams.html.twig', array(
+            'teams' => $teams,
+        ));
+    }
+
 }

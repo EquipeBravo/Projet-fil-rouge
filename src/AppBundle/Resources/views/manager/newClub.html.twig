@@ -1,0 +1,14 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+
+{% block body %}
+    <h1>Nouveau Club</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" value="Valider" class="btn btn-sm btn-success"/>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
