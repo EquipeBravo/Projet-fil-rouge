@@ -141,19 +141,30 @@ class TeamController extends Controller
     }
 
     /**
-     * Finds and displays teams members
+     * Finds and displays team's members
      *
+     * @param Team $team
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function teamMembersAllAction()
+    public function teamMembersAction(Team $team)
     {
         $em = $this->getDoctrine()->getManager();
+        $qb =$em ->createQuiryBuilder();
 
-        $persons = $em->getRepository('AccountBundle:Person')->findBy([], ['lastName'=>'ASC']);
+       /*
+       $qb->innerJoin('p.Person', 't', 'WITH', 'p.teams = ?1')
+       $qb ->select('p')
+            ->from('Person', 'p')
+            ->where('p.teams')*/
+        $persons = $em->getRepository('AccountBundle:Person')->findBy(['teams' => $team], ['lastName'=>'ASC']);
 
-        return $this->render('AppBundle::teams.html.twig', array(
+        return $this->render('AppBundle:team:show.html.twig', array(
+            'team' => $team,
             'persons' => $persons,
         ));
     }
+
+
+
 
 }

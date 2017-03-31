@@ -6,6 +6,10 @@ app_teams_show:
     path: /{id}/show
     defaults: { _controller: AppBundle:Default:teamsShow }
 
+#app_teams_details:
+#    path: /{id}
+#    defaults: { _controller: AccountBundle:Team:teamMembers}
+
 app_teams_gallery:
     path: /{id}/gallery
     defaults: { _controller: AppBundle:Default:teamsGallery }

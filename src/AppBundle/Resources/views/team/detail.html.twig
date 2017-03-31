@@ -1,5 +1,37 @@
 {% extends 'AppBundle:Layout:layout.html.twig' %}
+
 {% block body %}
+    <h1>Equipe {{ team.name }}</h1>
+    <div class="col-sm-12">
+        <div class="well event-box">
+            <table>
+                <tbody>
+                <tr>
+                    <th>Date de reprise</th>
+                    <td>{% if team.resumptionDate %}{{ team.resumptionDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Jour d'entrainement</th>
+                    <td>{{ team.trainingDay }}</td>
+                </tr>
+                <tr>
+                    <th>Horaire d'entrainement</th>
+                    <td>{{ team.trainingTime }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <ul class="list-inline">
+        <li>
+            <a href="{{ path('app_teams_homepage') }}" class="btn btn-sm btn-default">Retour à la liste</a>
+        </li>
+    </ul>
 
-
+    <h2>Les membres de l'équipe</h2>
+    <ul>
+        {% for person in persons %}
+            <li>{{ person.lastName }} {{ person.firstName }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
