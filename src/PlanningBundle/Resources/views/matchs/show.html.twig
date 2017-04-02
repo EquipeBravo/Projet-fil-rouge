@@ -7,7 +7,7 @@
         <tbody>
             <tr>
                 <th>Date du match</th>
-                <td>{% if match.dateMatch %}{{ match.dateMatch|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if match.dateMatch %}{{ match.dateMatch|date('Y-m-d H:i') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Domicile</th>
@@ -30,7 +30,7 @@
 
     <ul class="list-inline">
         <li>
-            <a href="{{ path('match_index') }}" class="btn btn-sm btn-default">Retour à la liste</a>
+            <a href="{{ path('matchs_index') }}" class="btn btn-sm btn-default">Retour à la liste</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
