@@ -40,6 +40,9 @@ class DefaultController extends Controller
 
         $clubs = $em->getRepository('AppBundle:Club')->findAll();
 
+        foreach ($clubs as $club) {
+            $club->setClubContent(nl2br(($club->getClubContent())));
+        }
 
         return $this->render('AppBundle::apropos.html.twig', array(
                 'clubs' => $clubs
