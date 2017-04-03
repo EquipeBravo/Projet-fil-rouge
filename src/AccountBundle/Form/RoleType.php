@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RoleType extends AbstractType
 {
@@ -16,12 +16,8 @@ class RoleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('roleName', null, ['label' => 'Rôle'])
-                ->add('roleRights', IntegerType::class, [
-                    'label' => 'Niveau de droits',
-                    'attr' => [
-                        'max' => 4,
-                        'min' => 1,
-                    ]
+                ->add('roleRights', TextType::class, [
+                    'label' => 'Niveau de droits'
                 ])
             ;
     }

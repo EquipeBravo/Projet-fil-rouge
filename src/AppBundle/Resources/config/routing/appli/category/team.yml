@@ -1,0 +1,9 @@
+app_category_team_homepage:
+    path: /
+    defaults: { _controller: AccountBundle:Team:sortByCategory }
+
+app_category_team_details:
+    path: /{team_id}
+    defaults: { _controller: AccountBundle:Team:teamMembers }
+    methods:  GET
+

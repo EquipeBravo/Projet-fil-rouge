@@ -168,3 +168,15 @@ main{
 .team-img{
     max-width: 15%;
 }
+
+.padding{
+    padding: 15px;
+}
+
+.green{
+    color: #7fbb00;
+}
+
+.margin-top{
+    margin-top: 30px;
+}

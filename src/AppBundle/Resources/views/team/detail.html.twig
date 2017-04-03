@@ -1,37 +1,109 @@
 {% extends 'AppBundle:Layout:layout.html.twig' %}
 
-{% block body %}
-    <h1>Equipe {{ team.name }}</h1>
-    <div class="col-sm-12">
-        <div class="well event-box">
-            <table>
-                <tbody>
-                <tr>
-                    <th>Date de reprise</th>
-                    <td>{% if team.resumptionDate %}{{ team.resumptionDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                </tr>
-                <tr>
-                    <th>Jour d'entrainement</th>
-                    <td>{{ team.trainingDay }}</td>
-                </tr>
-                <tr>
-                    <th>Horaire d'entrainement</th>
-                    <td>{{ team.trainingTime }}</td>
-                </tr>
-                </tbody>
-            </table>
+{% block article %}
+    <h1>Equipe {{ team.category.description | upper}}</h1>
+    <div class="row">
+        {% if photo %}
+        <div class="col-sm-5">
+            <figure class="text-center" style="border: 1px solid rgba(0,0,0,0.1); padding: 10px; ">
+                <img src="{{ asset('uploads/images/'~ photo[0].files) }}" width="100%" alt="photo[0].alt"/>
+                <figcaption style="padding-top: 7px;">
+                    <a href="{{ path('app_teams_gallery', { 'id': team.id }) }}">Plus de photos</a>
+                </figcaption>
+            </figure>
+        </div>
+
+        <div class="col-sm-7">
+
+        {% else %}
+            <div class="col-sm-12">
+        {% endif %}
+
+            <div class="well">
+                <h2>{{ team.name }}</h2>
+                <table class="table table-responsive table-borderless">
+                    <tbody>
+                    <tr>
+                        <th>Entraîneur</th>
+                        <td>
+                        {% if coach %}
+                            {{ coach[0].firstName| capitalize }} {{ coach[0].lastName | capitalize }}
+                        {% else %}
+                            Aucun entraîneur n'a été affecté
+                        {% endif %}
+                        </td>
+                    </tr>
+                    {% if team.resumptionDate %}
+                        <tr>
+                            <th>Date de reprise</th>
+                            <td>{{ team.resumptionDate|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                    {% endif %}
+                    <tr>
+                        <th>Jour d'entrainement</th>
+                        <td>{{ team.trainingDay }}</td>
+                    </tr>
+                    <tr>
+                        <th>Horaire d'entrainement</th>
+                        <td>{{ team.trainingTime }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
+    <div class="row">
+        <h3 class="frame-title">Les membres de l'équipe</h3>
+        {% if players %}
+        <ol>
+            {% for player in players %}
+                <li>{{ player.lastName |capitalize}} {{ player.firstName|capitalize }}</li>
+            {% endfor %}
+        </ol>
+        {% else %}
+            <p>Cette équipe n'a pas encore de membre </p>
+        {% endif %}
+    </div>
+
     <ul class="list-inline">
         <li>
-            <a href="{{ path('app_teams_homepage') }}" class="btn btn-sm btn-default">Retour à la liste</a>
+            <a href="{{ path('app_teams_homepage') }}" class="btn btn-sm btn-default">
+                <span class="glyphicon glyphicon-menu-left"></span> Retour à la liste
+            </a>
         </li>
     </ul>
+{% endblock %}
 
-    <h2>Les membres de l'équipe</h2>
-    <ul>
-        {% for person in persons %}
-            <li>{{ person.lastName }} {{ person.firstName }}</li>
+
+{% block sider %}
+    <!------------- Sidebar --------------------------->
+    <div class=" col-lg-12 panel" >
+
+        {% for category in categories %}
+            <div class="panel-group" id="category{{ category.id }}">
+                <div class="panel frame">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#category{{ category.id }}" href="#collapse{{ category.id }}">
+                            <h4 class="panel-title frame-title">
+                                {{ category.description }}
+                            </h4>
+                        </a>
+                    </div>
+                    <div id="collapse{{ category.id }}" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <ul>
+                                {% for team in teams %}
+                                    {% if team.category == category %}
+                                        <li><a href="{{ path('app_category_team_details', {'id': category.id, 'team_id': team.id}) }}">{{ team.name }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
+
 {% endblock %}

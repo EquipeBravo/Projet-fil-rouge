@@ -1,0 +1,3 @@
+app_category_team:
+    resource: "@AppBundle/Resources/config/routing/appli/category/team.yml"
+    prefix:  /{id}/team

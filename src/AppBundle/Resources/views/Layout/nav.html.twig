@@ -41,7 +41,7 @@
                         <li><a href="{{ path('app_teams_homepage') }}">Toutes</a></li>
                         {% for category in categories %}
                             <li>
-                                <a href="{{ path('app_teams_category_homepage', {'id': category.id}) }}">{{ category.description }}</a>
+                                <a href="{{ path('app_category_team_homepage', {'id': category.id}) }}">{{ category.description }}</a>
                             </li>
                         {% endfor %}
                     </ul>

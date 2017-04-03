@@ -19,8 +19,9 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a href="{{ path('person_index') }}">Toutes</a></li>
                         {% for role in roles %}
-                            <li><a href="{{ path('person_index') }}">{{ role.roleName  }}</a></li>
+                            <li><a href="{{ path('role_person_homepage', {'id': role.id}) }}">{{ role.roleName  }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -42,8 +43,9 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a href="{{ path('team_index') }}">Toutes</a></li>
                         {% for category in categories %}
-                            <li><a href="{{ path('team_index') }}">{{ category.description  }}</a></li>
+                            <li><a href="{{ path('category_team_homepage', {'id': category.id}) }}">{{ category.description  }}</a></li>
                         {% endfor %}
                     </ul>
                    <!-- <table class="dropdown-menu">

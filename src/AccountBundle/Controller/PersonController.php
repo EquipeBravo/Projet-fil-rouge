@@ -3,6 +3,7 @@
 namespace AccountBundle\Controller;
 
 use AccountBundle\Entity\Person;
+use AccountBundle\Entity\Role;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -134,5 +135,30 @@ class PersonController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Finds people by their role
+     *
+     * @param Role $role
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function sortByRoleAction(Role $role)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $people = $em ->getRepository('AccountBundle:Person')
+            ->createQueryBuilder('p')
+            ->join('p.userRoles', 'r')
+            ->where('r = :role')
+            ->setParameter('role', $role)
+            ->orderBy('p.lastName', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('AccountBundle:person:index.html.twig', array(
+            'role' => $role,
+            'people' => $people,
+        ));
     }
 }

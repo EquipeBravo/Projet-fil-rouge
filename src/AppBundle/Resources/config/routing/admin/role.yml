@@ -21,3 +21,7 @@ role_show:
     path:     /{id}/show
     defaults: { _controller: "AccountBundle:Role:show" }
     methods:  GET
+
+role_person:
+    resource: "@AppBundle/Resources/config/routing/admin/role/person.yml"
+    prefix:   /{id}/person

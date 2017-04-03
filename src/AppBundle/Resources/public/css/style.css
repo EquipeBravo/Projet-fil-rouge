@@ -1,0 +1,7 @@
+.table-borderless td, .table-borderless tr{
+    border:none;
+}
+
+.green{
+    color: #8ee000;
+}

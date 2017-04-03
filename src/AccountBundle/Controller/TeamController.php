@@ -6,6 +6,7 @@ use AccountBundle\Entity\Team;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AccountBundle\Entity\Category;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Team controller.
@@ -123,8 +124,10 @@ class TeamController extends Controller
             ->getForm();
     }
 
+
+    //Partie Public (should be in Default Controller)
     /**
-     * Finds and displays teams by given category
+     * Finds and displays teams by given category (public)
      *
      * @param Category $category
      * @return \Symfony\Component\HttpFoundation\Response
@@ -141,30 +144,75 @@ class TeamController extends Controller
     }
 
     /**
-     * Finds and displays team's members
+     * Finds and displays info of one team and list of team's members
      *
      * @param Team $team
      * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @ParamConverter("team", class="AccountBundle:Team", options={"id" = "team_id"})
      */
     public function teamMembersAction(Team $team)
     {
         $em = $this->getDoctrine()->getManager();
-        $qb =$em ->createQuiryBuilder();
 
-       /*
-       $qb->innerJoin('p.Person', 't', 'WITH', 'p.teams = ?1')
-       $qb ->select('p')
-            ->from('Person', 'p')
-            ->where('p.teams')*/
-        $persons = $em->getRepository('AccountBundle:Person')->findBy(['teams' => $team], ['lastName'=>'ASC']);
+        $role = $em->getRepository('AccountBundle:Role')->findBy(['roleName'=>'Joueur']);
+        $players =$em->getRepository('AccountBundle:Person')
+            ->createQueryBuilder('p')
+            ->join('p.teams', 't')
+            ->join('p.userRoles', 'r')
+            ->where('t = :team')
+            ->andwhere('r= :role')
+            ->setParameter('team', $team)
+            ->setParameter('role', $role)
+            ->orderBy('p.lastName', 'ASC')
+            ->getQuery()
+            ->getResult();
 
-        return $this->render('AppBundle:team:show.html.twig', array(
+        //would be better to add to the team their coach and the second day of training
+        $role = $em->getRepository('AccountBundle:Role')->findBy(['roleName'=>'Entraîneur']);
+        $coach = $em->getRepository('AccountBundle:Person')
+            ->createQueryBuilder('p')
+            ->join('p.teams', 't')
+            ->join('p.userRoles', 'r')
+            ->where('t = :team')
+            ->andwhere('r= :role')
+            ->setParameter('team', $team)
+            ->setParameter('role', $role)
+            ->getQuery()
+            ->getResult();
+
+        $photo = $em->getRepository('GalleryBundle:File')->findBy(['team' => $team], ['uploadDate' => 'DESC'], 1, 0);
+
+        //for sider:
+        $categories = $em->getRepository('AccountBundle:Category')->findBy([], ['description'=> 'ASC']);
+        $teams = $em->getRepository('AccountBundle:Team')->findBy([], ['name'=>'ASC']);
+
+        return $this->render('AppBundle:team:detail.html.twig', array(
             'team' => $team,
-            'persons' => $persons,
+            'photo' => $photo,
+            'coach' => $coach,
+            'players' => $players,
+            //for sider:
+            'categories' => $categories,
+            'teams' => $teams,
         ));
     }
 
+    /**
+     * Finds list of all categories
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     */
+    public function siderAction()
+    {
+        /*$em = $this->getDoctrine()->getManager();
 
+        $categories = $em->getRepository('AccountBundle:Category')->findBy([], ['description'=> 'ASC']);
 
+        return $this->render('AppBundle:team:sider.html.twig', array(
+            'categories' => $categories
+        ));*/
+    }
 
 }

@@ -1,41 +1,44 @@
 {% extends 'AppBundle:Layout:layout.html.twig' %}
+
 {% block body %}
+    <h1>Photo de {{ team.name| lower }}</h1>
+
     {% if files != null %}
-        <h1>Photo de
-            {{ team }}</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nom du fichier</th>
-                    <th>Photo</th>
-                    <th>Alt</th>
-                    <th>Date de téléchargement</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for file in files %}
-                    <tr>
-                        <td>{{ file.name }}</td>
-                        <td><a data-fancybox="gallery" href="{{ asset('uploads/images/'~ file.files)}}"><img width="25%" height="25%" src="{{ asset('uploads/images/'~ file.files)  }}"/></a></a>
-                    </td>
-                    <td>{{ file.alt }}</td>
-                    <td>
-                        {% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i:s') }}{% endif %}
-                    </td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a data-fancybox="gallery" href="{{ asset('uploads/images/'~ file.files)}}">détails</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <h2>L'équipe
-        {{ team }}
-        n'a pas de photo</h2>
-{% endif %}
+
+        {% for file in files %}
+            {% if loop.index0 % 4 == 0 %}
+                <div class="row">
+            {% endif %}
+            <div class="col-md-3">
+                <a data-fancybox="gallery" href="{{ asset('uploads/images/'~ file.files)}}">
+                    <figure class="frame text-center" style="padding:12px; width: 100%">
+                        <img src="{{ asset('uploads/images/'~ file.files)  }}" alt="{{ file.alt }}" width="90%"/>
+                        <figcaption class="text-center">
+                            {{ file.name| upper }}<br/>
+                            {% if file.uploadDate %}{{ file.uploadDate|date('d/m/Y') }}{% endif %}
+                        </figcaption>
+                    </figure>
+                </a>
+            </div>
+            {% if (loop.index0 % 4 == 3) or (loop.last) %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    {% else %}
+        <h2>L'équipe
+            {{ team.name | lower}}
+            n'a pas de photo</h2>
+    {% endif %}
+
+    <div class="margin-top">
+        <ul class="list-inline">
+            <li>
+                <a href="{{ path('app_teams_homepage') }}" class="btn btn-sm btn-default">
+                    <span class="glyphicon glyphicon-menu-left"></span> Retour à la liste
+                </a>
+            </li>
+        </ul>
+    </div>
+
 {% endblock %}

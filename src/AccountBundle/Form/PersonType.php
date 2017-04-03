@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class PersonType extends AbstractType
 {
@@ -41,8 +42,16 @@ class PersonType extends AbstractType
                 ->add('street', null, ['label' => 'Rue'])
                 ->add('zip', null, ['label' => 'Code Postal'])
                 ->add('city', null, ['label' => 'Adresse'])
-                ->add('teams', null, ['label' => 'Equipes'])
-                ->add('userRoles', null, ['label' => 'Roles']);
+                ->add('teams', EntityType::class, [
+                    'class' => 'AccountBundle:Team',
+                    'label' => 'Equipes',
+                    'multiple' => true
+                ])
+                ->add('userRoles', EntityType::class, [
+                    'class' => 'AccountBundle:Role',
+                    'label' => 'Roles',
+                    'multiple' => true
+                ]);
         }
     }
     

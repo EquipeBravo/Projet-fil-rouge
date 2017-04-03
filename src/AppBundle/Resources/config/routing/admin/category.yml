@@ -16,3 +16,7 @@ category_edit:
 category_delete:
     path:     /{id}/delete
     defaults: { _controller: "AccountBundle:Category:delete" }
+
+category_team:
+    resource: "@AppBundle/Resources/config/routing/admin/category/team.yml"
+    prefix:  /{id}/team

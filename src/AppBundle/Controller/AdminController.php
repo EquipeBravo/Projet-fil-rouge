@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Club;
+use AccountBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -61,5 +62,22 @@ class AdminController extends Controller{
             ->setMethod('DELETE')
             ->getForm()
             ;
+    }
+
+    /**
+     * Finds and displays teams by given category
+     *
+     * @param Category $category
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function sortByCategoryAction(Request $request, Category $category)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $teams = $em->getRepository('AccountBundle:Team')->findBy(['category' => $category], ['name'=>'ASC']);
+
+        return $this->render('AccountBundle:team:index.html.twig', array(
+            'teams' => $teams,
+        ));
     }
 }

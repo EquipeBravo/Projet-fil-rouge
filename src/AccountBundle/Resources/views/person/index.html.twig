@@ -39,11 +39,11 @@
                 -->
                 <td>{{ person.email }}</td>
                 <td>{% for role in person.userRoles %}
-                        {{ role }}
+                        {{ role }} <br />
                     {% endfor %}
                 </td>
                 <td>{% for team in person.teams %}
-                        {{ team }}
+                        {{ team }} <br />
                     {% endfor %}
                 </td>
                 <td>

@@ -78,12 +78,14 @@ class Person implements UserInterface, \Serializable
     private $email;
 
     /**
+     * Verifies that password contains just letters, numbers or given special characters
+     * Note: It verifies also every time on edit encoded password (if you don't enter a new one), this should be changed!
+     *
      * @var string
      * @Assert\Regex(
-     *     pattern="/^([a-zA-Z0-9@$*!_#]{8,})$/",
+     *     pattern="/^([a-zA-Z0-9@.\/*!_#\$]{8,})$/",
      *     match=true,
-     *     message="Votre mot de passe doit contenir une minuscule, une majuscule, un caractère spécial '@$*#!_', un chiffre
-     *              et doit comporter au moins 8 caractères"
+     *     message="Votre mot de passe doit comporter au moins 8 caractères (lettres minuscule et majuscule, sans accents, chiffres ou caractères spéciaux '@$*#!_')"
      * )
      */
     private $password;

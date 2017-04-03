@@ -3,11 +3,13 @@
 {% block body %}
 
 <main class="row">
-	<article class="col-md-9">
+	<article class="col-md-9" >
 		{% block article %}{% endblock %}
 	</article>
 	<aside class="col-md-3">
-		{% include 'AppBundle:Layout:siderbar.html.twig' %} 
+		{% block sider %}
+			{% include 'AppBundle:Layout:siderbar.html.twig' %}
+		{% endblock %}
 	</aside>
 </main>
 

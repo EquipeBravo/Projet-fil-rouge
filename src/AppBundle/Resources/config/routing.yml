@@ -57,6 +57,10 @@ app_match:
     resource: routing/appli/match.yml
     prefix: /match
 
+app_category:
+    resource: routing/appli/category.yml
+    prefix: /category
+
 # Partie Admin:
 app_admin:
     resource: "@AppBundle/Resources/config/routing/admin/admin.yml"

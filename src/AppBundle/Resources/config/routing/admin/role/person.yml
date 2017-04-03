@@ -1,0 +1,4 @@
+role_person_homepage:
+    path:     /
+    defaults: { _controller: "AccountBundle:Person:sortByRole" }
+    methods:  GET
