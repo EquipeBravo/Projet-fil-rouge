@@ -1,10 +1,10 @@
 {% extends 'AppBundle:Layout:layout.html.twig' %}
 
 {% block body %}
-    <h1>Plannings</h1>
+    <h1>Plannings du weekend</h1>
     <div class="col-sm-10">
         <div class="well event-box">
-            <h2>Plannings du weekend
+            <h2>{{ weekTitle }}
                 <small>Semaine {{ week }}</small>
             </h2>
             <table class="table table-striped">
@@ -60,5 +60,16 @@
             <a href="{{ path('planning_year', { 'id': year }) }}"><h4>Année {{ year }}</h4></a>
             <a href="{{ path('planning_year', { 'id': year+1 }) }}"><h4>Année {{ year+1 }}</h4></a>
         </div>
+        {% if is_granted('ROLE_MANAGER') %}
+            <div class="well">
+                <p>Accès Manager :</p>
+                <ul class="list-inline">
+                    <li>
+                        <a href="{{ path('manager_matchs_new') }}" class="btn btn-sm btn-success">Nouveau
+                            match</a>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

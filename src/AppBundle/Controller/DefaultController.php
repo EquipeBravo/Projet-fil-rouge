@@ -40,6 +40,9 @@ class DefaultController extends Controller
 
         $clubs = $em->getRepository('AppBundle:Club')->findAll();
 
+        foreach ($clubs as $club) {
+            $club->setClubContent(nl2br(($club->getClubContent())));
+        }
 
         return $this->render('AppBundle::apropos.html.twig', array(
                 'clubs' => $clubs
@@ -57,50 +60,25 @@ class DefaultController extends Controller
 
     /*
      * Affichage de la page principale des Plannings
-     * Arguments passés à la vue :
-     * $matchs : Liste des matchs de la semaine courante
-     * $year : Année actuelle
-     * $week : Semaine actuelle
+     * Transfère à la fonction d'affichage par semaine
+     * la date actuelle, plus précisément le numéro de semaine
      */
     public function planningsAction()
     {
         $year = date("Y");
         $day = date("d");
         $month = date("m");
-
-        $searchDate = new \DateTime($year.'-01-01');
-        $searchDateMax = new \DateTime( $day.'-'.$month.'-'.$year );
-        $searchDateMax->add(new \DateInterval('P5D'));
-
+        $searchDateMax = new \DateTime($day . '-' . $month . '-' . $year);
         $week = $searchDateMax->format("W");
 
-        $matchs = $this->getDoctrine()
-            ->getManager()
-            ->createQuery('SELECT e FROM PlanningBundle:Matchs e WHERE e.dateMatch > ?1 AND e.dateMatch < ?2')
-            ->setParameter(1, $searchDate)
-            ->setParameter(2, $searchDateMax)
-            ->getResult();
-
-        foreach ($matchs as $match) {
-            if ($match->getDomicile() == 1) {
-                $match->setDomicile('À domicile');
-            }
-            else {
-                $match->setDomicile("À l'extérieur");
-            }
-        }
-
-        return $this->render('AppBundle:plannings:plannings.html.twig', [
-            'matchs' => $matchs,
-            'year' => $year,
-            'week' => $week
-        ]);
+        return $this->planningsWeekAction($week);
     }
 
     /*
      * Affichage de la page PAR SEMAINE des Plannings
      * Différente de la fonction précédente, permet de passer
-     * à une semaine suivante ou précédente
+     * à une semaine suivante ou précédente et d'afficher les matchs
+     * dans cette semaine
      *
      * Arguments passés à la vue :
      * $matchs : Liste des matchs de la semaine courante
@@ -111,13 +89,14 @@ class DefaultController extends Controller
     {
         $year = date("Y");
 
-        $test = $this->getDaysInWeek($week-1,$year);
+        $daysInWeek = $this->getDaysInWeek($week, $year);
+        $weekTitle = $this->getSundaySaturdayInWeek($week + 1, $year);
 
         $searchDate = new \DateTime();
-        $searchDate->setTimestamp($test[0]);
+        $searchDate->setTimestamp($daysInWeek[0]);
 
         $searchDateMax = new \DateTime();
-        $searchDateMax->setTimestamp($test[0]);
+        $searchDateMax->setTimestamp($daysInWeek[0]);
         $searchDateMax->add(new \DateInterval('P7D'));
 
         $matchs = $this->getDoctrine()
@@ -130,16 +109,17 @@ class DefaultController extends Controller
         foreach ($matchs as $match) {
             if ($match->getDomicile() == 1) {
                 $match->setDomicile('À domicile');
-            }
-            else {
+            } else {
                 $match->setDomicile("À l'extérieur");
             }
         }
 
+
         return $this->render('AppBundle:plannings:plannings.html.twig', [
             'matchs' => $matchs,
             'year' => $year,
-            'week' => $week
+            'week' => $week,
+            'weekTitle' => $weekTitle
         ]);
     }
 
@@ -150,7 +130,8 @@ class DefaultController extends Controller
      * Ceci est utile à la fonction "planningsWeekAction" pour déterminer
      * son intervale de recherche (entre telle et telle semaine)
      */
-    function getDaysInWeek ($weekNumber, $year) {
+    function getDaysInWeek($weekNumber, $year)
+    {
         // Count from '0104' because January 4th is always in week 1
         // (according to ISO 8601).
         $time = strtotime($year . '0104 +' . ($weekNumber - 1)
@@ -159,12 +140,23 @@ class DefaultController extends Controller
         $mondayTime = strtotime('-' . (date('w', $time) - 1) . ' days',
             $time);
         // Get the times of days 0 -> 6
-        $dayTimes = array ();
+        $dayTimes = array();
         for ($i = 0; $i < 7; ++$i) {
             $dayTimes[] = strtotime('+' . $i . ' days', $mondayTime);
         }
         // Return timestamps for mon-sun.
         return $dayTimes;
+    }
+
+    function getSundaySaturdayInWeek($week, $year)
+    {
+        $timestamp = mktime(0, 0, 0, 1, 1, $year) + ($week * 7 * 24 * 60 * 60);
+        $timestamp_for_monday = $timestamp - 86400 * (date('N', $timestamp) - 1);
+        $monday = date('Y-m-d', $timestamp_for_monday);
+        $sunday = date('d/m', strtotime('-1 day', strtotime($monday)));
+        $saturday = date('d/m', strtotime('-2 day', strtotime($monday)));
+        $weekTitle = 'Du ' . $saturday . ' au ' . $sunday;
+        return $weekTitle;
     }
 
     /*
@@ -180,8 +172,8 @@ class DefaultController extends Controller
     {
         $search = trim($id);
 
-        $searchDate = new \DateTime($search.'-01-01');
-        $searchDateMax = new \DateTime(($search+1).'-01-01');
+        $searchDate = new \DateTime($search . '-01-01');
+        $searchDateMax = new \DateTime(($search + 1) . '-01-01');
 
         $matchs = $this->getDoctrine()
             ->getManager()
@@ -193,8 +185,7 @@ class DefaultController extends Controller
         foreach ($matchs as $match) {
             if ($match->getDomicile() == 1) {
                 $match->setDomicile('À domicile');
-            }
-            else {
+            } else {
                 $match->setDomicile("À l'extérieur");
             }
         }
@@ -218,7 +209,7 @@ class DefaultController extends Controller
         $teams = $em->getRepository('AccountBundle:Team')->findAll();
         return $this->render('AppBundle::teams.html.twig', array(
             'teams' => $teams
-         ));
+        ));
     }
 
     /*
@@ -339,12 +330,12 @@ class DefaultController extends Controller
 
         $mailer = \Swift_Mailer::newInstance($transport);
 
-        $message = \Swift_Message::newInstance("[Site Asptt] Formulaire de contact : ". $data["subject"])
-            ->setFrom(array($myappContactMail => "Nouveau message de ".$data["name"]))
+        $message = \Swift_Message::newInstance("[Site Asptt] Formulaire de contact : " . $data["subject"])
+            ->setFrom(array($myappContactMail => "Nouveau message de " . $data["name"]))
             ->setTo(array(
                 $myappContactMail => $myappContactMail
             ))
-            ->setBody($data["message"]."\n\rEmail de contact :".$data["email"]);
+            ->setBody($data["message"] . "\n\rEmail de contact :" . $data["email"]);
 
         return $mailer->send($message);
     }
@@ -395,7 +386,7 @@ class DefaultController extends Controller
 
         foreach ($teams as $team) {
             $event = new Event();
-            $event->setDateEvent($team['trainingDay'].' à '.$team['trainingTime']);
+            $event->setDateEvent($team['trainingDay'] . ' à ' . $team['trainingTime']);
             $event->setId($team['id']);
             $event->team = true;
 
@@ -431,7 +422,7 @@ class DefaultController extends Controller
                 ->getResult();
 
 
-            $event->setTitle('Match '.$team1[0]['name'].' contre '.$team2[0]['name']);
+            $event->setTitle('Match ' . $team1[0]['name'] . ' contre ' . $team2[0]['name']);
             $events[] = $event;
         }
 

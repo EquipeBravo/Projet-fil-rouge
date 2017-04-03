@@ -18,7 +18,7 @@ class MatchsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dateMatch', null, ['label' => 'Date du match'])
+        $builder->add('dateMatch', null, ['label' => 'Date du match','years'=> range(2017, (date('Y')+5))])
                 ->add('domicile')
                 ->add('place', null, ['label' => 'Lieu'])   
                 ->add('team', EntityType::class,  [
