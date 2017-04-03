@@ -41,14 +41,17 @@
                 {{ form_widget(form.subject) }}
                 {{ form_errors(form.subject) }}
             </div>
+            <p></p>
             <div>
                 {{ form_widget(form.name) }}
                 {{ form_errors(form.name) }}
             </div>
+            <p></p>
             <div>
                 {{ form_widget(form.email) }}
                 {{ form_errors(form.email) }}
             </div>
+            <p></p>
             <div>
                 {{ form_widget(form.message) }}
                 {{ form_errors(form.message) }}
@@ -58,8 +61,8 @@
             <div style="display:none">
                 {{ form_rest(form) }}
             </div>
-
-            <input type="submit" value="Valider">
+            <p></p>
+            <input class="btn btn-sm btn-success" type="submit" value="Valider">
 
             {{ form_end(form) }}
 
