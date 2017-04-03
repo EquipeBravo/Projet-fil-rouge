@@ -21,7 +21,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $events = $em->getRepository('AppBundle:Event')->findAll();
+        $events = $em->getRepository('AppBundle:Event')->findBy(array(), array('dateEvent' => 'DESC'));
 
 
         return $this->render('AppBundle::index.html.twig', [
