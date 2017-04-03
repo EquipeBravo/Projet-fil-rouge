@@ -42,7 +42,7 @@
                 {% if event.team is defined %}
                     <p class="event-date">Le {{ event.dateEvent }}</p>
                 {% else %}
-                    <p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi" , "Europe/Paris") }}</p>
+                    <p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi") }}</p>
                 {% endif %}
 
                 {% if is_granted('ROLE_MANAGER') %}
@@ -86,7 +86,7 @@
                         <a href="{{ path('app_event_show', { 'id': event.id }) }}">
                             <h3 class="event-title">{{ event.title }}</h3>
                         </a>
-                        <p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi" , "Europe/Paris") }}</p>
+                        <p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi") }}</p>
 
                         {% if is_granted('ROLE_MANAGER') %}
                             <a href="{{ path('manager_event_edit', { 'id': event.id }) }}"><span
