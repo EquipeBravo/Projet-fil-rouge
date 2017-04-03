@@ -2,20 +2,20 @@
 
 {% block body %}
     <h1>Match</h1>
-    <div class="col-sm-12">
+    <div class="col-sm-8">
         <div class="well event-box">
-            <table>
+            <table class="table table-borderless">
                 <tbody>
                 <tr>
-                    <th>Date du match</th>
-                    <td>{% if match.dateMatch %}{{ match.dateMatch|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <th>Date</th>
+                    <td>{% if match.dateMatch %}{{ match.dateMatch|date('d-m-Y H:i') }}{% endif %}</td>
                 </tr>
                 <tr>
-                    <th>Domicile</th>
-                    <td>{% if match.domicile %}Yes{% else %}No{% endif %}</td>
+                    <th>Lieu</th>
+                    <td>{% if match.domicile %}À domicile{% else %}En extérieur{% endif %}</td>
                 </tr>
                 <tr>
-                    <th>Lieu de rencontre</th>
+                    <th>Salle</th>
                     <td>{{ match.place }}</td>
                 </tr>
                 <tr>
@@ -29,11 +29,33 @@
                 </tbody>
             </table>
         </div>
+        <ul class="list-inline">
+            <li>
+                <a href="{{ path('planning_homepage') }}" class="btn btn-sm btn-default">Retour à la liste</a>
+            </li>
+        </ul>
     </div>
-    <ul class="list-inline">
-        <li>
-            <a href="{{ path('planning_homepage') }}" class="btn btn-sm btn-default">Retour à la liste</a>
-        </li>
-    </ul>
-
+    <div class="col-sm-4">
+        <div class="well event-box">
+            <h2>Joueurs</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <td>{{ team1.name }}</td>
+                    <td>{{ team2.name }}</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    {% for player in players1 %}
+                        <td>{{ player.firstname }} {{ player.lastname }}</td>
+                    {% endfor %}
+                    {% for player in players2 %}
+                        <td>{{ player.firstname }} {{ player.lastname }}</td>
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

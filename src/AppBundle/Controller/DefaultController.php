@@ -249,8 +249,42 @@ class DefaultController extends Controller
      */
     public function matchShowAction(Matchs $match)
     {
+        $team1 = $match->getTeam();
+        $team2 = $match->getTeam2();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $role = $em->getRepository('AccountBundle:Role')->findBy(['roleName'=>'Joueur']);
+        $players1 =$em->getRepository('AccountBundle:Person')
+            ->createQueryBuilder('p')
+            ->join('p.teams', 't')
+            ->join('p.userRoles', 'r')
+            ->where('t = :team')
+            ->andwhere('r= :role')
+            ->setParameter('team', $team1)
+            ->setParameter('role', $role)
+            ->orderBy('p.lastName', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        $players2 =$em->getRepository('AccountBundle:Person')
+            ->createQueryBuilder('p')
+            ->join('p.teams', 't')
+            ->join('p.userRoles', 'r')
+            ->where('t = :team')
+            ->andwhere('r= :role')
+            ->setParameter('team', $team2)
+            ->setParameter('role', $role)
+            ->orderBy('p.lastName', 'ASC')
+            ->getQuery()
+            ->getResult();
+
         return $this->render('AppBundle:public:matchShow.html.twig', array(
             'match' => $match,
+            'team1' => $team1,
+            'team2' => $team2,
+            'players1' => $players1,
+            'players2' => $players2,
         ));
     }
 
