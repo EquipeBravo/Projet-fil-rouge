@@ -57,10 +57,8 @@ class DefaultController extends Controller
 
     /*
      * Affichage de la page principale des Plannings
-     * Arguments passés à la vue :
-     * $matchs : Liste des matchs de la semaine courante
-     * $year : Année actuelle
-     * $week : Semaine actuelle
+     * Transfère à la fonction d'affichage par semaine
+     * la date actuelle, plus précisément le numéro de semaine
      */
     public function planningsAction()
     {
@@ -76,7 +74,8 @@ class DefaultController extends Controller
     /*
      * Affichage de la page PAR SEMAINE des Plannings
      * Différente de la fonction précédente, permet de passer
-     * à une semaine suivante ou précédente
+     * à une semaine suivante ou précédente et d'afficher les matchs
+     * dans cette semaine
      *
      * Arguments passés à la vue :
      * $matchs : Liste des matchs de la semaine courante
