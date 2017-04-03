@@ -7,7 +7,7 @@
         <tbody>
             <tr>
                 <th>Date de reprise</th>
-                <td>{% if team.resumptionDate %}{{ team.resumptionDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if team.resumptionDate %}{{ team.resumptionDate|date('Y-m-d H:i') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Jour d'entrainement</th>
@@ -20,17 +20,18 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
+    <ul class="list-inline">
+        <li class="btn btn-default">
             <a href="{{ path('team_index') }}">Retour à la liste</a>
         </li>
-        <li>
-            <a href="{{ path('team_edit', { 'id': team.id }) }}">Modifier</a>
+        <li class="btn btn-warning">
+            <a href="{{ path('team_index') }}">Modifier</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
+                <input type="submit" value="Supprimer" class="btn btn-sm btn-danger">
             {{ form_end(delete_form) }}
         </li>
+        
     </ul>
 {% endblock %}
