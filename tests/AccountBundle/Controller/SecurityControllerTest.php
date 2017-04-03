@@ -30,7 +30,7 @@ class SecurityControllerTest extends WebTestCase
 
         $requestAttributs = $this->client->getRequest()->attributes;
         $this->assertEquals('app_logout', $requestAttributs->get('_route'));
-        //$this->assertEquals('AccountBundle\Controller\SecurityController::logoutAction', $requestAttributs->get('_controller'));       
+        $this->assertEquals(null, $requestAttributs->get('_controller'));       
     }
 
     public function testRegister()
