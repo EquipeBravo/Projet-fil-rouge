@@ -3,7 +3,7 @@
 {% block article %}
 
     <div class="row ">
-        <form id="searchForm" action='/search' class="col-xs-12 panel">
+        <form id="searchForm" action='/search' class="col-xs-12 ">
             <div class="input-group">
                 <input name="keyword" type="text" class="form-control"
                        placeholder="Chercher un évènement, une équipe, un match ...">
@@ -83,20 +83,32 @@
 
                 <div class="col-sm-4">
                     <div class="well event-box">
-                        <a href="{{ path('app_event_show', { 'id': event.id }) }}">
-                            <h3 class="event-title">{{ event.title }}</h3>
-                        </a>
-                        <p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi") }}</p>
+                        <div class="event-body">
+                            <a href="{{ path('app_event_show', { 'id': event.id }) }}">
+                                <h4 class="event-title">{{ event.title }}</h4>
+                            </a>
+                            <p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi") }}</p>
+                        </div>
 
                         {% if is_granted('ROLE_MANAGER') %}
-                            <a href="{{ path('manager_event_edit', { 'id': event.id }) }}"><span
-                                        class="glyphicon glyphicon-pencil"></span></a>
-                            <a href="{{ path('manager_event_delete', { 'id': event.id }) }}"><span
-                                        class="glyphicon glyphicon-trash"></span></a>
+                            <div class="padding event-footer">
+                                <ul class="list-inline icons pull-right">
+                                    <li title="modifier" data-toggle="tooltip">
+                                        <a href="{{ path('manager_event_edit', { 'id': event.id }) }}" class="icon">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                    </li>
+                                    <li title="supprimer" data-toggle="tooltip">
+                                        <a href="{{ path('manager_event_delete', { 'id': event.id }) }}" class="icon">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
-                {% if loop.index0 % 3 == 2 %}
+                {% if (loop.index0 % 3 == 2) or (loop.last) %}
                     </div>
                 {% endif %}
 

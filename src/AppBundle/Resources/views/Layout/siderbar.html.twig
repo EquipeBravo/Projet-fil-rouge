@@ -1,4 +1,4 @@
-<div class="panel">
+<div class="margin-bottom">
     <a href="http://www.facebook.com/share.php?u={{ app.request.uri }}" class="btn btn-social-icon btn-facebook">
         <span class="fa fa-facebook"></span>
     </a>
@@ -10,33 +10,45 @@
     </a>
 
 </div>
-<div class="well">
-    <p>Inscription au club</p>
-    <a href="{{ path('app_inscription') }}" class="btn btn-success">S'inscrire</a>
+<div class="well text-center">
+    <h4>Modalités d'inscription</h4>
+    <a href="{{ path('app_inscription') }}" class="btn btn-success">Plus d'infos</a>
 </div>
 
 
 {% if is_granted('ROLE_MANAGER') %}
     <div class="well">
-        <p>Accès Manager :</p>
+        <div class="text-center">
+            <h4>Accès Manager :</h4>
+        </div>
             <ul class="list-inline">
                 <li>
-                    <a href="{{ path('manager_event_new') }}" class="btn btn-sm btn-success">Nouvel
-                        évènement</a>
+                    <p>
+                        <a href="{{ path('manager_event_new') }}" >
+                            <span class="glyphicon glyphicon-plus"></span>  Nouvel évènement
+                        </a>
+                    </p>
                 </li>
-                <p></p>
                 <li>
-                    <a href="{{ path('manager_teams_new') }}" class="btn btn-sm btn-success">Nouvelle
-                        équipe</a>
+                    <p>
+                        <a href="{{ path('manager_teams_new') }}">
+                            <span class="glyphicon glyphicon-plus"></span>  Nouvelle équipe
+                        </a>
+                    </p>
                 </li>
-                <p></p>
                 <li>
-                    <a href="{{ path('manager_matchs_new') }}" class="btn btn-sm btn-success">Nouveau
-                        match</a>
+                    <p>
+                        <a href="{{ path('manager_matchs_new') }}" >
+                            <span class="glyphicon glyphicon-plus"></span>  Nouveau match
+                        </a>
+                    </p>
                 </li>
-                <p></p>
                 <li>
-                    <a href="{{ path('manager_club_new') }}" class="btn btn-sm btn-success">Nouvelle description du Club</a>
+                    <p>
+                        <a href="{{ path('manager_club_new') }}" >
+                            <span class="glyphicon glyphicon-plus"></span>  Nouvelle description du Club
+                        </a>
+                    </p>
                 </li>
             </ul>
     </div>
