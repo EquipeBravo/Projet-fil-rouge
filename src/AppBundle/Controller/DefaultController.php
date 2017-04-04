@@ -183,6 +183,10 @@ class DefaultController extends Controller
      * $matchs : Liste des matchs de l'année courante
      * $year : Année actuelle
      */
+    public function planningsYearMenuAction()
+    {
+        return $this->planningsYearAction(date("Y"));
+    }
     public function planningsYearAction($id)
     {
         $search = trim($id);
