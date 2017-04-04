@@ -1,27 +1,28 @@
 {% extends 'AppBundle:admin:layout/layout.html.twig' %}
 {% block body %}
     <h1>Liste des fichiers</h1>
-
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nom du fichier</th>
-                <th>Photo</th>
-                <th>Type</th>
-                <th>Alt</th>
-                <th>Date de téléchargement</th>
-                <th>Actions</th>
+            <div class="container">
+                <th class="th_galery">Nom du fichier</th>
+                <th class="th_galery">Photo</th>
+                <th class="th_galery">Type</th>
+                <!--<th>Alt</th>-->
+                <th class="th_galery">Date de téléchargement</th>
+                <th class="th_galery">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for file in files %}
             <tr>
                 <td>{{ file.name }}</td>
-                <td class="padding"><img width="25%" height="25%" src="{{ asset('uploads/images/'~ file.files)  }}" /></td>
+                <td class="thumbnail"><img  src="{{ asset('uploads/images/'~ file.files)  }}" /></td>
                 <td>{{ file.type }}</td>
-                <td>{{ file.alt }}</td>
+                <!--<td>{{ file.alt }}</td>-->
                 <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i') }}{% endif %}</td>
                 <td>
+                    <div class="container">
                     <ul class="list-inline">
                         <li title="détails">
                             <a href="{{ path('file_show', { 'id': file.id }) }}" class="btn btn-sm btn-info">
@@ -33,7 +34,13 @@
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
                         </li>
+                        <li title="suprimer">
+                            <a href="{{ path('file_delete', { 'id': file.id }) }}" class="btn btn-sm btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </li>
                     </ul>
+                    </div>
                 </td>
             </tr>
         {% endfor %}

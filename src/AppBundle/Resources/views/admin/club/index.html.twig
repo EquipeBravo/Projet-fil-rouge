@@ -12,21 +12,26 @@
             </div>
             <hr>
             <div class="frame-footer">
-                <ul class="list-inline icons pull-right">
+                <ul class="list-inline pull-right">
                     <li title="modifier">
-                        <a href="{{ path('app_admin_club_edit', { 'id': club.id }) }}" class="icon">
+                        <a href="{{ path('app_admin_club_edit', { 'id': club.id }) }}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
                     </li>
                     <li title="suprimer">
-                        <a href="{{ path('club_delete', { 'id': club.id }) }}" class="icon">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </a>
+                            <a href="{{ path('club_delete', { 'id': club.id }) }}" class="btn btn-sm btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
                     </li>
                 </ul>
             </div>
         </div>
 
     {% endfor %}
+    <ul class="list-inline">
+        <li>
+            <a href="{{ path('club_new') }}" class="btn btn-sm btn-success">Nouvelle information</a>
+        </li>
+    </ul>
 
 {% endblock %}
