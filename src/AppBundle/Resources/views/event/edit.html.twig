@@ -13,7 +13,9 @@
 
     <ul class="list-inline">
         <li>
-            <a href="{{ path('event_index') }}" class="btn btn-sm btn-default">Retour à la liste</a>
+            <a href="{{ path('event_index') }}" class="btn btn-sm btn-default">
+                <span class="glyphicon glyphicon-menu-left"></span> Retour à la liste
+            </a>
         </li>
         <li>
             {{ form_start(delete_form) }}

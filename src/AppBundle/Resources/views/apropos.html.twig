@@ -1,6 +1,5 @@
 {% extends 'AppBundle:Layout:layout.html.twig' %}
 {% block article %}
-    {{ parent() }}
     <h1>A propos du club</h1>
 
     {% for club in clubs %}
@@ -13,8 +12,20 @@
             </div>
 
             {% if is_granted('ROLE_MANAGER') %}
-                    <a href="{{ path('manager_club_edit', { 'id': club.id }) }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                   <a href="{{ path('manager_club_delete', { 'id': club.id }) }}"><span class="glyphicon glyphicon-trash"></span></a>
+                <div class="frame-footer">
+                    <ul class="list-inline icons pull-right">
+                        <li title="Modifier" data-toggle="tooltip">
+                            <a href="{{ path('manager_club_edit', { 'id': club.id }) }}">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </li>
+                        <li title="Supprimer" data-toggle="tooltip">
+                            <a href="{{ path('manager_club_delete', { 'id': club.id }) }}">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             {% endif %}
         </div>
 

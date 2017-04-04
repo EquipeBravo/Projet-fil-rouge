@@ -3,7 +3,7 @@
 {% block article %}
 
     <div class="row ">
-        <form id="searchForm" action='/search' class="col-xs-12 ">
+        <form id="searchForm" action='{{ path('app_search') }}' class="col-xs-12 ">
             <div class="input-group">
                 <input name="keyword" type="text" class="form-control"
                        placeholder="Chercher un évènement, une équipe, un match ...">
