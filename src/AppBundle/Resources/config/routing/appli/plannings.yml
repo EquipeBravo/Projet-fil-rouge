@@ -2,6 +2,10 @@ planning_homepage:
     path: /
     defaults: { _controller: AppBundle:Default:plannings }
 
+planning_year_menu:
+    path:     /year/
+    defaults: { _controller: AppBundle:Default:planningsYearMenu }
+
 planning_year:
     path:     /year/{id}
     defaults: { _controller: AppBundle:Default:planningsYear }

@@ -46,6 +46,7 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/match, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/teams/\d/gallery, roles: ROLE_USER }
         - { path: ^/teams/\d/show, roles: ROLE_USER }
         - { path: ^/category/\d/team/\d, roles: ROLE_USER }
