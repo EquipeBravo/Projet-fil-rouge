@@ -7,6 +7,7 @@ AppBundle\Entity\Event:
             joinColumn:
                 name: club_id
                 referencedColumnName: id
+                onDelete: CASCADE
     table: null
     repositoryClass: AppBundle\Repository\EventRepository
     id:

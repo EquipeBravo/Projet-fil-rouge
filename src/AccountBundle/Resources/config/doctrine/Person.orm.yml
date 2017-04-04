@@ -25,7 +25,8 @@ AccountBundle\Entity\Person:
                         onDelete: CASCADE
                 inverseJoinColumns:
                     role_id:
-                        referencedColumnName: id    
+                        referencedColumnName: id
+                        onDelete: CASCADE
     table: null
     repositoryClass: AccountBundle\Repository\PersonRepository
     id:
