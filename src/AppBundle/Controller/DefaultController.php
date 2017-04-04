@@ -25,7 +25,8 @@ class DefaultController extends Controller
         $matchsTemp = $em->getRepository('PlanningBundle:Matchs')->findBy(array(), array('dateMatch' => 'DESC'));
 
         $date = new \DateTime("now");
-
+        $events = null;
+        $matchs = null;
         foreach ($eventsTemp as $event) {
             if ($event->getDateEvent() > $date) {
                 $events[] = $event;
@@ -33,10 +34,10 @@ class DefaultController extends Controller
         }
 
         foreach ($matchsTemp as $match) {
-        if ($match->getDateMatch() > $date) {
-            $matchs[] = $match;
+            if ($match->getDateMatch() > $date) {
+                $matchs[] = $match;
+            }
         }
-    }
 
         return $this->render('AppBundle::index.html.twig', [
             'events' => $events,
@@ -187,6 +188,7 @@ class DefaultController extends Controller
     {
         return $this->planningsYearAction(date("Y"));
     }
+
     public function planningsYearAction($id)
     {
         $search = trim($id);
@@ -273,8 +275,8 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $role = $em->getRepository('AccountBundle:Role')->findBy(['roleName'=>'Joueur']);
-        $players1 =$em->getRepository('AccountBundle:Person')
+        $role = $em->getRepository('AccountBundle:Role')->findBy(['roleName' => 'Joueur']);
+        $players1 = $em->getRepository('AccountBundle:Person')
             ->createQueryBuilder('p')
             ->join('p.teams', 't')
             ->join('p.userRoles', 'r')
@@ -286,7 +288,7 @@ class DefaultController extends Controller
             ->getQuery()
             ->getResult();
 
-        $players2 =$em->getRepository('AccountBundle:Person')
+        $players2 = $em->getRepository('AccountBundle:Person')
             ->createQueryBuilder('p')
             ->join('p.teams', 't')
             ->join('p.userRoles', 'r')

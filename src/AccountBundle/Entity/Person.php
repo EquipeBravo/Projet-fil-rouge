@@ -137,7 +137,7 @@ class Person implements UserInterface, \Serializable
         $roles =['ROLE_USER'];
         foreach ($this->getUserRoles() as $role){
             //if we add a column to the table Role: userRole which either ROLE_USER, ROLE_MANAGER or ROLE_ADMIN then:
-            $roles = [$role->getRoleRights()];
+            $roles[] = $role->getRoleRights();
         }
         return $roles;
     }

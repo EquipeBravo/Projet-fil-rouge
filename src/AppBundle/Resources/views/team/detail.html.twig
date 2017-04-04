@@ -26,8 +26,8 @@
                     <tr>
                         <th>Entraîneur</th>
                         <td>
-                        {% if coach %}
-                            {{ coach[0].firstName| capitalize }} {{ coach[0].lastName | capitalize }}
+                        {% if team.coach %}
+                            {{ team.coach.firstName| capitalize }} {{ team.coach.lastName | capitalize }}
                         {% else %}
                             Aucun entraîneur n'a été affecté
                         {% endif %}

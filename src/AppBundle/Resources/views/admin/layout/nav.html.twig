@@ -19,7 +19,7 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('person_index') }}">Toutes</a></li>
+                        <li><a href="{{ path('person_index') }}">Tous</a></li>
                         {% for role in roles %}
                             <li><a href="{{ path('role_person_homepage', {'id': role.id}) }}">{{ role.roleName  }}</a></li>
                         {% endfor %}
