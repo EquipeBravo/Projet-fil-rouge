@@ -164,7 +164,7 @@
                 <div class="col-sm-4">
                     <div class="well event-box">
                         <div class="event-body">
-                            <a href="{{ path('app_event_show', { 'id': match.id }) }}">
+                            <a href="{{ path('app_match_show', { 'id': match.id }) }}">
                                 <h4 class="event-title">Match {{ match.team }} contre {{ match.team2 }}</h4>
                             </a>
                             <p class="event-date">Le {{ match.dateMatch|date("d/m/Y \\à H\\hi") }}</p>
