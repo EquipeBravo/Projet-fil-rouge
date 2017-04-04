@@ -1,13 +1,5 @@
 AccountBundle\Entity\Role:
     type: entity
-    # Many roles in One Club (asptt) (ManyToOne)
-    manyToOne:
-        club:
-            targetEntity: AppBundle\Entity\Club
-            joinColumn:
-                name: club_id
-                referencedColumnName: id
-                onDelete: CASCADE
     table: null
     repositoryClass: AccountBundle\Repository\RoleRepository
     id:
