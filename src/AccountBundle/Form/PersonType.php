@@ -45,12 +45,14 @@ class PersonType extends AbstractType
                 ->add('teams', EntityType::class, [
                     'class' => 'AccountBundle:Team',
                     'label' => 'Equipes',
-                    'multiple' => true
+                    'multiple' => true,
+                    'required' => false,
                 ])
                 ->add('userRoles', EntityType::class, [
                     'class' => 'AccountBundle:Role',
                     'label' => 'Roles',
-                    'multiple' => true
+                    'multiple' => true,
+                    'required' => false,
                 ]);
         }
     }

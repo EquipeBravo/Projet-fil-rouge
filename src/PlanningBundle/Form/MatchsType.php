@@ -20,7 +20,10 @@ class MatchsType extends AbstractType
     {
         $builder->add('dateMatch', null, ['label' => 'Date du match','years'=> range(2017, (date('Y')+5))])
                 ->add('domicile')
-                ->add('place', null, ['label' => 'Lieu'])   
+                ->add('place', EntityType::class, [
+                    'class' => 'PlanningBundle:Place',
+                    'label' => 'Lieu'
+                ])
                 ->add('team', EntityType::class,  [
                     'class' => 'AccountBundle:Team',
                     'label' => 'Equipe'
