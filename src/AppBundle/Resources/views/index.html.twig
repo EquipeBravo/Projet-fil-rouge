@@ -16,63 +16,98 @@
         </form>
     </div>
 
-    <section>
+    <section class="row">
         {% if search is defined %}
             <h2>Résultats pour la recherche "{{ keyword }}"</h2>
 
             <div class="col-sm-12">
-            <div class="well event-box">
+                <div class="well event-box">
 
-            {% for event in events %}
+                {% for event in events %}
 
-                {% if event.team is defined %}
-                    <a href="{{ path('app_teams_show', { 'id': event.id }) }}">
-                        <h4 class="event-title">{{ event.title }}</h4>
-                    </a>
-                {% elseif event.match is defined %}
-                    <a href="{{ path('app_match_show', { 'id': event.id }) }}">
-                        <h4 class="event-title">{{ event.title }}</h4>
-                    </a>
-                {% else %}
-                    <a href="{{ path('app_event_show', { 'id': event.id }) }}">
-                        <h4 class="event-title">{{ event.title }}</h4>
-                    </a>
-                {% endif %}
-
-                {% if event.team is defined %}
-                    <p class="event-date">Le {{ event.dateEvent }}</p>
-                {% else %}
-                    <p class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi") }}</p>
-                {% endif %}
-
-                {% if is_granted('ROLE_MANAGER') %}
                     {% if event.team is defined %}
-                        <a href="{{ path('manager_teams_edit', { 'id': event.id }) }}"><span
-                                    class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{{ path('manager_teams_delete', { 'id': event.id }) }}"><span
-                                    class="glyphicon glyphicon-trash"></span></a>
-
+                        <a href="{{ path('app_teams_show', { 'id': event.id }) }}">
+                            <h4>{{ event.title |capitalize}}</h4>
+                        </a>
                     {% elseif event.match is defined %}
-                        <a href="{{ path('manager_matchs_edit', { 'id': event.id }) }}"><span
-                                    class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{{ path('manager_matchs_delete', { 'id': event.id }) }}"><span
-                                    class="glyphicon glyphicon-trash"></span></a>
+                        <a href="{{ path('app_match_show', { 'id': event.id }) }}">
+                            <h4>{{ event.title |capitalize}}</h4>
+                        </a>
                     {% else %}
-                        <a href="{{ path('manager_event_edit', { 'id': event.id }) }}"><span
-                                    class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{{ path('manager_event_delete', { 'id': event.id }) }}"><span
-                                    class="glyphicon glyphicon-trash"></span></a>
+                        <a href="{{ path('app_event_show', { 'id': event.id }) }}">
+                            <h4>{{ event.title |capitalize}}</h4>
+                        </a>
                     {% endif %}
-                {% endif %}
-            {% else %}
-                </div>
-                </div>
-                <div>
-                    <p>Aucun évènement ne correspond à votre recherche</p>
-                </div>
 
-            {% endfor %}
+                    <section class="border-bottom padding-bottom">
+                        {% if event.team is defined %}
+                            <span class="event-date">Le {{ event.dateEvent }}</span>
+                        {% else %}
+                            <span class="event-date">Le {{ event.dateEvent|date("d/m/Y \\à H\\hi") }}</span>
+                        {% endif %}
+
+                        {% if is_granted('ROLE_MANAGER') %}
+                            {% if event.team is defined %}
+
+                                <ul class="list-inline icons pull-right">
+                                    <li title="modifier" data-toggle="tooltip">
+                                        <a href="{{ path('manager_teams_edit', { 'id': event.id }) }}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('manager_teams_delete', { 'id': event.id }) }}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            {% elseif event.match is defined %}
+
+                                <ul class="list-inline icons pull-right">
+                                    <li title="modifier" data-toggle="tooltip">
+                                        <a href="{{ path('manager_matchs_edit', { 'id': event.id }) }}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                    </li>
+                                    <li class="btn">
+                                        <a href="{{ path('manager_matchs_delete', { 'id': event.id }) }}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            {% else %}
+
+                                <ul class="list-inline icons pull-right">
+                                    <li title="modifier" data-toggle="tooltip" >
+                                        <a href="{{ path('manager_event_edit', { 'id': event.id }) }}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                    </li>
+                                    <li >
+                                        <a href="{{ path('manager_event_delete', { 'id': event.id }) }}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            {% endif %}
+
+                        {% endif %}
+
+                    </section>
+
+                {% else %}
+                <div>
+                    <p>Aucun résultat ne correspond à votre recherche</p>
+                </div>
+                {% endfor %}
+                    
+                </div>
+            </div>
         {% else %}
+
             <h2>Evènements</h2>
 
             {% for event in events %}
@@ -115,7 +150,7 @@
             {% else %}
 
                 <div>
-                    <p>Aucun évènement ne correspond à votre recherche</p>
+                    <p>Il n'y a aucun évènement pour le moment</p>
                 </div>
 
             {% endfor %}

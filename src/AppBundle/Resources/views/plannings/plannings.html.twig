@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Plannings du weekend</h1>
     <div class="col-sm-10">
-        <div class="well event-box">
+        <div class="well">
             <h2>{{ weekTitle }}
                 <small>Semaine {{ week }}</small>
             </h2>
@@ -36,7 +36,6 @@
                                             class="glyphicon glyphicon-trash"></span></a></td>
                         {% endif %}
                         <td><a href="{{ path('app_match_show', { 'id': match.id }) }}">Plus d'infos</a></td>
-
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -54,7 +53,7 @@
         </div>
     </div>
     <div class="col-sm-2">
-        <div class="well event-box">
+        <div class="well">
             <h3>Par année</h3>
             <a href="{{ path('planning_year', { 'id': year-1 }) }}"><h4>Année {{ year-1 }}</h4></a>
             <a href="{{ path('planning_year', { 'id': year }) }}"><h4>Année {{ year }}</h4></a>
