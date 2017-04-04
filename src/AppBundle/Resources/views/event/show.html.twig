@@ -13,12 +13,18 @@
                 <th>Date</th>
                 <td>{% if event.dateEvent %}{{ event.dateEvent|date('Y-m-d H:i') }}{% endif %}</td>
             </tr>
+            <tr>
+                <th>Description</th>
+                <td>{% if event.description %}{{ event.description }}{% endif %}</td>
+            </tr>
         </tbody>
     </table>
 
     <ul class="list-inline">
         <li>
-            <a href="{{ path('event_index') }}" class="btn btn-sm btn-default">Retour à la liste</a>
+            <a href="{{ path('event_index') }}" class="btn btn-sm btn-default">
+                <span class="glyphicon glyphicon-menu-left"></span> Retour à la liste
+            </a>
         </li>
         <li>
             <a href="{{ path('event_edit', { 'id': event.id }) }}" class="btn btn-sm btn-warning">Modifier</a>

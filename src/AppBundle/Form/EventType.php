@@ -15,6 +15,7 @@ class EventType extends AbstractType
     {
         $builder->add('title' , null, ['label' => 'Titre de l\'évènement'])
                 ->add('dateEvent', null, ['label' => 'Date et heure', 'years'=> range(2017, (date('Y')+5))])
+                ->add('description', null, ['label' => 'Description de l\'évènement'])
         ;
     }
     
