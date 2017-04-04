@@ -21,11 +21,26 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $events = $em->getRepository('AppBundle:Event')->findBy(array(), array('dateEvent' => 'DESC'));
+        $eventsTemp = $em->getRepository('AppBundle:Event')->findBy(array(), array('dateEvent' => 'DESC'));
+        $matchsTemp = $em->getRepository('PlanningBundle:Matchs')->findBy(array(), array('dateMatch' => 'DESC'));
 
+        $date = new \DateTime("now");
+
+        foreach ($eventsTemp as $event) {
+            if ($event->getDateEvent() > $date) {
+                $events[] = $event;
+            }
+        }
+
+        foreach ($matchsTemp as $match) {
+        if ($match->getDateMatch() > $date) {
+            $matchs[] = $match;
+        }
+    }
 
         return $this->render('AppBundle::index.html.twig', [
-            'events' => $events
+            'events' => $events,
+            'matchs' => $matchs,
         ]);
     }
 
