@@ -11,7 +11,7 @@
             {% endif %}
             <div class="col-md-3">
                 <a data-fancybox="gallery" href="{{ asset('uploads/images/'~ file.files)}}">
-                    <figure class="frame text-center" style="padding:12px; width: 100%">
+                    <figure class="frame text-center gallery-image">
                         <img src="{{ asset('uploads/images/'~ file.files)  }}" alt="{{ file.alt }}" width="90%"/>
                         <figcaption class="text-center">
                             {{ file.name| upper }}<br/>
