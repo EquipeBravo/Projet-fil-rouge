@@ -17,7 +17,14 @@
                 <td>
                     <ul class="list-inline">
                         <li>
-                            <a href="{{ path('category_edit', { 'id': category.id }) }}">Modifier</a>
+                            <a href="{{ path('category_edit', { 'id': category.id }) }}" class="btn btn-sm btn-warning">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('category_delete', { 'id': category.id }) }}" class="btn btn-sm btn-danger">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            </a>
                         </li>
                     </ul>
                 </td>
