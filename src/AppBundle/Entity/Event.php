@@ -18,6 +18,11 @@ class Event
     private $title;
 
     /**
+     * @var string
+     */
+    private $description;
+
+    /**
      * @var \DateTime
      */
     private $dateEvent;
@@ -115,5 +120,22 @@ class Event
     {
         return $this->dateEvent;
     }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
 }
 

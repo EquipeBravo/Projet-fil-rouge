@@ -131,11 +131,11 @@ main{
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.event-title:hover{
+/*.event-title:hover{
     overflow: visible;
     white-space: normal;
     height: 100%;
-}
+}*/
 .event-date{
     color: #6c6159;
 }

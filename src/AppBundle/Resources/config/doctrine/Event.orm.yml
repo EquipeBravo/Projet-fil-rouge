@@ -21,4 +21,7 @@ AppBundle\Entity\Event:
             length: 255
         dateEvent:
             type: datetime
+        description:
+            type: text
+            nullable: true
     lifecycleCallbacks: {  }
