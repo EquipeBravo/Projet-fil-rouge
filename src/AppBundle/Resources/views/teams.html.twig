@@ -7,7 +7,6 @@
         <thead>
         <tr>
             <th>Nom de l'équipe</th>
-            {#<th>Date de reprise</th> #}
             <th>Jour d'entrainement</th>
             <th>Horaire d'entrainement</th>
             {% if is_granted('ROLE_USER') %}
@@ -22,14 +21,12 @@
         {% for team in teams %}
             <tr>
                 <td>
-                    <a href="{{ path('app_category_team_details', {'id': team.category.id, 'team_id': team.id }) }}" title="détails" data-toggle="tooltip">
+                    <a href="{{ path('app_category_team_details', {'id': team.category.id, 'team_id': team.id }) }}"
+                       title="détails" data-toggle="tooltip">
                         {{ team.name | capitalize }}
                     </a>
                 </td>
-                {% if team.resumptionDate %}
-                    <td>{{ team.resumptionDate|date('Y-m-d H:i') }}</td>
-                {% endif %}
-                <td>{{ team.trainingDay | capitalize}}</td>
+                <td>{{ team.trainingDay | capitalize }}</td>
                 <td>{{ team.trainingTime }}</td>
 
                 {% if is_granted('ROLE_USER') %}

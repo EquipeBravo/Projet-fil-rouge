@@ -14,10 +14,18 @@ AccountBundle\Entity\Team:
             mappedBy: team
             joinColumn:
                 onDelete: CASCADE
+    # Many teams belongs to One coach (Person) (ManyToOne)
+        coach:
+            targetEntity: AccountBundle\Entity\Person
+            mappedBy: person
+            joinColumn:
+                name: coach_id
+                referencedColumnName: id
+                onDelete: CASCADE
     # One Team belongs to One Club (OneToOne)
-    manyToOne:
         club:
             targetEntity: AppBundle\Entity\Club
+            mappedBy: club
             joinColumn:
                 name: club_id
                 referencedColumnName: id

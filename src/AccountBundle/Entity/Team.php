@@ -51,6 +51,35 @@ class Team
     private $matchs;
 
     /**
+     * @var AccountBundle\Entity\Person
+     */
+    private $coach;
+
+    /**
+     * Get coach
+     *
+     * @return Coach
+     */
+    public function getCoach()
+    {
+        return $this->coach;
+    }
+
+    /**
+     * Set match
+     *
+     * @param Match $match
+     *
+     * @return Team
+     */
+    public function setCoach(Person $coach)
+    {
+        $this->coach = $coach;
+
+        return $this;
+    }
+
+    /**
      * Get match
      *
      * @return Match

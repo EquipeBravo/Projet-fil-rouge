@@ -168,19 +168,6 @@ class TeamController extends Controller
             ->getQuery()
             ->getResult();
 
-        //would be better to add to the team their coach and the second day of training
-        $role = $em->getRepository('AccountBundle:Role')->findBy(['roleName'=>'Entraîneur']);
-        $coach = $em->getRepository('AccountBundle:Person')
-            ->createQueryBuilder('p')
-            ->join('p.teams', 't')
-            ->join('p.userRoles', 'r')
-            ->where('t = :team')
-            ->andwhere('r= :role')
-            ->setParameter('team', $team)
-            ->setParameter('role', $role)
-            ->getQuery()
-            ->getResult();
-
         $photo = $em->getRepository('GalleryBundle:File')->findBy(['team' => $team], ['uploadDate' => 'DESC'], 1, 0);
 
         //for sider:
@@ -190,7 +177,6 @@ class TeamController extends Controller
         return $this->render('AppBundle:team:detail.html.twig', array(
             'team' => $team,
             'photo' => $photo,
-            'coach' => $coach,
             'players' => $players,
             //for sider:
             'categories' => $categories,
