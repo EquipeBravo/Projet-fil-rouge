@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Salles</h1>
 
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Salle</th>
@@ -16,13 +16,23 @@
             <tr>
                 <td>{{ place.room }}</td>
                 <td>{{ place.city }}</td>
+
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('place_show', { 'id': place.id }) }}">Détails</a>
+                    <ul class="list-inline">
+                        <li title="détails">
+                            <a href="{{ path('place_show', { 'id': place.id }) }}" class="btn btn-sm btn-info">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
                         </li>
-                        <li>
-                            <a href="{{ path('place_edit', { 'id': place.id }) }}">Modifier</a>
+                        <li title="modifier">
+                            <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-sm btn-warning">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </li>
+                        <li title="suprimer">
+                            <a href="{{ path('place_delete', { 'id': place.id }) }}" class="btn btn-sm btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
                         </li>
                     </ul>
                 </td>
@@ -31,9 +41,9 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('place_new') }}">Nouvelle salle</a>
+            <a href="{{ path('place_new') }}" class="btn btn-sm btn-success">Nouvelle salle</a>
         </li>
     </ul>
 {% endblock %}

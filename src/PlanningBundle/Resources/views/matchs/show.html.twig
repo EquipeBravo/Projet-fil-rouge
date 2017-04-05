@@ -33,6 +33,9 @@
             <a href="{{ path('matchs_index') }}" class="btn btn-sm btn-default">Retour à la liste</a>
         </li>
         <li>
+            <a href="{{ path('place_edit', { 'id': match.id }) }}" class="btn btn-sm btn-warning">Modifier</a>
+        </li>
+        <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Supprimer" class="btn btn-sm btn-danger">
             {{ form_end(delete_form) }}

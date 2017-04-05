@@ -7,6 +7,7 @@ PlanningBundle\Entity\Matchs:
             joinColumn: 
                 name: place_id
                 referencedColumnName: id
+                onDelete: CASCADE
     # Many Match played by One Team
     # manyToOne:
         team:
