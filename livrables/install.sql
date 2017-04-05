@@ -13,7 +13,7 @@ INSERT INTO `role` (`id`, `role_name`, `role_rights`) VALUES
 (1, 'Manager', 'ROLE_MANAGER'),
 (2, 'Admin', 'ROLE_ADMIN'),
 (3, 'Joueur', 'ROLE_USER'),
-(4, 'Parent\r\n', 'ROLE_USER'),
+(4, 'Parent', 'ROLE_USER'),
 (5, 'Sponsor', 'ROLE_USER'),
 (6, 'Entraîneur', 'ROLE_USER'),
 (7, 'Président', 'ROLE_USER'),
