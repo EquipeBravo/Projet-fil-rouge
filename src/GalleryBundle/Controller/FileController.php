@@ -116,14 +116,16 @@ class FileController extends Controller
      */
     public function deleteAction(Request $request, File $file)
     {
-        $form = $this->createDeleteForm($file);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($file);
-            $em->flush($file);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('GalleryBundle:File')->find($file);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('ERROR : No such entity');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirectToRoute('file_index');
     }
