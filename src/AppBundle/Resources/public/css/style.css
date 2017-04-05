@@ -1,7 +1,202 @@
-.table-borderless td, .table-borderless tr{
-    border:none;
+body{
+    /*background-color: rgba(0,0,0,0.1);*/
+}
+.public-container, .admin-container{
+    padding-bottom: 10px;
+    min-height: 60vh;
+}
+
+/*admin_club*/
+.frame{
+    border-radius: 0px;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.1);
+}
+.frame-title {
+    color: #8ee000;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.frame-body{
+
+}
+.frame-footer{
+    min-height: 40px;
+    margin-right: 20px;
+}
+.icons li a{
+    color: #000;
+    opacity: 0.8;
+}
+.icons li a:hover{
+    opacity: 1;
+}
+.flatBtn{
+    border-radius: 0px;
+}
+
+/*changed default bootstrap*/
+.well{
+    /*background-color: white;*/
+    border-radius: 0px;
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.1);
+}
+.btn{
+    border-radius: 0px;
+}
+/* version2 of glyphicon buttons
+.glyphicon-info-sign{
+    color: #0000F0;
+}
+.glyphicon-pencil{
+     color: #eb9316;
+ }
+.glyphicon-trash{
+    color: #DD4B39;
+}
+*/
+
+/*navbar*/
+.navbar{
+    border-radius: 0px;
+}
+#navbar-login a{
+    color: #7fbb00;
+}
+#logo{
+    color: #7fbb00;
+}
+.menu{
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+/*main*/
+main{
+    min-height: 50vh;
+}
+
+/*siderbar*/
+.btn-social-icon{
+    color: white;
+}
+.btn-facebook{
+    background-color: #3B5998;
+}
+.btn-twitter{
+    background-color:#55ACEE;
+}
+.btn-google{
+    background-color:#DD4B39;
+}
+.btn-instagram{
+    background-color:#3F729B;
+}
+.btn-social-icon:hover{
+    opacity: 0.9;
+    color:white;
+}
+
+.profile-image{
+    width: 70%;
+    margin: auto;
+    padding-top: 30px;
+    text-align: center;
+}
+
+@media screen and (max-width: 767px){
+    .profile-image{
+        display:none;
+    }
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+
+/*index: events*/
+.event-box{
+    border-radius: 0px;
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.1);
+}
+.event-box:hover{
+    opacity: 0.9;
+    cursor: pointer;
+}
+.event-title{
+    white-space: nowrap;
+    /*word-wrap: break-word;*/
+    line-height: 25px;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/*.event-title:hover{
+    overflow: visible;
+    white-space: normal;
+    height: 100%;
+}*/
+.event-date{
+    color: #6c6159;
+}
+.event-footer{
+
+}
+
+/*footer*/
+.footer{
+    padding: 20px;
+    font-size: 0.9em;
+    margin-bottom: -0.25em;
+    color: #888;
+}
+.footer ul li{
+    list-style: none;
+    padding: 2px;
+}
+.footer ul li a{
+    color: #888;
+}
+.footer ul li a:hover{
+    color: white;
+    text-decoration: none;
+}
+.footer-main{
+    background-color: #000;
+}
+.footer-copyright{
+    background-color:#222;
+    color: mintcream;
+}
+#newsletter-heading{
+    font-size: 1.2em;
+}
+
+/*forms*/
+
+.team-img{
+    max-width: 15%;
+}
+
+.padding{
+    padding: 15px;
+}
+.padding-bottom{
+   padding-bottom: 15px;
 }
 
 .green{
-    color: #8ee000;
+    color: #7fbb00;
+}
+
+.margin-top{
+    margin-top: 30px;
+}
+
+.margin-bottom{
+    margin-bottom: 20px;
+}
+
+.border-bottom{
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
