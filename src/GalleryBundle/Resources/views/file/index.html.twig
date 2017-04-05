@@ -19,7 +19,7 @@
             <tr>
                 <div class="container">
                     <td class="col-sm-2">{{ file.name }}</td>
-                    <td class="col-sm-4"><img src="{{ asset('uploads/images/'~ file.files)  }}" width="40%"/></td>
+                    <td class="col-sm-4"><img src="{{ asset('uploads/images/'~ file.files)  }}" width="60%"/></td>
                     <td class="col-sm-2">{{ file.type }}</td>
                     <!--<td>{{ file.alt }}</td>-->
                     <td class="col-sm-2">{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i') }}{% endif %}</td>
