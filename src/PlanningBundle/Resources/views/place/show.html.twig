@@ -1,4 +1,5 @@
 {% extends 'AppBundle:admin:layout/layout.html.twig' %}
+
 {% block body %}
     <h1>Lieu</h1>
 
@@ -15,16 +16,16 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul class="list-inline">
         <li>
-            <a href="{{ path('place_index') }}">Retour à la liste</a>
+            <a href="{{ path('place_index') }}" class="btn btn-sm btn-default">Retour à la liste</a>
         </li>
         <li>
-            <a href="{{ path('place_edit', { 'id': place.id }) }}">Modifier</a>
+            <a href="{{ path('place_edit', { 'id': place.id }) }}" class="btn btn-sm btn-warning">Modifier</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
+                <input type="submit" value="Supprimer" class="btn btn-sm btn-danger">
             {{ form_end(delete_form) }}
         </li>
     </ul>
