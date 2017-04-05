@@ -2,43 +2,51 @@
 {% block body %}
     <h1>Détails</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Nom du fichier</th>
-                <td>{{ file.name }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ file.type }}</td>
-            </tr>
-            <tr>
-                <th>Alt</th>
-                <td>{{ file.alt }}</td>
-            </tr>
-            <tr>
-                <th>Date de mise en ligne</th>
-                <td>
-                    {% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i') }}{% endif %}
-                </td>
-            </tr>
-            <tr>
-                <img src="{{ asset('uploads/images/'~ file.files) }}" />
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="{{ asset('uploads/images/'~ file.files) }}" />
+        </div>
+        <div class="col-sm-8">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Nom du fichier</th>
+                    <td>{{ file.name }}</td>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <td>{{ file.type }}</td>
+                </tr>
+                <tr>
+                    <th>Alt</th>
+                    <td>{{ file.alt }}</td>
+                </tr>
+                <tr>
+                    <th>Date de mise en ligne</th>
+                    <td>
+                        {% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i') }}{% endif %}
+                    </td>
+                </tr>
 
-    <ul class="list-inline">
-        <li class="btn btn-default">
-            <a href="{{ path('file_index') }}">Retour à la liste</a>
-        </li>
-        <li class="btn btn-warning">
-            <a href="{{ path('file_edit', { 'id': file.id }) }}">Modifier</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Supprimer"  class="btn btn-danger">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <ul class="list-inline">
+            <li>
+                <a href="{{ path('file_index') }}" class="btn btn-sm btn-default">Retour à la liste</a>
+            </li>
+            <li>
+                <a href="{{ path('file_edit', { 'id': file.id }) }}" class="btn btn-sm btn-warning">Modifier</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer"  class="btn btn-sm btn-danger">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    </div>
 {% endblock %}
