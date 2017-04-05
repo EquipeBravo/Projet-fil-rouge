@@ -4,25 +4,24 @@
     <table class="table table-striped">
         <thead>
             <tr>
-            <div class="container">
-                <th class="th_galery">Nom du fichier</th>
-                <th class="th_galery">Photo</th>
-                <th class="th_galery">Type</th>
+                <th >Nom du fichier</th>
+                <th>Photo</th>
+                <th >Type</th>
                 <!--<th>Alt</th>-->
-                <th class="th_galery">Date de téléchargement</th>
-                <th class="th_galery">Actions</th>
+                <th>Date de téléchargement</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for file in files %}
             <tr>
                 <td>{{ file.name }}</td>
-                <td class="thumbnail"><img  src="{{ asset('uploads/images/'~ file.files)  }}" /></td>
+                <td style="width:20%"><img  width="90%" src="{{ asset('uploads/images/'~ file.files)  }}" /></td>
                 <td>{{ file.type }}</td>
                 <!--<td>{{ file.alt }}</td>-->
                 <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i') }}{% endif %}</td>
                 <td>
-                    <div class="container">
+
                     <ul class="list-inline">
                         <li title="détails">
                             <a href="{{ path('file_show', { 'id': file.id }) }}" class="btn btn-sm btn-info">
@@ -40,7 +39,7 @@
                             </a>
                         </li>
                     </ul>
-                    </div>
+
                 </td>
             </tr>
         {% endfor %}

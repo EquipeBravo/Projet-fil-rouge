@@ -368,55 +368,27 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         //one can also create a new entity Personal (president, manager, secretariat ...)
-        $role_president = $em->getRepository('AccountBundle:Role')->findBy(['roleName'=>'Président']);
-        $president = $em->getRepository('AccountBundle:Person')
-            ->createQueryBuilder('p')
-            ->join('p.userRoles', 'r')
-            ->andwhere('r= :role')
-            ->setParameter('role', $role_president)
-            ->getQuery()
-            ->getResult();
 
-        $role_treasurer = $em->getRepository('AccountBundle:Role')->findBy(['roleName'=>'Trésorier']);
-        $treasurer = $em->getRepository('AccountBundle:Person')
-            ->createQueryBuilder('p')
-            ->join('p.userRoles', 'r')
-            ->andwhere('r= :role')
-            ->setParameter('role', $role_treasurer)
-            ->getQuery()
-            ->getResult();
+        $roleNames = ['Président', 'Trésorier', 'Arbitre', 'Entraîneur'];
 
-        $role_arbiter = $em->getRepository('AccountBundle:Role')->findBy(['roleName'=>'Arbitre']);
-        $arbiter = $em->getRepository('AccountBundle:Person')
-            ->createQueryBuilder('p')
-            ->join('p.userRoles', 'r')
-            ->andwhere('r= :role')
-            ->setParameter('role', $role_arbiter)
-            ->getQuery()
-            ->getResult();
+        foreach ($roleNames as $roleName){
+            $persons = $em->getRepository('AccountBundle:Person')
+                ->createQueryBuilder('p')
+                ->join('p.userRoles', 'r')
+                ->where('r.roleName= :role')
+                ->setParameter('role', $roleName)
+                ->getQuery()
+                ->getResult();
 
-        $role_coach = $em->getRepository('AccountBundle:Role')->findBy(['roleName'=>'Entraîneur']);
-        $coach = $em->getRepository('AccountBundle:Person')
-            ->createQueryBuilder('p')
-            ->join('p.userRoles', 'r')
-            ->andwhere('r= :role')
-            ->setParameter('role', $role_coach)
-            ->getQuery()
-            ->getResult();
+            //$persons['roleName']= $roleName;
+            $roles[]= $persons;
+        }
 
-        $roles = [
-            'Président'=> $president,
-            'Trésoriers'=> $treasurer,
-            'Arbitre'=> $arbiter,
-            'Entraîneur'=> $coach
-        ];
+        //$roles = [$president, $treasurer, $arbiter, $coach];
 
         return $this->render('AppBundle::contact.html.twig', array(
             'form' => $form->createView(),
-            'president' => $president,
-            'treasurer' => $treasurer,
-            'arbiter' => $arbiter,
-            'coach'=> $coach,
+            'roleNames' => $roleNames,
             'roles' => $roles,
         ));
     }

@@ -21,16 +21,26 @@
                 <tbody>
                 {% for match in matchs %}
                     <tr>
-                        <td>{{ match.dateMatch|date('Y-m-d H:i') }}</td>
+                        <td>{{ match.dateMatch|date('d/m/Y H\\hi') }}</td>
                         <td>{{ match.domicile }}</td>
                         <td>{{ match.place }}</td>
                         <td>{{ match.team }}</td>
                         <td>{{ match.team2 }}</td>
                         {% if is_granted('ROLE_MANAGER') %}
-                            <td><a href="{{ path('manager_matchs_edit', { 'id': match.id }) }}"><span
-                                            class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="{{ path('manager_matchs_delete', { 'id': match.id }) }}"><span
-                                            class="glyphicon glyphicon-trash"></span></a></td>
+                            <td>
+                                <ul class="list-inline icons">
+                                    <li data-toggle="tooltip" title="Modifier">
+                                        <a href="{{ path('manager_matchs_edit', { 'id': match.id }) }}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                    </li>
+                                    <li data-toggle="tooltip" title="Supprimer">
+                                        <a href="{{ path('manager_matchs_delete', { 'id': match.id }) }}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
                         {% endif %}
                         <td><a href="{{ path('app_match_show', { 'id': match.id }) }}">Plus d'infos</a></td>
                     </tr>
