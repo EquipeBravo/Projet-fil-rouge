@@ -94,14 +94,15 @@ class PlaceController extends Controller
      */
     public function deleteAction(Request $request, Place $place)
     {
-        $form = $this->createDeleteForm($place);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('PlanningBundle:Place')->find($place);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($place);
-            $em->flush($place);
+        if (!$entity) {
+            throw $this->createNotFoundException('ERROR : No such entity');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirectToRoute('place_index');
     }

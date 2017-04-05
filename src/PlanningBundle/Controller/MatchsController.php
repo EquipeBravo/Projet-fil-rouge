@@ -94,14 +94,15 @@ class MatchsController extends Controller
      */
     public function deleteAction(Request $request, Matchs $match)
     {
-        $form = $this->createDeleteForm($match);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('PlanningBundle:Matchs')->find($match);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($match);
-            $em->flush($match);
+        if (!$entity) {
+            throw $this->createNotFoundException('ERROR : No such entity');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirectToRoute('matchs_index');
     }

@@ -70,61 +70,31 @@
     </div>
 
     <section class="row padding-bottom" id="stuff-list">
-        <h2>Personnel du Club</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>Post</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Téléphone</th>
-            </tr>
-            {# set roles = [{'Président': president}, {'Trésorier': treasurer}, {'Arbitre': arbiter}, {'Entraîneur': coach} ]#}
-            {#{% for role in roles %}
-                {% for key in role | keys %}
-                    {% if role.key %}
-                        <tr>
-                            <th>{{ key }}</th>
-                            <td>{{ role.key.lastName |capitalize }} {{ roles.key.firstName| capitalize }}</td>
-                            <td>{{ role.key.email }}</td>
-                            <td>{{ role.key.phone }}</td>
-                        </tr>
+        <div class="col-sm-12">
+            <h2>Personnel du Club</h2>
+            <table class="table table-striped table-bordered table-responsive">
+                <tr>
+                    <th>Post</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                </tr>
+
+                {% for persons in roles %}
+                    {% set index = loop.index0 %}
+                    {% if persons %}
+                        {% for person in persons %}
+                            <tr>
+                                <th>{{ roleNames[index]}}</th>
+                                <td>{{ person.lastName |capitalize }} {{ person.firstName| capitalize }}</td>
+                                <td>{{ person.email }}</td>
+                                <td>{{ person.phone }}</td>
+                            </tr>
+                        {% endfor %}
                     {% endif %}
                 {% endfor %}
-            {% endfor %}
-            #}
-            {% if president %}
-                <tr>
-                    <td>Président</td>
-                    <td>{{ president[0].lastName |capitalize }} {{president[0].firstName| capitalize }}</td>
-                    <td>{{ president[0].email }}</td>
-                    <td>{{ president[0].phone }}</td>
-                </tr>
-            {% endif %}
-            {% if treasurer %}
-                <tr>
-                    <td>Trésorier</td>
-                    <td>{{ treasurer[0].lastName |capitalize }} {{treasurer[0].firstName| capitalize }}</td>
-                    <td>{{ treasurer[0].email }}</td>
-                    <td>{{ treasurer[0].phone }}</td>
-                </tr>
-            {% endif %}
-            {% if arbiter %}
-                <tr>
-                    <td>Arbitre</td>
-                    <td>{{ arbiter[0].lastName |capitalize }} {{arbiter[0].firstName| capitalize }}</td>
-                    <td>{{ arbiter[0].email }}</td>
-                    <td>{{ arbiter[0].phone }}</td>
-                </tr>
-            {% endif %}
-            {% if coach %}
-                <tr>
-                    <td>Entraîneur</td>
-                    <td>{{ coach[0].lastName |capitalize }} {{coach[0].firstName| capitalize }}</td>
-                    <td>{{ coach[0].email }}</td>
-                    <td>{{ coach[0].phone }}</td>
-                </tr>
-            {% endif %}
-        </table>
+            </table>
+        </div>
 
     </section>
 {% endblock %}

@@ -117,7 +117,7 @@ class Place
    */
     public function __toString()
     {
-        $place = $this->room . $this->city;
+        $place = $this->room . " " . $this->city;
         return $place;
     }
 

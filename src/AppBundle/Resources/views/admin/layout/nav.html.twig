@@ -40,36 +40,20 @@
                             <li><a href="{{ path('category_team_homepage', {'id': category.id}) }}">{{ category.description  }}</a></li>
                         {% endfor %}
                     </ul>
-                   <!-- <table class="dropdown-menu">
-                        <tr>
-                            <th>
-                                <a class="dropdown-toggle" data-toggle="dropdown">SM</a>
-                            </th>
-                            <th>
-                                <a href="{{ path('team_index') }}">SF</a>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <ul>
-                                    <li><a href="{{ path('team_index') }}">SM1</a></li>
-                                    <li><a href="{{ path('team_index') }}">SM2</a></li>
-                                    <li><a href="{{ path('team_index') }}">SM3</a></li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li><a href="{{ path('team_index') }}">SF1</a></li>
-                                    <li><a href="{{ path('team_index') }}">SF1</a></li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </table>-->
                 </li>
                 <li><a href="{{ path('event_index') }}">Évènements</a></li>
-                <li><a href="{{ path('matchs_index') }}">Matchs</a></li>
+                <li class="dropdown">
+                    <a href="{{ path('matchs_index') }}" class="dropdown-toggle" data-toggle="dropdown">
+                        Matchs
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('matchs_index') }}">Matchs</a></li>
+                        <li><a href="{{ path('place_index') }}">Salles</a></li>
+                    </ul>
+                </li>
                 <!-- manque école d'arbitrage et contact
-                le lien pour s'inscrire peut éventuellent être déporter à droite du menu et disparaitre si la personne est logguée-->
+                le lien pour s'inscrire peut éventuellement être déporté à droite du menu et disparaitre si la personne est logguée-->
             </ul>
             <ul class="nav navbar-nav navbar-right list-inline">
                 <li title="Logout"><a href="{{ path('app_logout') }}">

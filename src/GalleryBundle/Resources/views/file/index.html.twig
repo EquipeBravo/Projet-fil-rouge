@@ -4,45 +4,42 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <div class="container">
-                    <th class="th_galery">Nom du fichier</th>
-                    <th class="th_galery">Photo</th>
-                    <th class="th_galery">Type</th>
-                    <!--<th>Alt</th>-->
-                    <th class="th_galery">Date de téléchargement</th>
-                    <th class="th_galery">Actions</th>
-                </div>
+                <th >Nom du fichier</th>
+                <th>Photo</th>
+                <th >Type</th>
+                <!--<th>Alt</th>-->
+                <th>Date de téléchargement</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for file in files %}
             <tr>
-                <div class="container">
-                    <td class="col-sm-2">{{ file.name }}</td>
-                    <td class="col-sm-4"><img src="{{ asset('uploads/images/'~ file.files)  }}" width="60%"/></td>
-                    <td class="col-sm-2">{{ file.type }}</td>
-                    <!--<td>{{ file.alt }}</td>-->
-                    <td class="col-sm-2">{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i') }}{% endif %}</td>
-                    <td class="col-sm-2">
-                        <ul class="list-inline">
-                            <li title="détails">
-                                <a href="{{ path('file_show', { 'id': file.id }) }}" class="btn btn-sm btn-info">
-                                    <span class="glyphicon glyphicon-info-sign"></span>
-                                </a>
-                            </li>
-                            <li title="modifier">
-                                <a href="{{ path('file_edit', { 'id': file.id }) }}" class="btn btn-sm btn-warning">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </a>
-                            </li>
-                            <li title="suprimer">
-                                <a href="{{ path('file_delete', { 'id': file.id }) }}" class="btn btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </td>
-                </div>
+                <td>{{ file.name }}</td>
+                <td style="width:20%"><img  width="90%" src="{{ asset('uploads/images/'~ file.files)  }}" /></td>
+                <td>{{ file.type }}</td>
+                <!--<td>{{ file.alt }}</td>-->
+                <td>{% if file.uploadDate %}{{ file.uploadDate|date('Y-m-d H:i') }}{% endif %}</td>
+                <td>
+
+                    <ul class="list-inline">
+                        <li title="détails">
+                            <a href="{{ path('file_show', { 'id': file.id }) }}" class="btn btn-sm btn-info">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
+                        </li>
+                        <li title="modifier">
+                            <a href="{{ path('file_edit', { 'id': file.id }) }}" class="btn btn-sm btn-warning">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                        </li>
+                        <li title="suprimer">
+                            <a href="{{ path('file_delete', { 'id': file.id }) }}" class="btn btn-sm btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
