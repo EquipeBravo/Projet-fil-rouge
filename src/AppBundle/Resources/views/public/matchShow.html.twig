@@ -49,12 +49,16 @@
                 </thead>
                 <tbody>
                 <tr>
+                    <td>
                     {% for player in players1 %}
-                        <td>{{ player.firstname }} {{ player.lastname }}</td>
+                        {{ player.firstname }} {{ player.lastname }}<br>
                     {% endfor %}
+                    </td>
+                    <td>
                     {% for player in players2 %}
-                        <td>{{ player.firstname }} {{ player.lastname }}</td>
+                       {{ player.firstname }} {{ player.lastname }}<br>
                     {% endfor %}
+                    </td>
                 </tr>
                 </tbody>
             </table>
