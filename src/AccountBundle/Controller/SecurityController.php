@@ -20,7 +20,7 @@ class SecurityController extends Controller
 
             //crypt password
             $encoder = $this->container->get('security.password_encoder');
-            $encoded = $encoder->encodePassword($person, $person->getPassword());
+            $encoded = $encoder->encodePassword($person, $person->getPlainPassword());
             $person->setPassword($encoded);
 
             $em = $this->getDoctrine()->getManager();

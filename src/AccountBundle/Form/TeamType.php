@@ -20,7 +20,7 @@ class TeamType extends AbstractType
                 ->add('trainingDay', null, ['label' => "Date d'entrainement"])
                 ->add('category', null, ['label' => 'Catégorie'])
                 ->add('coach', null, ['label' => 'Entraineur'])
-                ->add('club', null, ['label' => 'Club'])
+                //->add('club', null, ['label' => 'Club'])
             ;
     }
 
