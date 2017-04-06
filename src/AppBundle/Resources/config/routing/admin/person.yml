@@ -8,10 +8,10 @@ person_show:
     defaults: { _controller: "AccountBundle:Person:show" }
     methods:  GET
 
-person_new:
-    path:     /new
-    defaults: { _controller: "AccountBundle:Person:new" }
-    methods:  [GET, POST]
+#person_new:
+#    path:     /new
+#    defaults: { _controller: "AccountBundle:Person:new" }
+#    methods:  [GET, POST]
 
 person_edit:
     path:     /{id}/edit

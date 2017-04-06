@@ -44,6 +44,7 @@ twig:
     strict_variables: "%kernel.debug%"
     form_themes:
             - 'bootstrap_3_horizontal_layout.html.twig'
+    exception_controller:  AppBundle:Default:showException
 
 # Doctrine Configuration
 doctrine:

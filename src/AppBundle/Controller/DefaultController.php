@@ -6,6 +6,7 @@ use PlanningBundle\Entity\Matchs;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use AccountBundle\Entity\Person;
 use AccountBundle\Entity\Team;
 use AppBundle\Entity\Event;
@@ -64,6 +65,11 @@ class DefaultController extends Controller
                 'clubs' => $clubs
             )
         );
+    }
+
+    public function showExceptionAction(Request $request)
+    {
+        return $this->render('AppBundle::404.html.twig');
     }
 
     /*
@@ -371,7 +377,7 @@ class DefaultController extends Controller
 
         $roleNames = ['Président', 'Trésorier', 'Arbitre', 'Entraîneur'];
 
-        foreach ($roleNames as $roleName){
+        foreach ($roleNames as $roleName) {
             $persons = $em->getRepository('AccountBundle:Person')
                 ->createQueryBuilder('p')
                 ->join('p.userRoles', 'r')
@@ -381,7 +387,7 @@ class DefaultController extends Controller
                 ->getResult();
 
             //$persons['roleName']= $roleName;
-            $roles[]= $persons;
+            $roles[] = $persons;
         }
 
         //$roles = [$president, $treasurer, $arbiter, $coach];
