@@ -15,8 +15,8 @@ class PersonTypeTest extends TypeTestCase
             'firstName' => 'test',
             'lastName' => 'test',
             'email' => 'john-doe@otonmail.com',
-            'password' => 'Abcd123!',
-            'password' => 'Abcd123!'
+            'plainPassword' => 'Abcd123!',
+            'plainPassword' => 'Abcd123!'
         );
 
         $form = $this->factory->create(PersonType::class);
@@ -46,8 +46,8 @@ class PersonTypeTest extends TypeTestCase
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
             'email' => $data['email'],
-            'password' => $data['password'],
-            'password' => $data['password']
+            'plainPassword' => $data['plainPassword'],
+            'plainPassword' => $data['plainPassword']
         );
 
         $form = $this->factory->create(PersonType::class);
@@ -76,8 +76,8 @@ class PersonTypeTest extends TypeTestCase
                     'firstName' => 'test2',
                     'lastName' => 'test',
                     'email' => 'john-doe@otonmail.com',
-                    'password' => '123',
-                    'password' => '123'
+                    'plainPassword' => '123',
+                    'plainPassword' => '123'
                 )
             ),
             array(
