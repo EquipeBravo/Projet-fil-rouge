@@ -88,6 +88,11 @@ class Person implements UserInterface, \Serializable
      *     message="Votre mot de passe doit comporter au moins 8 caractères (lettres minuscule et majuscule, sans accents, chiffres ou caractères spéciaux '@$*#!_')"
      * )
      */
+    private $plainPassword;
+
+    /**
+     * @var string
+     */
     private $password;
 
     /**
@@ -109,6 +114,22 @@ class Person implements UserInterface, \Serializable
      * @var ArrayCollection
      */
     private $roles = [];
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
 
 
     /**

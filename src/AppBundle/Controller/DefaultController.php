@@ -21,8 +21,8 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $eventsTemp = $em->getRepository('AppBundle:Event')->findBy(array(), array('dateEvent' => 'DESC'));
-        $matchsTemp = $em->getRepository('PlanningBundle:Matchs')->findBy(array(), array('dateMatch' => 'DESC'));
+        $eventsTemp = $em->getRepository('AppBundle:Event')->findBy(array(), array('dateEvent' => 'ASC'));
+        $matchsTemp = $em->getRepository('PlanningBundle:Matchs')->findBy(array(), array('dateMatch' => 'ASC'));
 
         $date = new \DateTime("now");
         $events = null;
