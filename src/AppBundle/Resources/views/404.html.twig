@@ -1,0 +1,17 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+
+{% block article %}
+
+    <section class="row">
+
+        <div class="col-sm-12">
+            <div class="well">
+                <p>
+                    Erreur 404 : Ressource non trouvée.
+                </p>
+                <a href="{{ path('app_homepage') }}">Vous êtes perdu ? Cliquez ici pour retournez à l'accueil !</a>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}
