@@ -25,7 +25,7 @@ class PersonType extends AbstractType
 
         if (!$options['admin']) {
             $builder
-                ->add('password', RepeatedType::class, [
+                ->add('plainPassword', RepeatedType::class, [
                     'type' => PasswordType::class,
                     'invalid_message' => 'Les champs de mot de passe doivent correspondre.',
                     'options' => array('attr' => array('class' => 'password-field')),
