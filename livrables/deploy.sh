@@ -1,18 +1,21 @@
 #!/bin/bash
 
+echo "************************************************"
 echo "mise à jour du système"
-apt-get upgrade
-apt-get dist-upgrade
+echo "************************************************"
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
 
-
+echo "************************************************"
 echo "installation de l'environnement"
-apt-get install php5
-apt-get install apache2
-apt-get install mysql-server
-apt-get install git
+echo "************************************************"
+sudo apt-get install php5
+sudo apt-get install apache2
+sudo apt-get install mysql-server
+sudo apt-get install git
 mkdir -p /usr/local/bin
 curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
-chmod a+x /usr/local/bin/symfony
+sudo chmod a+x /usr/local/bin/symfony
 
 cd /var/www/html
 mkdir websiteAsptt
@@ -26,18 +29,25 @@ php composer-setup.php
 
 php -r "unlink('composer-setup.php');"
 
+echo "************************************************"
 echo "telechargement du repository"
+echo "************************************************"
 git clone https://github.com/EquipeBravo/Projet-fil-rouge.git
-
+cp composer.phar Projet-fil-rouge
+cd Projet-fil-rouge
+echo "************************************************"
 echo "nettoyage du cache"
+echo "************************************************"
 php bin/console cache:clear
 php bin/console cache:clear --env=prod
 
 
-chmod -R 766 var/logs
-chmod -R 766 var/cache
+sudo chmod -R 766 var/logs
+sudo chmod -R 766 var/cache
 
+echo "************************************************"
 echo "installation des dépendances et de la database"
+echo "************************************************"
 php composer.phar install
 
 php bin/console doctrine:database:create
