@@ -83,9 +83,9 @@ class Person implements UserInterface, \Serializable
      *
      * @var string
      * @Assert\Regex(
-     *     pattern="/^([a-zA-Z0-9@.\/*!_#\$]{8,})$/",
+     *     pattern="/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@!*#_]).{5,}/",
      *     match=true,
-     *     message="Votre mot de passe doit comporter au moins 8 caractères (lettres minuscule et majuscule, sans accents, chiffres ou caractères spéciaux '@$*#!_')"
+     *     message="Votre mot de passe doit comporter au moins 5 caractères, au moins une lettre minuscule et majuscule (sans accents), une chiffre et un caractère spécial '@*#!_'"
      * )
      */
     private $plainPassword;
