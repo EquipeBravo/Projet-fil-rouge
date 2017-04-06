@@ -12,8 +12,8 @@ class PersonTypeTest extends TypeTestCase
     public function testSubmitValidData()
     {
         $formData = array(
-            'firstName' => 'test',
             'lastName' => 'test',
+            'firstName' => 'test',
             'email' => 'john-doe@otonmail.com',
             'plainPassword' => 'Abcd123!',
             'plainPassword' => 'Abcd123!'
@@ -21,7 +21,12 @@ class PersonTypeTest extends TypeTestCase
 
         $form = $this->factory->create(PersonType::class);
 
-        $object = Person::fromArray($formData);
+        $object = new Person();
+        $object->setLastName($formData['lastName']);
+        $object->setFirstName($formData['lastName']);
+        $object->setEmail($formData['lastName']);
+        $object->setPlainPassword($formData['lastName']);
+        //$object = Person::fromArray($formData);
 
         // submit the data to the form directly
         $form->submit($formData);
@@ -43,8 +48,8 @@ class PersonTypeTest extends TypeTestCase
     public function testSubmitNotValidData($data)
     {
         $formData = array(
-            'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
+            'firstName' => $data['firstName'],
             'email' => $data['email'],
             'plainPassword' => $data['plainPassword'],
             'plainPassword' => $data['plainPassword']
@@ -73,8 +78,8 @@ class PersonTypeTest extends TypeTestCase
         return array(
             array(
                 'data' => array(
-                    'firstName' => 'test2',
                     'lastName' => 'test',
+                    'firstName' => 'test2',
                     'email' => 'john-doe@otonmail.com',
                     'plainPassword' => '123',
                     'plainPassword' => '123'
